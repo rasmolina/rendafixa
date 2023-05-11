@@ -6,19 +6,18 @@ import br.edu.ifsp.rendafixa.domain.entities.entidades.Portadora;
 import java.time.LocalDate;
 
 public class Ativo {
-
     private String nome;
-    private LocalDate vencimento;
     private boolean liquidezDiaria;
-    private CategoriaAtivo categoria;
+    private CategoriaAtivo categoriaAtivo;
+    private CategoriaRentabilidade categoriaRentabilidade;
     private Emissora emissora;
     private Portadora portadora;
 
-    public Ativo(String nome, LocalDate vencimento, boolean liquidezDiaria, CategoriaAtivo categoria, Emissora emissora, Portadora portadora) {
+    public Ativo(String nome, boolean liquidezDiaria, CategoriaAtivo categoriaAtivo, CategoriaRentabilidade categoriaRentabilidade, Emissora emissora, Portadora portadora) {
         this.nome = nome;
-        this.vencimento = vencimento;
         this.liquidezDiaria = liquidezDiaria;
-        this.categoria = categoria;
+        this.categoriaAtivo = categoriaAtivo;
+        this.categoriaRentabilidade = categoriaRentabilidade;
         this.emissora = emissora;
         this.portadora = portadora;
     }
@@ -31,14 +30,6 @@ public class Ativo {
         this.nome = nome;
     }
 
-    public LocalDate getVencimento() {
-        return vencimento;
-    }
-
-    public void setVencimento(LocalDate vencimento) {
-        this.vencimento = vencimento;
-    }
-
     public boolean isLiquidezDiaria() {
         return liquidezDiaria;
     }
@@ -47,12 +38,20 @@ public class Ativo {
         this.liquidezDiaria = liquidezDiaria;
     }
 
-    public CategoriaAtivo getCategoria() {
-        return categoria;
+    public CategoriaAtivo getCategoriaAtivo() {
+        return categoriaAtivo;
     }
 
-    public void setCategoria(CategoriaAtivo categoria) {
-        this.categoria = categoria;
+    public void setCategoriaAtivo(CategoriaAtivo categoriaAtivo) {
+        this.categoriaAtivo = categoriaAtivo;
+    }
+
+    public CategoriaRentabilidade getCategoriaRentabilidade() {
+        return categoriaRentabilidade;
+    }
+
+    public void setCategoriaRentabilidade(CategoriaRentabilidade categoriaRentabilidade) {
+        this.categoriaRentabilidade = categoriaRentabilidade;
     }
 
     public Emissora getEmissora() {
@@ -75,9 +74,9 @@ public class Ativo {
     public String toString() {
         return "Ativo{" +
                 "nome='" + nome + '\'' +
-                ", vencimento=" + vencimento +
                 ", liquidezDiaria=" + liquidezDiaria +
-                ", categoria=" + categoria +
+                ", categoriaAtivo=" + categoriaAtivo +
+                ", categoriaRentabilidade=" + categoriaRentabilidade +
                 ", emissora=" + emissora +
                 ", portadora=" + portadora +
                 '}';

@@ -6,7 +6,9 @@ public enum CategoriaAtivo {
     LCA("Letra de Crédito de Agronegócio"),
     CDB("Certificado de Depósito Bancário"),
     CDI("Certificado de Depósito Interbancário"),
-    RDB("Recibo de Depósito Bancário");
+    RDB("Recibo de Depósito Bancário"),
+    DEB("Debênture"),
+    PP("Poupança");
 
     private String categoria;
 

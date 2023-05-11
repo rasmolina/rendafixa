@@ -1,17 +1,24 @@
 package br.edu.ifsp.rendafixa.domain.entities.indexadores;
 
 public class Indexador {
-
+    private SiglaIndexador sigla;
     private String nome;
-    private String sigla;
-    private String descricao;
+    private Float valor;
 
     public Indexador(){}
 
-    public Indexador(String nome, String sigla, String descricao) {
-        this.nome = nome;
+    public Indexador(SiglaIndexador sigla, String nome, Float valor) {
         this.sigla = sigla;
-        this.descricao = descricao;
+        this.nome = nome;
+        this.valor = valor;
+    }
+
+    public SiglaIndexador getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(SiglaIndexador sigla) {
+        this.sigla = sigla;
     }
 
     public String getNome() {
@@ -22,28 +29,20 @@ public class Indexador {
         this.nome = nome;
     }
 
-    public String getSigla() {
-        return sigla;
+    public Float getValor() {
+        return valor;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setValor(Float valor) {
+        this.valor = valor;
     }
 
     @Override
     public String toString() {
         return "Indexador{" +
-                "Nome='" + nome + '\'' +
-                ", Sigla='" + sigla + '\'' +
-                ", Descrição='" + descricao + '\'' +
+                "sigla=" + sigla +
+                ", nome='" + nome + '\'' +
+                ", valor=" + valor +
                 '}';
     }
 }
