@@ -2,6 +2,7 @@ package br.edu.ifsp.rendafixa.domain.entities.ativos;
 
 import br.edu.ifsp.rendafixa.domain.entities.entidades.Emissora;
 import br.edu.ifsp.rendafixa.domain.entities.entidades.Portadora;
+import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 
 import java.time.LocalDate;
 
@@ -12,14 +13,18 @@ public class Ativo {
     private CategoriaRentabilidade categoriaRentabilidade;
     private Emissora emissora;
     private Portadora portadora;
+    private Indexador indexador;
+    private Double rentabilidade;
 
-    public Ativo(String nome, boolean liquidezDiaria, CategoriaAtivo categoriaAtivo, CategoriaRentabilidade categoriaRentabilidade, Emissora emissora, Portadora portadora) {
+    public Ativo(String nome, boolean liquidezDiaria, CategoriaAtivo categoriaAtivo, CategoriaRentabilidade categoriaRentabilidade, Emissora emissora, Portadora portadora, Indexador indexador, Double rentabilidade) {
         this.nome = nome;
         this.liquidezDiaria = liquidezDiaria;
         this.categoriaAtivo = categoriaAtivo;
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.emissora = emissora;
         this.portadora = portadora;
+        this.indexador = indexador;
+        this.rentabilidade = rentabilidade;
     }
 
     public String getNome() {
@@ -70,6 +75,22 @@ public class Ativo {
         this.portadora = portadora;
     }
 
+    public Indexador getIndexador() {
+        return indexador;
+    }
+
+    public void setIndexador(Indexador indexador) {
+        this.indexador = indexador;
+    }
+
+    public Double getRentabilidade() {
+        return rentabilidade;
+    }
+
+    public void setRentabilidade(Double rentabilidade) {
+        this.rentabilidade = rentabilidade;
+    }
+
     @Override
     public String toString() {
         return "Ativo{" +
@@ -79,6 +100,8 @@ public class Ativo {
                 ", categoriaRentabilidade=" + categoriaRentabilidade +
                 ", emissora=" + emissora +
                 ", portadora=" + portadora +
+                ", indexador=" + indexador +
+                ", rentabilidade=" + rentabilidade +
                 '}';
     }
 }
