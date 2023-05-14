@@ -1,4 +1,4 @@
 package br.edu.ifsp.rendafixa.domain.usescases.entidades;
 
-public class EditarEntidadeEmissora {
+public class AtualizarEntidadeEmissora {
 }

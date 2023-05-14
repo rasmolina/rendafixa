@@ -9,13 +9,11 @@ public class Carteira {
     private Ativo ativo;
     private Double valorTotalCompra;
     private LocalDate dataCompra;
-    private LocalDate dataVencimento;
 
-    public Carteira(Ativo ativo, Double valorTotalCompra, LocalDate dataVencimento) {
+    public Carteira(Ativo ativo, Double valorTotalCompra) {
         this.ativo = ativo;
         this.valorTotalCompra = valorTotalCompra;
         this.dataCompra = LocalDate.now();
-        this.dataVencimento = dataVencimento;
     }
 
     public Ativo getAtivo() {
@@ -38,21 +36,12 @@ public class Carteira {
         return dataCompra;
     }
 
-    public LocalDate getDataVencimento() {
-        return dataVencimento;
-    }
-
-    public void setDataVencimento(LocalDate dataVencimento) {
-        this.dataVencimento = dataVencimento;
-    }
-
     @Override
     public String toString() {
         return "Carteira{" +
                 "ativo=" + ativo +
                 ", valorTotalCompra=" + valorTotalCompra +
                 ", dataCompra=" + dataCompra +
-                ", dataVencimento=" + dataVencimento +
                 '}';
     }
 }

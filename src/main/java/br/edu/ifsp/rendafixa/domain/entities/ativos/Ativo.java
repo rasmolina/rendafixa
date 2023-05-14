@@ -7,8 +7,10 @@ import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import java.time.LocalDate;
 
 public class Ativo {
+    private Integer id;
     private String nome;
     private boolean liquidezDiaria;
+    private LocalDate dataVencimento;
     private CategoriaAtivo categoriaAtivo;
     private CategoriaRentabilidade categoriaRentabilidade;
     private Emissora emissora;
@@ -16,15 +18,25 @@ public class Ativo {
     private Indexador indexador;
     private Double rentabilidade;
 
-    public Ativo(String nome, boolean liquidezDiaria, CategoriaAtivo categoriaAtivo, CategoriaRentabilidade categoriaRentabilidade, Emissora emissora, Portadora portadora, Indexador indexador, Double rentabilidade) {
+    public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, CategoriaRentabilidade categoriaRentabilidade, Emissora emissora, Portadora portadora, Indexador indexador, Double rentabilidade) {
+        this.id = id;
         this.nome = nome;
         this.liquidezDiaria = liquidezDiaria;
+        this.dataVencimento = dataVencimento;
         this.categoriaAtivo = categoriaAtivo;
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.emissora = emissora;
         this.portadora = portadora;
         this.indexador = indexador;
         this.rentabilidade = rentabilidade;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -41,6 +53,14 @@ public class Ativo {
 
     public void setLiquidezDiaria(boolean liquidezDiaria) {
         this.liquidezDiaria = liquidezDiaria;
+    }
+
+    public LocalDate getDataVencimento() {
+        return dataVencimento;
+    }
+
+    public void setDataVencimento(LocalDate dataVencimento) {
+        this.dataVencimento = dataVencimento;
     }
 
     public CategoriaAtivo getCategoriaAtivo() {
@@ -94,8 +114,10 @@ public class Ativo {
     @Override
     public String toString() {
         return "Ativo{" +
-                "nome='" + nome + '\'' +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", liquidezDiaria=" + liquidezDiaria +
+                ", dataVencimento=" + dataVencimento +
                 ", categoriaAtivo=" + categoriaAtivo +
                 ", categoriaRentabilidade=" + categoriaRentabilidade +
                 ", emissora=" + emissora +

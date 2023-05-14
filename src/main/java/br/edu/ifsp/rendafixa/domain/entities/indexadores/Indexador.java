@@ -3,11 +3,11 @@ package br.edu.ifsp.rendafixa.domain.entities.indexadores;
 public class Indexador {
     private SiglaIndexador sigla;
     private String nome;
-    private Float valor;
+    private Double valor;
 
     public Indexador(){}
 
-    public Indexador(SiglaIndexador sigla, String nome, Float valor) {
+    public Indexador(SiglaIndexador sigla, String nome, Double valor) {
         this.sigla = sigla;
         this.nome = nome;
         this.valor = valor;
@@ -29,11 +29,11 @@ public class Indexador {
         this.nome = nome;
     }
 
-    public Float getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Float valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
