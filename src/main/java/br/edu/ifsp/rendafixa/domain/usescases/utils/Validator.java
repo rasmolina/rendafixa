@@ -9,7 +9,7 @@ public abstract class Validator<T> {
         return string == null || string.isEmpty();
     }
 
-    public static boolean nuloOuVazio(Integer integer) { return integer == null || integer.equals(0);}
+    public static boolean nuloOuVazio(Integer integer) { return integer == null || integer == 0;}
 
     public static boolean nuloOuVazio(Collection collection){
         return collection == null || collection.isEmpty();
