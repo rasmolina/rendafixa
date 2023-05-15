@@ -1,14 +1,24 @@
-package br.edu.ifsp.rendafixa.domain.entities.entidades;
+package br.edu.ifsp.rendafixa.domain.entities.portadora;
 
 public class Portadora {
+    private Integer id;
     private String nome;
     private String descricao;
     private String sigla;
 
-    public Portadora(String nome, String descricao, String sigla) {
+    public Portadora(Integer id, String nome, String descricao, String sigla) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.sigla = sigla;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -37,8 +47,9 @@ public class Portadora {
 
     @Override
     public String toString() {
-        return "Emissora{" +
-                "nome='" + nome + '\'' +
+        return "Portadora{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", sigla='" + sigla + '\'' +
                 '}';

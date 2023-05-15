@@ -1,7 +1,7 @@
 package br.edu.ifsp.rendafixa.domain.entities.ativos;
 
-import br.edu.ifsp.rendafixa.domain.entities.entidades.Emissora;
-import br.edu.ifsp.rendafixa.domain.entities.entidades.Portadora;
+import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
+import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 
 import java.time.LocalDate;
