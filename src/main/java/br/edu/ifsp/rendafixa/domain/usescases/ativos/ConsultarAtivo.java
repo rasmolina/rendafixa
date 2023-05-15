@@ -24,7 +24,7 @@ public class ConsultarAtivo {
 
     public Optional<Ativo> buscaPorNome(String nome){
         if (Validator.nuloOuVazio(nome))
-            throw new IllegalArgumentException("Nome não pode ser nula!");
+            throw new IllegalArgumentException("Nome não pode ser nulo!");
         return ativoDAO.buscaPorNome(nome);
     }
 

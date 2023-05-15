@@ -33,7 +33,8 @@ public class Notification {
             this.cause = cause;
         }
     }
-
+    //percorre o vetor de erros e pra cada erro que encontrar vai mapear para String, pega todas as Strings
+    //e concatena numa única string - utiliza API stream do java
     public String errorMessage(){
         return errors.stream()
                 .map(e -> e.message)

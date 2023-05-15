@@ -6,14 +6,24 @@ import java.time.LocalDate;
 
 public class Carteira {
 
+    private Integer id;
     private Ativo ativo;
     private Double valorTotalCompra;
     private LocalDate dataCompra;
 
-    public Carteira(Ativo ativo, Double valorTotalCompra) {
+    public Carteira(Integer id, Ativo ativo, Double valorTotalCompra, LocalDate dataCompra) {
+        this.id = id;
         this.ativo = ativo;
         this.valorTotalCompra = valorTotalCompra;
-        this.dataCompra = LocalDate.now();
+        this.dataCompra = dataCompra;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Ativo getAtivo() {
@@ -36,10 +46,15 @@ public class Carteira {
         return dataCompra;
     }
 
+    public void setDataCompra(LocalDate dataCompra) {
+        this.dataCompra = dataCompra;
+    }
+
     @Override
     public String toString() {
         return "Carteira{" +
-                "ativo=" + ativo +
+                "id=" + id +
+                ", ativo=" + ativo +
                 ", valorTotalCompra=" + valorTotalCompra +
                 ", dataCompra=" + dataCompra +
                 '}';
