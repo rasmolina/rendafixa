@@ -14,6 +14,18 @@ public class Indexador {
         this.valor = valor;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setSigla(SiglaIndexador sigla) {
+        this.sigla = sigla;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Integer getId() {
         return id;
     }

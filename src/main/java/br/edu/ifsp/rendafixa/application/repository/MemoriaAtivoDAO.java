@@ -9,6 +9,7 @@ import java.util.*;
 
 public class MemoriaAtivoDAO implements AtivoDAO {
 
+    //Emulação da persistência utilizando Map - gera um mapa contendo chave,valor
     private static final Map<Integer, Ativo> bd = new LinkedHashMap<>();
     private static int idCounter;
 
