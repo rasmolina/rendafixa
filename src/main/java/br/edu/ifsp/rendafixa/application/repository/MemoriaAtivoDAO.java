@@ -22,6 +22,9 @@ public class MemoriaAtivoDAO implements AtivoDAO {
     }
     @Override
     public Optional<Ativo> buscaPorCategoria(CategoriaAtivo categoriaAtivo) {
+        //values() retorna um conjunto de valores contidos num mapa
+        //stream() cria um fluxo dos valores contidos no mapa para serem processados por outras operações
+        //Na sequência, é filtrado o ativo de acordo com sua categoria utilizando lambda function
         return bd.values().stream()
                 .filter(ativo -> ativo.getCategoriaAtivo().equals(categoriaAtivo))
                 .findAny();
@@ -39,6 +42,7 @@ public class MemoriaAtivoDAO implements AtivoDAO {
         return bd.values().stream()
                 .filter(ativo -> ativo.getDataVencimento().equals(vencimento))
                 .findAny();
+//findAny(): método da interface java.util.stream.Stream para retornar um elemento de um fluxo de dados, se houver algum
     }
 
     @Override
