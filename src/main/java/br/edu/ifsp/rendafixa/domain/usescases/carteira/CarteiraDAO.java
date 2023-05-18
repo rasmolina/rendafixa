@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface CarteiraDAO extends DAO<Carteira, Integer> {
 
     Optional<Carteira> buscaPorNomeAtivo(String nome);
+
+    double CalcularTotalInvestido();
 }

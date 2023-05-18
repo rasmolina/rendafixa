@@ -31,6 +31,7 @@ public class Ativo {
         this.rentabilidade = rentabilidade;
     }
 
+
     public Integer getId() {
         return id;
     }

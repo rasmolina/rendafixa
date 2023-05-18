@@ -16,6 +16,11 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
+    public double CalcularTotalInvestido() {
+        return 0;
+    }
+
+    @Override
     public Integer create(Carteira carteira) {
         idCounter++;
         carteira.setId(idCounter);
