@@ -16,8 +16,13 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
-    public double CalcularTotalInvestido() {
+    public double calcularTotalInvestido() {
         return 0;
+    }
+
+    @Override
+    public void visualizarComposicaoCarteira() {
+
     }
 
     @Override

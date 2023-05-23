@@ -10,5 +10,7 @@ public interface CarteiraDAO extends DAO<Carteira, Integer> {
 
     Optional<Carteira> buscaPorNomeAtivo(String nome);
 
-    double CalcularTotalInvestido();
+    double calcularTotalInvestido();
+
+    void visualizarComposicaoCarteira();
 }

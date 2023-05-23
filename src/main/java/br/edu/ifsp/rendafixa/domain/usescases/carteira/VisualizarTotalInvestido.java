@@ -11,7 +11,7 @@ public class VisualizarTotalInvestido {
         this.ativos = ativos;
     }
 
-    public double CalcularTotalInvestido(){
+    public double calcularTotalInvestido(){
         if(ativos.isEmpty())
             return 0.0;
 
