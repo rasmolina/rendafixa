@@ -19,6 +19,7 @@ public class Ativo {
     private double porcentagemSobreIndexador;
     private double rentabilidade;
 
+    //Construtor para ativo pós-fixado
     public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
         this.id = id;
         this.nome = nome;
@@ -32,6 +33,20 @@ public class Ativo {
         this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
     }
+
+    //Construtor para ativo pré-fixado
+    public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, CategoriaRentabilidade categoriaRentabilidade, double rentabilidade) {
+        this.id = id;
+        this.nome = nome;
+        this.liquidezDiaria = liquidezDiaria;
+        this.dataVencimento = dataVencimento;
+        this.categoriaAtivo = categoriaAtivo;
+        this.emissora = emissora;
+        this.portadora = portadora;
+        this.categoriaRentabilidade = categoriaRentabilidade;
+        this.rentabilidade = rentabilidade;
+    }
+
 
     public Integer getId() {
         return id;

@@ -72,7 +72,7 @@ public class Main {
         cadastrarAtivo.insert(ativo2);
 
         Carteira carteira1 = new Carteira(1,ativo1,1500.00,hoje);
-        
+
     }
 
     private static void configureInjection(){
