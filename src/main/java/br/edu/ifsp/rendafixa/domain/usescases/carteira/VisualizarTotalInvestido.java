@@ -7,8 +7,8 @@ import java.util.List;
 public class VisualizarTotalInvestido {
     private List<Carteira> ativos;
 
-    public VisualizarTotalInvestido(List<Carteira> ativos) {
-        this.ativos = ativos;
+    public VisualizarTotalInvestido() {
+
     }
 
     public double calcularTotalInvestido(){

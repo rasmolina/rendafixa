@@ -13,8 +13,8 @@ public class VisualizarComposicaoCarteira {
     private List<Carteira> ativos;
     private VisualizarTotalInvestido visualizarTotalInvestido;
 
-    public VisualizarComposicaoCarteira(List<Carteira> ativos) {
-        this.ativos = ativos;
+    public VisualizarComposicaoCarteira() {
+
     }
 
     public void visualizarComposicaoCarteira() {

@@ -11,8 +11,8 @@ public class CalcularRendimentoAtivo {
     private CarteiraDAO carteiraDAO;
     private ConsultarAtivoCarteira consultarAtivoCarteira;
 
-    public CalcularRendimentoAtivo(CarteiraDAO carteiraDAO) {
-        this.carteiraDAO = carteiraDAO;
+    public CalcularRendimentoAtivo() {
+
     }
 
     public double calcularRendimentoAtivo(Integer idAtivo, LocalDate dataInicial, LocalDate dataFinal){
