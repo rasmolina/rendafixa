@@ -3,6 +3,7 @@ package br.edu.ifsp.rendafixa.application.repository;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
 import br.edu.ifsp.rendafixa.domain.usescases.carteira.CarteiraDAO;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class MemoriaCarteiraDAO implements CarteiraDAO {
@@ -16,6 +17,13 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
+    public Optional<Carteira> buscaPorIdAtivo(Integer id) {
+        return bd.values().stream()
+                .filter(carteira -> carteira.getAtivo().getId() == id)
+                .findAny();
+    }
+
+    @Override
     public double calcularTotalInvestido() {
         return 0;
     }
@@ -24,6 +32,12 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     public void visualizarComposicaoCarteira() {
 
     }
+
+    @Override
+    public double calcularRendimentoAtivo(Integer idAtivo, LocalDate dataInicial, LocalDate dataFinal) {
+        return 0;
+    }
+
 
     @Override
     public Integer create(Carteira carteira) {

@@ -36,7 +36,7 @@ public class VisualizarComposicaoCarteira {
         }
 
         System.out.println("Composição da carteira:");
-
+        //keySet() é um método da classe Map em Java que retorna um conjunto contendo as chaves presentes no mapa.
         for (CategoriaAtivo categoriaAtivo : valorInvestidoPorCategoria.keySet()) {
             double valorInvestido = valorInvestidoPorCategoria.get(categoriaAtivo);
             double composicaoAbsoluta = valorInvestido;

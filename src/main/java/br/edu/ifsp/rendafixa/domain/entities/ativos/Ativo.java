@@ -12,25 +12,26 @@ public class Ativo {
     private boolean liquidezDiaria;
     private LocalDate dataVencimento;
     private CategoriaAtivo categoriaAtivo;
-    private CategoriaRentabilidade categoriaRentabilidade;
     private Emissora emissora;
     private Portadora portadora;
     private Indexador indexador;
-    private Double rentabilidade;
+    private CategoriaRentabilidade categoriaRentabilidade;
+    private double porcentagemSobreIndexador;
+    private double rentabilidade;
 
-    public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, CategoriaRentabilidade categoriaRentabilidade, Emissora emissora, Portadora portadora, Indexador indexador, Double rentabilidade) {
+    public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
         this.id = id;
         this.nome = nome;
         this.liquidezDiaria = liquidezDiaria;
         this.dataVencimento = dataVencimento;
         this.categoriaAtivo = categoriaAtivo;
-        this.categoriaRentabilidade = categoriaRentabilidade;
         this.emissora = emissora;
         this.portadora = portadora;
         this.indexador = indexador;
+        this.categoriaRentabilidade = categoriaRentabilidade;
+        this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
     }
-
 
     public Integer getId() {
         return id;
@@ -72,14 +73,6 @@ public class Ativo {
         this.categoriaAtivo = categoriaAtivo;
     }
 
-    public CategoriaRentabilidade getCategoriaRentabilidade() {
-        return categoriaRentabilidade;
-    }
-
-    public void setCategoriaRentabilidade(CategoriaRentabilidade categoriaRentabilidade) {
-        this.categoriaRentabilidade = categoriaRentabilidade;
-    }
-
     public Emissora getEmissora() {
         return emissora;
     }
@@ -104,11 +97,27 @@ public class Ativo {
         this.indexador = indexador;
     }
 
-    public Double getRentabilidade() {
+    public CategoriaRentabilidade getCategoriaRentabilidade() {
+        return categoriaRentabilidade;
+    }
+
+    public void setCategoriaRentabilidade(CategoriaRentabilidade categoriaRentabilidade) {
+        this.categoriaRentabilidade = categoriaRentabilidade;
+    }
+
+    public double getPorcentagemSobreIndexador() {
+        return porcentagemSobreIndexador;
+    }
+
+    public void setPorcentagemSobreIndexador(double porcentagemSobreIndexador) {
+        this.porcentagemSobreIndexador = porcentagemSobreIndexador;
+    }
+
+    public double getRentabilidade() {
         return rentabilidade;
     }
 
-    public void setRentabilidade(Double rentabilidade) {
+    public void setRentabilidade(double rentabilidade) {
         this.rentabilidade = rentabilidade;
     }
 
@@ -120,10 +129,11 @@ public class Ativo {
                 ", liquidezDiaria=" + liquidezDiaria +
                 ", dataVencimento=" + dataVencimento +
                 ", categoriaAtivo=" + categoriaAtivo +
-                ", categoriaRentabilidade=" + categoriaRentabilidade +
                 ", emissora=" + emissora +
                 ", portadora=" + portadora +
                 ", indexador=" + indexador +
+                ", categoriaRentabilidade=" + categoriaRentabilidade +
+                ", porcentagemSobreIndexador=" + porcentagemSobreIndexador +
                 ", rentabilidade=" + rentabilidade +
                 '}';
     }

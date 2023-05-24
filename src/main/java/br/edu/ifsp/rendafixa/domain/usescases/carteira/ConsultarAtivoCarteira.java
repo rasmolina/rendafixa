@@ -27,5 +27,10 @@ public class ConsultarAtivoCarteira {
         return carteiraDAO.buscaPorNomeAtivo(nome);
     }
 
+    public Optional<Carteira> buscaPorId(Integer id){
+        if (Validator.nuloOuVazio(id))
+            throw new IllegalArgumentException("Id inválido!");
+        return carteiraDAO.buscaPorIdAtivo(id);
+    }
 
 }
