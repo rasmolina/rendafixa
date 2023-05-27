@@ -52,6 +52,11 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
+    public void listarAtivosNaCarteira(Integer idCarteira) {
+
+    }
+
+    @Override
     public Integer create(Carteira carteira) {
         idCounter++;
         carteira.setId(idCounter);

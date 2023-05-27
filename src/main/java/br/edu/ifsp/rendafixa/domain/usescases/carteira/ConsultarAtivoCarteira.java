@@ -16,6 +16,7 @@ public class ConsultarAtivoCarteira {
             if (ativos.contains(ativo)) {
                 double totalInvestido = calcularTotalInvestidoPorAtivo.calcularTotalInvestidoPorAtivo(ativo);
                 System.out.println("Ativo: " + ativo.getNome());
+                System.out.println("Categoria: " + ativo.getCategoriaAtivo());
                 System.out.printf("Total investido: %.2f\n", totalInvestido);
             } else {
                 System.out.println("O ativo buscado não está presente na carteira!");

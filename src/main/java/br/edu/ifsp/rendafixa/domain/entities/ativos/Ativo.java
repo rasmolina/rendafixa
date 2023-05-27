@@ -23,11 +23,10 @@ public class Ativo {
     private List<LocalDate> dataDaCompra;
     private List<Double> valorTotalDaCompra;
 
-    //Construtor para ativo pós-fixado
-    public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
+    //Construtor para ativo pós-fixado sem liquidez diária
+    public Ativo(Integer id, String nome, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
         this.id = id;
         this.nome = nome;
-        this.liquidezDiaria = liquidezDiaria;
         this.dataVencimento = dataVencimento;
         this.categoriaAtivo = categoriaAtivo;
         this.emissora = emissora;
@@ -38,8 +37,8 @@ public class Ativo {
         this.rentabilidade = rentabilidade;
     }
 
-    //Construtor para ativo pré-fixado
-    public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, CategoriaRentabilidade categoriaRentabilidade, double rentabilidade) {
+    //Construtor para ativo pré-fixado sem liquidez diária
+    public Ativo(Integer id, String nome, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, CategoriaRentabilidade categoriaRentabilidade, double rentabilidade) {
         this.id = id;
         this.nome = nome;
         this.liquidezDiaria = liquidezDiaria;
@@ -48,6 +47,32 @@ public class Ativo {
         this.emissora = emissora;
         this.portadora = portadora;
         this.categoriaRentabilidade = categoriaRentabilidade;
+        this.rentabilidade = rentabilidade;
+    }
+
+    //Construtor para ativo pré-fixado com liquidez diária
+    public Ativo(Integer id, String nome, boolean liquidezDiaria, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, CategoriaRentabilidade categoriaRentabilidade, double rentabilidade) {
+        this.id = id;
+        this.nome = nome;
+        this.liquidezDiaria = true;
+        this.categoriaAtivo = categoriaAtivo;
+        this.emissora = emissora;
+        this.portadora = portadora;
+        this.categoriaRentabilidade = categoriaRentabilidade;
+        this.rentabilidade = rentabilidade;
+    }
+
+    //Construtor para ativo pós-fixado com liquidez diária
+    public Ativo(Integer id, String nome, boolean liquidezDiaria, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
+        this.id = id;
+        this.nome = nome;
+        this.liquidezDiaria = true;
+        this.categoriaAtivo = categoriaAtivo;
+        this.emissora = emissora;
+        this.portadora = portadora;
+        this.indexador = indexador;
+        this.categoriaRentabilidade = categoriaRentabilidade;
+        this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
     }
 
