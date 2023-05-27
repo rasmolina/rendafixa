@@ -5,17 +5,17 @@ import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
 import br.edu.ifsp.rendafixa.domain.usescases.utils.DAO;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public interface CarteiraDAO extends DAO<Carteira, Integer> {
 
+    Carteira buscarCarteiraPorId(Integer idCarteira);
     void IncluirAtivoCarteira(Integer idCarteira, Ativo ativo, double valorCompra);
 
     void RemoverAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra);
 
-    double calcularTotalInvestido();
+    double calcularTotalInvestido(Integer idCarteira);
 
-    void visualizarComposicaoCarteira();
+    void visualizarComposicaoCarteira(Integer idCarteira);
 
-    double calcularRendimentoAtivo(Integer idAtivo, LocalDate dataInicial, LocalDate dataFinal);
+    double calcularRendimentoAtivo(Integer idCarteira, Ativo ativo, LocalDate dataInicial, LocalDate dataFinal);
 }

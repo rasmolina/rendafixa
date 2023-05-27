@@ -5,7 +5,6 @@ import br.edu.ifsp.rendafixa.domain.usescases.utils.Notification;
 import br.edu.ifsp.rendafixa.domain.usescases.utils.Validator;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class ValidadorInclusaoAtivo extends Validator<Ativo> {
     public Notification validate(Ativo ativo){

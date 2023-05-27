@@ -1,7 +1,9 @@
 package br.edu.ifsp.rendafixa.domain.usescases.carteira;
 
+import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
+import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,44 +11,57 @@ import java.util.Map;
 
 public class VisualizarComposicaoCarteira {
 
-    //Retorna a composição absoluta ou relativa dos ativos presentes na carteira
-    private List<Carteira> ativos;
+    private CarteiraDAO carteiraDAO;
+    private AtivoDAO ativoDAO;
+    private ConsultarCarteira consultarCarteira;
     private VisualizarTotalInvestido visualizarTotalInvestido;
 
-    public VisualizarComposicaoCarteira() {
+    public void visualizarComposicaoCarteira(Integer idCarteira) {
+        Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
+        if (carteira != null) {
+            List<Ativo> ativos = carteira.getAtivos();
+            double totalInvestido = visualizarTotalInvestido.calcularTotalInvestido(idCarteira);
 
-    }
+            Map<CategoriaAtivo, Double> composicaoRelativa = new HashMap<>();
 
-    public void visualizarComposicaoCarteira() {
-        double valorTotalInvestido = visualizarTotalInvestido.calcularTotalInvestido();
-        if (valorTotalInvestido == 0.0) {
-            System.out.println("Não há ativos na carteira!");
-            return;
-        }
+            for (Ativo ativo : ativos) {
+                CategoriaAtivo categoria = ativo.getCategoriaAtivo();
+                double valorInvestido = calcularTotalInvestidoPorAtivo(ativo);
 
-        //Mapa valorInvestidoPorCategoria para armazenar o valor investido em cada categoria
-        Map<CategoriaAtivo, Double> valorInvestidoPorCategoria = new HashMap<>();
-        // percorre cada ativo da carteira e vai somando o valor investido em cada categoria
-        for (Carteira carteira : ativos) {
-            CategoriaAtivo categoriaAtivo = carteira.getAtivo().getCategoriaAtivo();
-            //getOrDefault() é usado para obter o valor atual da categoria no mapa, caso já exista, ou null caso contrário.
-            double valorInvestido = valorInvestidoPorCategoria.getOrDefault(categoriaAtivo, null);
-            valorInvestido += carteira.getValorTotalCompra();
-            valorInvestidoPorCategoria.put(categoriaAtivo, valorInvestido);
-        }
+                // Atualiza a composição relativa por categoria
+                double composicaoAtual = composicaoRelativa.getOrDefault(categoria, 0.0);
+                composicaoAtual += valorInvestido / totalInvestido;
+                composicaoRelativa.put(categoria, composicaoAtual);
+            }
 
-        System.out.println("Composição da carteira:");
-        //keySet() é um método da classe Map em Java que retorna um conjunto contendo as chaves presentes no mapa.
-        for (CategoriaAtivo categoriaAtivo : valorInvestidoPorCategoria.keySet()) {
-            double valorInvestido = valorInvestidoPorCategoria.get(categoriaAtivo);
-            double composicaoAbsoluta = valorInvestido;
-            double composicaoRelativa = (valorInvestido / valorTotalInvestido) * 100;
-
-            System.out.println("Categoria: " + categoriaAtivo);
-            System.out.println("Valor Investido: " + valorInvestido);
-            System.out.println("Composição Absoluta: " + composicaoAbsoluta);
-            System.out.println("Composição Relativa (%): " + composicaoRelativa);
-            System.out.println();
+            // Exibe a composição absoluta e relativa por categoria
+            System.out.println("Composição da Carteira:");
+            System.out.println("-------------------------------");
+            for (Map.Entry<CategoriaAtivo, Double> entry : composicaoRelativa.entrySet()) {
+                CategoriaAtivo categoria = entry.getKey();
+                double valorComposicaoAbsoluta = entry.getValue() * totalInvestido;
+                double valorComposicaoRelativa = entry.getValue() * 100.0;
+                System.out.printf("Categoria: %s\n", categoria);
+                System.out.printf("Composição Absoluta: %.2f\n", valorComposicaoAbsoluta);
+                System.out.printf("Composição Relativa: %.2f%%\n", valorComposicaoRelativa);
+                System.out.println("-------------------------------");
+            }
         }
     }
+
+
+    public double calcularTotalInvestidoPorAtivo(Ativo ativo) {
+        List<Double> valoresCompra = ativo.getValorTotalDaCompra();
+        double totalInvestido = 0.0;
+
+        for (double valorCompra : valoresCompra) {
+            totalInvestido += valorCompra;
+        }
+
+        return totalInvestido;
+    }
+
+
+
+
 }

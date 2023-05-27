@@ -2,7 +2,6 @@ package br.edu.ifsp.rendafixa.domain.entities.carteira;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

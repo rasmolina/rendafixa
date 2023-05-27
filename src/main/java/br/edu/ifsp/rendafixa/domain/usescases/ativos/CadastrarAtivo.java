@@ -23,7 +23,6 @@ public class CadastrarAtivo {
         if (notification.hasErros())
             throw new IllegalArgumentException(notification.errorMessage());
 
-        //Validação para checar se já existe um ativo no banco com o mesmo nome, categoria e data de vencimento
         CategoriaAtivo categoria = ativo.getCategoriaAtivo();
         String nome = ativo.getNome();
         LocalDate vencimento = ativo.getDataVencimento();

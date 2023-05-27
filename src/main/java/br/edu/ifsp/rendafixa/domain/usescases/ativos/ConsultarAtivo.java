@@ -29,7 +29,6 @@ public class ConsultarAtivo {
     }
 
     public Optional<Ativo> buscaPorCategoria(CategoriaAtivo categoria){
-        //Como é Enum e os elementos são fixos, ele nunca será vazio ou nulo, não precisando de verificação
         return ativoDAO.buscaPorCategoria(categoria);
     }
 

@@ -8,12 +8,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class MemoriaAtivoDAO implements AtivoDAO {
-
-    //Emulação da persistência utilizando Map - gera um mapa contendo chave,valor
     private static final Map<Integer, Ativo> bd = new LinkedHashMap<>();
     private static int idCounter;
 
-    //Emulação da inserção no banco de dados bd utilizando Map
     @Override
     public Integer create(Ativo ativo) {
         idCounter++;
@@ -23,9 +20,6 @@ public class MemoriaAtivoDAO implements AtivoDAO {
     }
     @Override
     public Optional<Ativo> buscaPorCategoria(CategoriaAtivo categoriaAtivo) {
-        //values() retorna um conjunto de valores contidos num mapa
-        //stream() cria um fluxo dos valores contidos no mapa para serem processados por outras operações
-        //Na sequência, é filtrado o ativo de acordo com sua categoria utilizando lambda function
         return bd.values().stream()
                 .filter(ativo -> ativo.getCategoriaAtivo().equals(categoriaAtivo))
                 .findAny();
@@ -43,12 +37,11 @@ public class MemoriaAtivoDAO implements AtivoDAO {
         return bd.values().stream()
                 .filter(ativo -> ativo.getDataVencimento().equals(vencimento))
                 .findAny();
-//findAny(): método da interface java.util.stream.Stream para retornar um elemento de um fluxo de dados, se houver algum
     }
 
     @Override
     public Optional<Ativo> findOne(Integer key) {
-        if(bd.containsKey(key)) //Se o bd possuir a chave retorna ela
+        if(bd.containsKey(key))
             return Optional.of(bd.get(key));
         return Optional.empty();
     }

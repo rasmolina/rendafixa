@@ -4,7 +4,6 @@ import br.edu.ifsp.rendafixa.application.repository.*;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
-import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
 import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.SiglaIndexador;

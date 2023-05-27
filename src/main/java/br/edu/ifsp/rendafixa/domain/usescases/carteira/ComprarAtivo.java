@@ -11,18 +11,10 @@ public class ComprarAtivo {
 
     private CarteiraDAO carteiraDAO;
     private AtivoDAO ativoDAO;
-    private List<Carteira> carteiras;
-
-    public Carteira buscarCarteiraPorId(Integer idCarteira){
-        for(Carteira carteira : carteiras){
-            if(carteira.getId() == idCarteira)
-                return carteira;
-        }
-        return null;
-    }
+    private ConsultarCarteira consultarCarteira;
 
     private void IncluirAtivoCarteira(Integer idCarteira, Ativo ativo, double valorCompra){
-        Carteira carteira = buscarCarteiraPorId(idCarteira);
+        Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
         if(carteira != null){
             List<Ativo> ativos = carteira.getAtivos();
             boolean ativoPresenteNaCarteira = false;

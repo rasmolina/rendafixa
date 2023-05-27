@@ -12,6 +12,11 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     private static int idCounter;
 
     @Override
+    public Carteira buscarCarteiraPorId(Integer idCarteira) {
+        return null;
+    }
+
+    @Override
     public void IncluirAtivoCarteira(Integer idCarteira, Ativo ativo, double valorCompra) {
 
     }
@@ -22,17 +27,17 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
-    public double calcularTotalInvestido() {
+    public double calcularTotalInvestido(Integer idCarteira) {
         return 0;
     }
 
     @Override
-    public void visualizarComposicaoCarteira() {
+    public void visualizarComposicaoCarteira(Integer idCarteira) {
 
     }
 
     @Override
-    public double calcularRendimentoAtivo(Integer idAtivo, LocalDate dataInicial, LocalDate dataFinal) {
+    public double calcularRendimentoAtivo(Integer idCarteira, Ativo ativo, LocalDate dataInicial, LocalDate dataFinal) {
         return 0;
     }
 

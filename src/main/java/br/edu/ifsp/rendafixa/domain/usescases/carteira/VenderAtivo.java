@@ -11,18 +11,10 @@ public class VenderAtivo {
 
     private CarteiraDAO carteiraDAO;
     private AtivoDAO ativoDAO;
-    private List<Carteira> carteiras;
-
-    public Carteira buscarCarteiraPorId(Integer idCarteira){
-        for(Carteira carteira : carteiras){
-            if(carteira.getId() == idCarteira)
-                return carteira;
-        }
-        return null;
-    }
+    private ConsultarCarteira consultarCarteira;
 
     private void RemoverAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
-        Carteira carteira = buscarCarteiraPorId(idCarteira);
+        Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
         if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
             int index = ativos.indexOf(ativo);
