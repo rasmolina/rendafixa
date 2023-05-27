@@ -17,5 +17,7 @@ public interface CarteiraDAO extends DAO<Carteira, Integer> {
 
     void visualizarComposicaoCarteira(Integer idCarteira);
 
+    double calcularTotalInvestidoPorAtivo(Ativo ativo);
+
     double calcularRendimentoAtivo(Integer idCarteira, Ativo ativo, LocalDate dataInicial, LocalDate dataFinal);
 }

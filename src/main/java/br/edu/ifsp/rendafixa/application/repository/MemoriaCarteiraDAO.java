@@ -37,6 +37,11 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
+    public double calcularTotalInvestidoPorAtivo(Ativo ativo) {
+        return 0;
+    }
+
+    @Override
     public double calcularRendimentoAtivo(Integer idCarteira, Ativo ativo, LocalDate dataInicial, LocalDate dataFinal) {
         return 0;
     }

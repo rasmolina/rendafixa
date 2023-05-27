@@ -15,6 +15,7 @@ public class VisualizarComposicaoCarteira {
     private AtivoDAO ativoDAO;
     private ConsultarCarteira consultarCarteira;
     private VisualizarTotalInvestido visualizarTotalInvestido;
+    private CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo;
 
     public void visualizarComposicaoCarteira(Integer idCarteira) {
         Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
@@ -26,7 +27,7 @@ public class VisualizarComposicaoCarteira {
 
             for (Ativo ativo : ativos) {
                 CategoriaAtivo categoria = ativo.getCategoriaAtivo();
-                double valorInvestido = calcularTotalInvestidoPorAtivo(ativo);
+                double valorInvestido = calcularTotalInvestidoPorAtivo.calcularTotalInvestidoPorAtivo(ativo);
 
                 // Atualiza a composição relativa por categoria
                 double composicaoAtual = composicaoRelativa.getOrDefault(categoria, 0.0);
@@ -48,20 +49,6 @@ public class VisualizarComposicaoCarteira {
             }
         }
     }
-
-
-    public double calcularTotalInvestidoPorAtivo(Ativo ativo) {
-        List<Double> valoresCompra = ativo.getValorTotalDaCompra();
-        double totalInvestido = 0.0;
-
-        for (double valorCompra : valoresCompra) {
-            totalInvestido += valorCompra;
-        }
-
-        return totalInvestido;
-    }
-
-
 
 
 }
