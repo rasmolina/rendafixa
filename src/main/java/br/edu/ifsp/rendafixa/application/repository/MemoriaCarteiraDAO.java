@@ -1,5 +1,6 @@
 package br.edu.ifsp.rendafixa.application.repository;
 
+import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
 import br.edu.ifsp.rendafixa.domain.usescases.carteira.CarteiraDAO;
 
@@ -9,18 +10,15 @@ import java.util.*;
 public class MemoriaCarteiraDAO implements CarteiraDAO {
     private static final Map<Integer, Carteira> bd = new LinkedHashMap<>();
     private static int idCounter;
+
     @Override
-    public Optional<Carteira> buscaPorNomeAtivo(String nome) {
-        return bd.values().stream()
-                .filter(carteira -> carteira.getAtivo().getNome().equals(nome))
-                .findAny();
+    public void IncluirAtivoCarteira(Integer idCarteira, Ativo ativo, double valorCompra) {
+
     }
 
     @Override
-    public Optional<Carteira> buscaPorIdAtivo(Integer id) {
-        return bd.values().stream()
-                .filter(carteira -> carteira.getAtivo().getId() == id)
-                .findAny();
+    public void RemoverAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
+
     }
 
     @Override
@@ -37,7 +35,6 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     public double calcularRendimentoAtivo(Integer idAtivo, LocalDate dataInicial, LocalDate dataFinal) {
         return 0;
     }
-
 
     @Override
     public Integer create(Carteira carteira) {

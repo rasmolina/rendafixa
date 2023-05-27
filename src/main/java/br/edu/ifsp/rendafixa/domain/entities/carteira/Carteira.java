@@ -3,20 +3,20 @@ package br.edu.ifsp.rendafixa.domain.entities.carteira;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Carteira {
 
     private Integer id;
-    private Ativo ativo;
-    private Double valorTotalCompra;
-    private LocalDate dataCompra;
+    private List<Ativo> ativos;
 
-    public Carteira(Integer id, Ativo ativo, Double valorTotalCompra, LocalDate dataCompra) {
+    public Carteira(Integer id, List<Ativo> ativos) {
         this.id = id;
-        this.ativo = ativo;
-        this.valorTotalCompra = valorTotalCompra;
-        this.dataCompra = dataCompra;
+        this.ativos = new ArrayList<>();
     }
+
+    public Carteira(){}
 
     public Integer getId() {
         return id;
@@ -26,37 +26,19 @@ public class Carteira {
         this.id = id;
     }
 
-    public Ativo getAtivo() {
-        return ativo;
+    public List<Ativo> getAtivos() {
+        return ativos;
     }
 
-    public void setAtivo(Ativo ativo) {
-        this.ativo = ativo;
-    }
-
-    public Double getValorTotalCompra() {
-        return valorTotalCompra;
-    }
-
-    public void setValorTotalCompra(Double valorTotalCompra) {
-        this.valorTotalCompra = valorTotalCompra;
-    }
-
-    public LocalDate getDataCompra() {
-        return dataCompra;
-    }
-
-    public void setDataCompra(LocalDate dataCompra) {
-        this.dataCompra = dataCompra;
+    public void setAtivos(List<Ativo> ativos) {
+        this.ativos = ativos;
     }
 
     @Override
     public String toString() {
         return "Carteira{" +
                 "id=" + id +
-                ", ativo=" + ativo +
-                ", valorTotalCompra=" + valorTotalCompra +
-                ", dataCompra=" + dataCompra +
+                ", ativos=" + ativos +
                 '}';
     }
 }

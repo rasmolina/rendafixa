@@ -5,6 +5,8 @@ import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Ativo {
     private Integer id;
@@ -18,6 +20,8 @@ public class Ativo {
     private CategoriaRentabilidade categoriaRentabilidade;
     private double porcentagemSobreIndexador;
     private double rentabilidade;
+    private List<LocalDate> dataDaCompra;
+    private List<Double> valorTotalDaCompra;
 
     //Construtor para ativo pós-fixado
     public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
@@ -45,6 +49,14 @@ public class Ativo {
         this.portadora = portadora;
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.rentabilidade = rentabilidade;
+    }
+
+    //Construtor para compra de ativo
+    public Ativo(Integer id, String nome){
+        this.id = id;
+        this.nome = nome;
+        this.dataDaCompra = new ArrayList<>();
+        this.valorTotalDaCompra = new ArrayList<>();
     }
 
 
@@ -134,6 +146,22 @@ public class Ativo {
 
     public void setRentabilidade(double rentabilidade) {
         this.rentabilidade = rentabilidade;
+    }
+
+    public List<LocalDate> getDataDaCompra() {
+        return dataDaCompra;
+    }
+
+    public void setDataDaCompra(List<LocalDate> dataDaCompra) {
+        this.dataDaCompra = dataDaCompra;
+    }
+
+    public List<Double> getValorTotalDaCompra() {
+        return valorTotalDaCompra;
+    }
+
+    public void setValorTotalDaCompra(List<Double> valorTotalDaCompra) {
+        this.valorTotalDaCompra = valorTotalDaCompra;
     }
 
     @Override

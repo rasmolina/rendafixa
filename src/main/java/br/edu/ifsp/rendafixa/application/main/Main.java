@@ -24,7 +24,6 @@ import br.edu.ifsp.rendafixa.domain.usescases.portadora.PortadoraDAO;
 import br.edu.ifsp.rendafixa.domain.usescases.portadora.RemoverEntidadePortadora;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Main {
     //Ativo
@@ -48,8 +47,8 @@ public class Main {
     private static AtualizarIndexador atualizarIndexador;
 
     //Carteira
-    private static IncluirAtivoCarteira incluirAtivoCarteira;
-    private static RemoverAtivoCarteira removerAtivoCarteira;
+    private static CriarCarteira criarCarteira;
+    private static ApagarCarteira apagarCarteira;
     private static ConsultarAtivoCarteira consultarAtivoCarteira;
     private static VisualizarTotalInvestido visualizarTotalInvestido;
     private static VisualizarComposicaoCarteira visualizarComposicaoCarteira;
@@ -66,12 +65,12 @@ public class Main {
         Indexador ipca = new Indexador(1, SiglaIndexador.IPCA,"IPCA",0.61);
         Indexador cdi = new Indexador(2, SiglaIndexador.SELIC,"Selic",13.75);
 
-        Ativo ativo1 = new Ativo(1,"CRI INTER URBA",false, LocalDate.parse("2023-03-31"), CategoriaAtivo.CDI,emissora1,portadora1, ipca, CategoriaRentabilidade.PRE_FIXADO,0.0,0.5);
+        Ativo ativo1 = new Ativo(1,"CRI INTER URBA",false, LocalDate.parse("2023-03-31"), CategoriaAtivo.CDI,emissora1,portadora1, CategoriaRentabilidade.PRE_FIXADO,0.5);
         Ativo ativo2 = new Ativo(2,"CDB AGRO SAO JOSE",false, LocalDate.parse("2028-01-11"), CategoriaAtivo.CDB,emissora1,portadora1, cdi, CategoriaRentabilidade.POS_FIXADO,95.0,0.8);
         cadastrarAtivo.insert(ativo1);
         cadastrarAtivo.insert(ativo2);
 
-        Carteira carteira1 = new Carteira(1,ativo1,1500.00,hoje);
+
 
     }
 
@@ -97,9 +96,9 @@ public class Main {
         removerEntidadePortadora = new RemoverEntidadePortadora(portadoraDAO);
 
         CarteiraDAO carteiraDAO = new MemoriaCarteiraDAO();
-        incluirAtivoCarteira = new IncluirAtivoCarteira(carteiraDAO);
-        removerAtivoCarteira = new RemoverAtivoCarteira(carteiraDAO);
-        consultarAtivoCarteira = new ConsultarAtivoCarteira(carteiraDAO);
+        criarCarteira = new CriarCarteira(carteiraDAO);
+        apagarCarteira = new ApagarCarteira(carteiraDAO);
+       //consultarAtivoCarteira = new ConsultarAtivoCarteira(carteiraDAO);
         visualizarTotalInvestido = new VisualizarTotalInvestido();
         visualizarComposicaoCarteira = new VisualizarComposicaoCarteira();
         calcularRendimentoAtivo = new CalcularRendimentoAtivo();
