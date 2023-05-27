@@ -1,6 +1,5 @@
 package br.edu.ifsp.rendafixa.domain.usescases.indexadores;
 
-import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.usescases.utils.Validator;
 
