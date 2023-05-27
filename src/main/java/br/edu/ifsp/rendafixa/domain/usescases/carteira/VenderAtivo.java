@@ -2,7 +2,10 @@ package br.edu.ifsp.rendafixa.domain.usescases.carteira;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
+import br.edu.ifsp.rendafixa.domain.entities.transacao.TipoTransacao;
+import br.edu.ifsp.rendafixa.domain.entities.transacao.Transacao;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
+import br.edu.ifsp.rendafixa.domain.usescases.transacao.TransacaoDAO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +15,7 @@ public class VenderAtivo {
     private CarteiraDAO carteiraDAO;
     private AtivoDAO ativoDAO;
     private ConsultarCarteira consultarCarteira;
+    private TransacaoDAO transacaoDAO;
 
     private void RemoverAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
         Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
@@ -36,6 +40,10 @@ public class VenderAtivo {
                         carteira.setAtivos(ativos);
                         carteiraDAO.update(carteira);
                     }
+
+                    double valorCompra =ativoEncontrado.getValorTotalDaCompra().get(compraIndex);
+                    Transacao venda = new Transacao(LocalDate.now(),LocalDate.now(),dataDaCompra,ativo,valorCompra,TipoTransacao.VENDA);
+                    transacaoDAO.create(venda);
                 }
             }
         }
