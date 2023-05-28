@@ -19,70 +19,70 @@ public class CalcularRendimentoAtivo {
     //Adaptação: cálculo do rendimento será a partir da data da compra até a data final informada
     //Se o ativo tiver compras antes da data inicial informada, ela não será considerada para o cálculo do rendimento médio
     public double calcularRendimentoAtivo(Integer idCarteira, Ativo ativo, LocalDate dataInicial, LocalDate dataFinal) {
-        Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
-        if (carteira == null) {
-            return 0.0; // Retorna 0.0 caso não encontre a carteira
-        }
-
-        List<Ativo> ativos = carteira.getAtivos();
-        double rendimentoTotal = 0.0;
-        int qtdeCompras = 0;
-
         LocalDate dataVencimento = ativo.getDataVencimento();
-        // Verificar se a data de vencimento do ativo é anterior à data final informada
-        if (dataVencimento != null && dataVencimento.isBefore(dataFinal)) {
-            dataFinal = dataVencimento; // Utilizar a data de vencimento como nova data final
-            System.out.println("Rendimento calculado até " + dataVencimento + "!");
-        }
+        if (dataInicial.isAfter(dataFinal) || dataFinal.isBefore(dataInicial) || ChronoUnit.MONTHS.between(dataInicial, dataFinal) > 12 ||
+                dataInicial.isAfter(dataVencimento)) {
+            System.out.println("Período inválido para o cálculo de rendimento!");
+            return 0.0;
+        }else{
+            Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
+            if (carteira == null) {
+                return 0.0; // Retorna 0.0 caso não encontre a carteira
+            }
 
-        for (Ativo a : ativos) {
-            if (a.equals(ativo)) {
-                List<LocalDate> datas = a.getDataDaCompra();
-                List<Double> valoresCompra = a.getValorTotalDaCompra();
-                int qtdeCotas = datas.size(); // Cada compra está sendo considerada como uma cota
+            List<Ativo> ativos = carteira.getAtivos();
+            double rendimentoTotal = 0.0;
+            int qtdeCompras = 0;
 
-                // Verificar se a data inicial é superior à data de vencimento do ativo
-                if (dataVencimento != null && dataInicial.isAfter(dataVencimento)) {
-                    System.out.println("O ativo estará vencido no período solicitado para cálculo!");
-                    break;
-                }
+            // Verificar se a data de vencimento do ativo é anterior à data final informada
+            if (dataVencimento != null && dataVencimento.isBefore(dataFinal)) {
+                dataFinal = dataVencimento; // Utilizar a data de vencimento como nova data final
+                System.out.println("Rendimento calculado até " + dataVencimento + "!");
+            }
 
-                for (int i = 0; i < qtdeCotas; i++) {
-                    LocalDate dataCompra = datas.get(i);
-                    double valorCompra = valoresCompra.get(i);
+            for (Ativo a : ativos) {
+                if (a.equals(ativo)) {
+                    List<LocalDate> datas = a.getDataDaCompra();
+                    List<Double> valoresCompra = a.getValorTotalDaCompra();
+                    int qtdeCotas = datas.size(); // Cada compra está sendo considerada como uma cota
 
-                    if (dataCompra.isAfter(dataInicial) && dataCompra.isBefore(dataFinal)) {
+                    for (int i = 0; i < qtdeCotas; i++) {
+                        LocalDate dataCompra = datas.get(i);
+                        double valorCompra = valoresCompra.get(i);
 
-                        long numMeses = ChronoUnit.MONTHS.between(dataCompra, dataFinal);
-                        double rentabilidade = a.getRentabilidade();
+                        if (dataCompra.isAfter(dataInicial) && dataCompra.isBefore(dataFinal)) {
 
-                        // Rendimento pré-fixado = Valor investido x renatabilidade x Período de investimento
-                        if (a.getCategoriaRentabilidade() == CategoriaRentabilidade.PRE_FIXADO) {
-                            double rendimentoCompra = valorCompra * rentabilidade * numMeses;
-                            rendimentoTotal += rendimentoCompra;
-                            qtdeCompras++;
-                        }
+                            long numMeses = ChronoUnit.MONTHS.between(dataCompra, dataFinal);
+                            double rentabilidade = a.getRentabilidade();
 
-                        // Rendimento pós-fixado = (Valor investido x Período de investimento x Rentabilidade) x (1 + Variação do Indexador)
-                        if (a.getCategoriaRentabilidade() == CategoriaRentabilidade.POS_FIXADO) {
-                            double variacaoIndexador = a.getPorcentagemSobreIndexador();
-                            double rendimentoCompra = (valorCompra * numMeses * rentabilidade) * (1 + variacaoIndexador);
-                            rendimentoTotal += rendimentoCompra;
-                            qtdeCompras++;
+                            // Rendimento pré-fixado = Valor investido x renatabilidade x Período de investimento
+                            if (a.getCategoriaRentabilidade() == CategoriaRentabilidade.PRE_FIXADO) {
+                                double rendimentoCompra = valorCompra * rentabilidade * numMeses;
+                                rendimentoTotal += rendimentoCompra;
+                                qtdeCompras++;
+                            }
+
+                            // Rendimento pós-fixado = (Valor investido x Período de investimento x Rentabilidade) x (1 + Variação do Indexador)
+                            if (a.getCategoriaRentabilidade() == CategoriaRentabilidade.POS_FIXADO) {
+                                double valorIndexador = a.getIndexador().getValor();
+                                double taxaPosFixado = a.getPorcentagemSobreIndexador();
+                                double variacaoIndexador = (taxaPosFixado - valorIndexador)/100;
+                                double rendimentoCompra = (valorCompra * numMeses * rentabilidade) * (1 + variacaoIndexador);
+                                rendimentoTotal += rendimentoCompra;
+                                qtdeCompras++;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        if (qtdeCompras > 0) {
-            return rendimentoTotal;
-        }
+            if (qtdeCompras > 0) {
+                return rendimentoTotal;
+            }
 
-        return 0.0; // Retorna 0.0 caso não haja compras do ativo no intervalo de datas
+            return 0.0; // Retorna 0.0 caso não haja compras do ativo no intervalo de datas
+        }
     }
-
-
 
 
 }
