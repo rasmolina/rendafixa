@@ -22,7 +22,7 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
-    public void RemoverAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
+    public void RemoverCompraAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
 
     }
 

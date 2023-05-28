@@ -11,7 +11,7 @@ public interface CarteiraDAO extends DAO<Carteira, Integer> {
     Carteira buscarCarteiraPorId(Integer idCarteira);
     void IncluirAtivoCarteira(Integer idCarteira, Ativo ativo, double valorCompra);
 
-    void RemoverAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra);
+    void RemoverCompraAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra);
 
     double calcularTotalInvestido(Integer idCarteira);
 

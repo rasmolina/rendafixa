@@ -17,7 +17,7 @@ public class VenderAtivo {
     private ConsultarCarteira consultarCarteira;
     private TransacaoDAO transacaoDAO;
 
-    private void RemoverAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
+    private void RemoverCompraAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
         Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
         if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
