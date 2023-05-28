@@ -10,6 +10,8 @@ public class Carteira {
     private Integer id;
     private List<Ativo> ativos;
 
+    private Double valorDisponivelSaque;
+
     public Carteira(Integer id, List<Ativo> ativos) {
         this.id = id;
         this.ativos = new ArrayList<>();
@@ -33,11 +35,20 @@ public class Carteira {
         this.ativos = ativos;
     }
 
+    public Double getValorDisponivelSaque() {
+        return valorDisponivelSaque;
+    }
+
+    public void setValorDisponivelSaque(Double valorDisponivelSaque) {
+        this.valorDisponivelSaque = valorDisponivelSaque;
+    }
+
     @Override
     public String toString() {
         return "Carteira{" +
                 "id=" + id +
                 ", ativos=" + ativos +
+                ", valorDisponivelSaque=" + valorDisponivelSaque +
                 '}';
     }
 }

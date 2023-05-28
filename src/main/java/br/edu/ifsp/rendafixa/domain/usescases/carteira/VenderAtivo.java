@@ -41,7 +41,14 @@ public class VenderAtivo {
                         carteiraDAO.update(carteira);
                     }
 
-                    double valorCompra =ativoEncontrado.getValorTotalDaCompra().get(compraIndex);
+                    double valorCompra = ativoEncontrado.getValorTotalDaCompra().get(compraIndex);
+                    double rendimento = carteiraDAO.calcularRendimentoAtivo(idCarteira, ativoEncontrado,dataDaCompra,LocalDate.now());
+
+                    double valorSaque = carteira.getValorDisponivelSaque();
+                    valorSaque += valorCompra + rendimento;
+                    carteira.setValorDisponivelSaque(valorSaque);
+                    carteiraDAO.update(carteira);
+
                     Transacao venda = new Transacao(LocalDate.now(),LocalDate.now(),dataDaCompra,ativo,valorCompra,TipoTransacao.VENDA);
                     transacaoDAO.create(venda);
                 }
