@@ -20,6 +20,9 @@ public class CalcularRendimentoAtivo {
     //Se o ativo tiver compras antes da data inicial informada, ela não será considerada para o cálculo do rendimento médio
     public double calcularRendimentoAtivo(Integer idCarteira, Ativo ativo, LocalDate dataInicial, LocalDate dataFinal) {
         LocalDate dataVencimento = ativo.getDataVencimento();
+        if (ativo.isLiquidezDiaria()){
+            dataVencimento = LocalDate.now();
+        }
         if (dataInicial.isAfter(dataFinal) || dataFinal.isBefore(dataInicial) || ChronoUnit.MONTHS.between(dataInicial, dataFinal) > 12 ||
                 dataInicial.isAfter(dataVencimento)) {
             System.out.println("Período inválido para o cálculo de rendimento!");
