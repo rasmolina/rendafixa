@@ -24,4 +24,6 @@ public interface CarteiraDAO extends DAO<Carteira, Integer> {
     void consultarAtivoNaCarteira(Integer idCarteira, Ativo ativo);
 
     void listarAtivosNaCarteira(Integer idCarteira);
+
+    void removerAtivoCarteira(Integer idCarteira, Ativo ativo);
 }
