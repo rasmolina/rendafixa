@@ -2,15 +2,23 @@ package br.edu.ifsp.rendafixa.domain.usescases.carteira;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
+import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
 import java.util.List;
 
 public class ConsultarAtivoCarteira {
-    private ConsultarCarteira consultarCarteira;
+    private CarteiraDAO carteiraDAO;
     private CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo;
 
+    public ConsultarAtivoCarteira(CarteiraDAO carteiraDAO, CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo) {
+        this.carteiraDAO = carteiraDAO;
+        this.calcularTotalInvestidoPorAtivo = calcularTotalInvestidoPorAtivo;
+    }
+
     public void consultarAtivoNaCarteira(Integer idCarteira, Ativo ativo) {
-        Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
+        Carteira carteira = carteiraDAO.findOne(idCarteira)
+                .orElseThrow(() -> new EntityNotFoundException("Id não encontrado!"));
+
         if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
             if (ativos.contains(ativo)) {

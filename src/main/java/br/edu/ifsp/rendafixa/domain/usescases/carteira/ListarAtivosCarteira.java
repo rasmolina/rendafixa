@@ -1,6 +1,7 @@
 package br.edu.ifsp.rendafixa.domain.usescases.carteira;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
+import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,10 +9,16 @@ import java.util.List;
 
 public class ListarAtivosCarteira {
 
-    private ConsultarCarteira consultarCarteira;
+    private CarteiraDAO carteiraDAO;
+
+    public ListarAtivosCarteira(CarteiraDAO carteiraDAO) {
+        this.carteiraDAO = carteiraDAO;
+    }
 
     public void listarAtivosNaCarteira(Integer idCarteira) {
-        Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
+        Carteira carteira = carteiraDAO.findOne(idCarteira)
+                .orElseThrow(() -> new EntityNotFoundException("Id não encontrado!"));
+
         if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

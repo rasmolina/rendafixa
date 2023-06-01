@@ -5,6 +5,7 @@ import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
+import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -14,7 +15,11 @@ public class CalcularRendimentoAtivo {
 
     private CarteiraDAO carteiraDAO;
     private AtivoDAO ativoDAO;
-    private ConsultarCarteira consultarCarteira;
+
+    public CalcularRendimentoAtivo(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO) {
+        this.carteiraDAO = carteiraDAO;
+        this.ativoDAO = ativoDAO;
+    }
 
     //Adaptação: cálculo do rendimento será a partir da data da compra até a data final informada
     //Se o ativo tiver compras antes da data inicial informada, ela não será considerada para o cálculo do rendimento médio
@@ -28,7 +33,9 @@ public class CalcularRendimentoAtivo {
             System.out.println("Período inválido para o cálculo de rendimento!");
             return 0.0;
         }else{
-            Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
+            Carteira carteira = carteiraDAO.findOne(idCarteira)
+                    .orElseThrow(() -> new EntityNotFoundException("Id não encontrado!"));
+
             if (carteira == null) {
                 return 0.0; // Retorna 0.0 caso não encontre a carteira
             }

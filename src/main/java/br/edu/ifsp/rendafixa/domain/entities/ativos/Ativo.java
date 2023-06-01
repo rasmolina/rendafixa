@@ -35,6 +35,8 @@ public class Ativo {
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
+        this.dataDaCompra = new ArrayList<>();
+        this.valorTotalDaCompra = new ArrayList<>();
     }
 
     //Construtor para ativo pré-fixado sem liquidez diária
@@ -48,6 +50,8 @@ public class Ativo {
         this.portadora = portadora;
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.rentabilidade = rentabilidade;
+        this.dataDaCompra = new ArrayList<>();
+        this.valorTotalDaCompra = new ArrayList<>();
     }
 
     //Construtor para ativo pré-fixado com liquidez diária
@@ -60,6 +64,9 @@ public class Ativo {
         this.portadora = portadora;
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.rentabilidade = rentabilidade;
+        this.dataDaCompra = new ArrayList<>();
+        this.valorTotalDaCompra = new ArrayList<>();
+        this.dataVencimento = LocalDate.now();
     }
 
     //Construtor para ativo pós-fixado com liquidez diária
@@ -74,16 +81,10 @@ public class Ativo {
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
-    }
-
-    //Construtor para compra de ativo
-    public Ativo(Integer id, String nome){
-        this.id = id;
-        this.nome = nome;
         this.dataDaCompra = new ArrayList<>();
         this.valorTotalDaCompra = new ArrayList<>();
+        this.dataVencimento = LocalDate.now();
     }
-
 
     public Integer getId() {
         return id;

@@ -10,11 +10,7 @@ import java.util.*;
 public class MemoriaCarteiraDAO implements CarteiraDAO {
     private static final Map<Integer, Carteira> bd = new LinkedHashMap<>();
     private static int idCounter;
-
-    @Override
-    public Carteira buscarCarteiraPorId(Integer idCarteira) {
-        return null;
-    }
+    private Carteira carteira;
 
     @Override
     public void IncluirAtivoCarteira(Integer idCarteira, Ativo ativo, double valorCompra) {

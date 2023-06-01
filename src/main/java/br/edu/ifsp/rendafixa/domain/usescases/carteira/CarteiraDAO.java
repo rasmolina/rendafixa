@@ -8,7 +8,6 @@ import java.time.LocalDate;
 
 public interface CarteiraDAO extends DAO<Carteira, Integer> {
 
-    Carteira buscarCarteiraPorId(Integer idCarteira);
     void IncluirAtivoCarteira(Integer idCarteira, Ativo ativo, double valorCompra);
 
     void RemoverCompraAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra);

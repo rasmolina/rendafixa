@@ -6,6 +6,7 @@ import br.edu.ifsp.rendafixa.domain.entities.transacao.TipoTransacao;
 import br.edu.ifsp.rendafixa.domain.entities.transacao.Transacao;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.TransacaoDAO;
+import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,11 +15,18 @@ public class VenderAtivo {
 
     private CarteiraDAO carteiraDAO;
     private AtivoDAO ativoDAO;
-    private ConsultarCarteira consultarCarteira;
     private TransacaoDAO transacaoDAO;
 
-    private void RemoverCompraAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
-        Carteira carteira = consultarCarteira.buscarCarteiraPorId(idCarteira);
+    public VenderAtivo(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO, TransacaoDAO transacaoDAO) {
+        this.carteiraDAO = carteiraDAO;
+        this.ativoDAO = ativoDAO;
+        this.transacaoDAO = transacaoDAO;
+    }
+
+    public void RemoverCompraAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
+        Carteira carteira = carteiraDAO.findOne(idCarteira)
+                .orElseThrow(() -> new EntityNotFoundException("Id não encontrado!"));
+
         if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
             int index = ativos.indexOf(ativo);

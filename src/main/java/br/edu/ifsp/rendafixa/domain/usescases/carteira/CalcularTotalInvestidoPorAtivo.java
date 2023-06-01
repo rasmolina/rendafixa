@@ -5,6 +5,7 @@ import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import java.util.List;
 
 public class CalcularTotalInvestidoPorAtivo {
+
     public double calcularTotalInvestidoPorAtivo(Ativo ativo) {
         List<Double> valoresCompra = ativo.getValorTotalDaCompra();
         double totalInvestido = 0.0;

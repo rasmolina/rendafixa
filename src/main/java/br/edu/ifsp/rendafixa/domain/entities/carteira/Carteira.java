@@ -15,9 +15,8 @@ public class Carteira {
     public Carteira(Integer id, List<Ativo> ativos) {
         this.id = id;
         this.ativos = new ArrayList<>();
+        this.valorDisponivelSaque = 0.0;
     }
-
-    public Carteira(){}
 
     public Integer getId() {
         return id;
