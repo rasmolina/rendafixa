@@ -1,4 +1,4 @@
 package br.edu.ifsp.rendafixa.domain.usescases.carteira;
 
-public class VisualizarLiquidez {
+public class CalcularRendimentoMesAMes {
 }

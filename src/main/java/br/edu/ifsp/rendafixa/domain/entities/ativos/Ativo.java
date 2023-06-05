@@ -1,6 +1,7 @@
 package br.edu.ifsp.rendafixa.domain.entities.ativos;
 
 import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
+import br.edu.ifsp.rendafixa.domain.entities.itemAtivo.ItemAtivo;
 import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 
@@ -19,9 +20,8 @@ public class Ativo {
     private Indexador indexador;
     private CategoriaRentabilidade categoriaRentabilidade;
     private double porcentagemSobreIndexador;
-    private double rentabilidade;
-    private List<LocalDate> dataDaCompra;
-    private List<Double> valorTotalDaCompra;
+    private double rentabilidade; //ao ano
+    private List<ItemAtivo> itensAtivo;
 
     //Construtor para ativo pós-fixado sem liquidez diária
     public Ativo(Integer id, String nome, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
@@ -35,8 +35,7 @@ public class Ativo {
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
-        this.dataDaCompra = new ArrayList<>();
-        this.valorTotalDaCompra = new ArrayList<>();
+        this.itensAtivo = new ArrayList<>();
     }
 
     //Construtor para ativo pré-fixado sem liquidez diária
@@ -50,8 +49,7 @@ public class Ativo {
         this.portadora = portadora;
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.rentabilidade = rentabilidade;
-        this.dataDaCompra = new ArrayList<>();
-        this.valorTotalDaCompra = new ArrayList<>();
+        this.itensAtivo = new ArrayList<>();
     }
 
     //Construtor para ativo pré-fixado com liquidez diária
@@ -64,8 +62,7 @@ public class Ativo {
         this.portadora = portadora;
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.rentabilidade = rentabilidade;
-        this.dataDaCompra = new ArrayList<>();
-        this.valorTotalDaCompra = new ArrayList<>();
+        this.itensAtivo = new ArrayList<>();
         this.dataVencimento = LocalDate.now();
     }
 
@@ -81,8 +78,7 @@ public class Ativo {
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
-        this.dataDaCompra = new ArrayList<>();
-        this.valorTotalDaCompra = new ArrayList<>();
+        this.itensAtivo = new ArrayList<>();
         this.dataVencimento = LocalDate.now();
     }
 
@@ -174,20 +170,12 @@ public class Ativo {
         this.rentabilidade = rentabilidade;
     }
 
-    public List<LocalDate> getDataDaCompra() {
-        return dataDaCompra;
+    public List<ItemAtivo> getItensAtivo() {
+        return itensAtivo;
     }
 
-    public void setDataDaCompra(List<LocalDate> dataDaCompra) {
-        this.dataDaCompra = dataDaCompra;
-    }
-
-    public List<Double> getValorTotalDaCompra() {
-        return valorTotalDaCompra;
-    }
-
-    public void setValorTotalDaCompra(List<Double> valorTotalDaCompra) {
-        this.valorTotalDaCompra = valorTotalDaCompra;
+    public void setItensAtivo(List<ItemAtivo> itensAtivo) {
+        this.itensAtivo = itensAtivo;
     }
 
     @Override

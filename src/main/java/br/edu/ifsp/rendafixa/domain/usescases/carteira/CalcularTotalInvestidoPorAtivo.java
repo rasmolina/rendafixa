@@ -1,19 +1,22 @@
 package br.edu.ifsp.rendafixa.domain.usescases.carteira;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
+import br.edu.ifsp.rendafixa.domain.entities.itemAtivo.ItemAtivo;
 
 import java.util.List;
 
 public class CalcularTotalInvestidoPorAtivo {
 
     public double calcularTotalInvestidoPorAtivo(Ativo ativo) {
-        List<Double> valoresCompra = ativo.getValorTotalDaCompra();
-        double totalInvestido = 0.0;
+        List<ItemAtivo> aplicacoes = ativo.getItensAtivo();
+        double valorTotalAplicado = 0.0;
 
-        for (double valorCompra : valoresCompra) {
-            totalInvestido += valorCompra;
+        if(!aplicacoes.isEmpty()){
+            for(ItemAtivo aplicacao : aplicacoes){
+                double valorAplicado = aplicacao.getValorDaCompra();
+                valorTotalAplicado += valorAplicado;
+            }
         }
-
-        return totalInvestido;
+        return valorTotalAplicado;
     }
 }

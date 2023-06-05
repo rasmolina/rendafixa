@@ -2,10 +2,9 @@ package br.edu.ifsp.rendafixa.domain.usescases.carteira;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
+import br.edu.ifsp.rendafixa.domain.entities.itemAtivo.ItemAtivo;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
-import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class RemoverAtivoCarteira {
@@ -17,21 +16,31 @@ public class RemoverAtivoCarteira {
         this.ativoDAO = ativoDAO;
     }
 
-    public void removerAtivoCarteira(Integer idCarteira, Ativo ativo) {
-        Carteira carteira = carteiraDAO.findOne(idCarteira)
-                .orElseThrow(() -> new EntityNotFoundException("Id não encontrado!"));
-
-        if (carteira != null) {
+    public void removerAtivoCarteira(Carteira carteira, Ativo ativo) {
+        if(carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
-            if (ativos.contains(ativo)) {
-                List<LocalDate> datasDaCompra = ativo.getDataDaCompra();
-
-                for (LocalDate dataDaCompra : datasDaCompra) {
-                    // Remove cada compra do ativo e por fim remove o ativo da carteira
-                    carteiraDAO.RemoverCompraAtivoCarteira(idCarteira, ativo, dataDaCompra);
+            boolean ativoPresenteNaCarteira = false;
+            for (Ativo a : ativos) {
+                if (a.equals(ativo)) {
+                    List<ItemAtivo> itensAtivo = ativo.getItensAtivo();
+                    if(itensAtivo.isEmpty()){
+                        ativos.remove(ativo);
+                        carteira.setAtivos(ativos);
+                        carteiraDAO.update(carteira);
+                        System.out.println("Ativo removido com sucesso!");
+                    }else{
+                        System.out.println("Ativo possui aplicação e não pode ser removido da carteira!");
+                    }
+                    ativoPresenteNaCarteira = true;
+                    break;
                 }
             }
+            if (!ativoPresenteNaCarteira) {
+                System.out.println("Ativo não consta na carteira!");
+
+            }
         }
+
     }
 
 

@@ -16,6 +16,10 @@ import br.edu.ifsp.rendafixa.domain.usescases.emissora.CadastrarEntidadeEmissora
 import br.edu.ifsp.rendafixa.domain.usescases.emissora.EmissoraDAO;
 import br.edu.ifsp.rendafixa.domain.usescases.emissora.RemoverEntidadeEmissora;
 import br.edu.ifsp.rendafixa.domain.usescases.indexadores.*;
+import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.ConsultarItemAtivo;
+import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.InserirItemAtivo;
+import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.ItemAtivoDAO;
+import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.RemoverItemAtivo;
 import br.edu.ifsp.rendafixa.domain.usescases.portadora.AtualizarEntidadePortadora;
 import br.edu.ifsp.rendafixa.domain.usescases.portadora.CadastrarEntidadePortadora;
 import br.edu.ifsp.rendafixa.domain.usescases.portadora.PortadoraDAO;
@@ -24,6 +28,7 @@ import br.edu.ifsp.rendafixa.domain.usescases.transacao.ConsultarTransacao;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.RegistrarTransacao;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.TransacaoDAO;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +39,11 @@ public class Main {
     private static CadastrarAtivo cadastrarAtivo;
     private static ConsultarAtivo consultarAtivo;
     private static RemoverAtivo removerAtivo;
+
+    //Item Ativo
+    private static InserirItemAtivo inserirItemAtivo;
+    private static RemoverItemAtivo removerItemAtivo;
+    private static ConsultarItemAtivo consultarItemAtivo;
 
     //Emissora
     private static CadastrarEntidadeEmissora cadastrarEntidadeEmissora;
@@ -54,17 +64,18 @@ public class Main {
     //Carteira
     private static CriarCarteira criarCarteira;
     private static ApagarCarteira apagarCarteira;
+    private static IncluirAtivoCarteira incluirAtivoCarteira;
+    private static RemoverAtivoCarteira removerAtivoCarteira;
+    private static ComprarAtivo comprarAtivo;
+    private static ResgatarAtivo resgatarAtivo;
     private static ConsultarAtivoCarteira consultarAtivoCarteira;
-    private static VisualizarTotalInvestido visualizarTotalInvestido;
+    private static CalcularTotalInvestido calcularTotalInvestido;
     private static CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo;
     private static VisualizarComposicaoCarteira visualizarComposicaoCarteira;
     private static CalcularRendimentoAtivo calcularRendimentoAtivo;
-    private static ComprarAtivo comprarAtivo;
     private static ListarAtivosCarteira listarAtivosCarteira;
-    private static VenderAtivo venderAtivo;
-    private static RemoverAtivoCarteira removerAtivoCarteira;
     private static ResgatarAtivosVencidos resgatarAtivosVencidos;
-    private static VisualizarLiquidez visualizarLiquidez;
+
 
     //Transacao
     private static RegistrarTransacao registrarTransacao;
@@ -104,14 +115,36 @@ public class Main {
         Ativo ativo3 = new Ativo(3,"CDB LD",true,CategoriaAtivo.CDB,emissoraXP,portadoraB3,CategoriaRentabilidade.PRE_FIXADO,1.0);
         cadastrarAtivo.insert(ativo3);
 
+        LocalDate dataIni = LocalDate.parse("2023-05-29");
+        LocalDate dataFin = LocalDate.parse("2023-09-29");
+
         List<Ativo> ativos = new ArrayList<>();
-        Carteira carteira1 = new Carteira(1,ativos);
-        criarCarteira.insert(carteira1);
-        comprarAtivo.IncluirAtivoCarteira(1,ativo1,500.00,data1);
-        comprarAtivo.IncluirAtivoCarteira(1,ativo2,1000.00, data2);
-        comprarAtivo.IncluirAtivoCarteira(1,ativo3,3000.00, data3);
-        Integer idCarteira = carteira1.getId();
-        listarAtivosCarteira.listarAtivosNaCarteira(idCarteira);
+        Carteira carteira1 = new Carteira(ativos);
+        //listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo1);
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo2);
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo3);
+        //listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
+        comprarAtivo.comprarAtivo(carteira1,ativo1,1000.00,data2);
+        comprarAtivo.comprarAtivo(carteira1,ativo1,5000.00,data2);
+        comprarAtivo.comprarAtivo(carteira1,ativo2,7000.00,data3);
+        comprarAtivo.comprarAtivo(carteira1,ativo1,8000.00,data3);
+
+
+        //listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
+        //comprarAtivo.comprarAtivo(carteira1,ativo1,2000.00,data2);
+        listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
+        //consultarAtivoCarteira.consultarAtivoNaCarteira(carteira1,ativo1);
+        //calcularTotalInvestido.calcularTotalInvestido(carteira1);
+        //visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
+        LocalDate dataFinal = LocalDate.parse("2023-09-05");
+        double rendimentoAtivo1 = calcularRendimentoAtivo.calcularRendimentoAtivo(ativo1,dataFinal);
+        System.out.print("Rendimento ativo 1: R$ "+ rendimentoAtivo1);
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo1);
+        //removerAtivoCarteira.removerAtivoCarteira(carteira1,ativo3);
+        removerAtivoCarteira.removerAtivoCarteira(carteira1,ativo1);
+        resgatarAtivo.resgatarAtivo(carteira1,ativo1);
+
 
     }
 
@@ -121,6 +154,11 @@ public class Main {
         atualizarAtivo = new AtualizarAtivo(ativoDAO);
         removerAtivo = new RemoverAtivo(ativoDAO);
         consultarAtivo = new ConsultarAtivo(ativoDAO);
+
+        ItemAtivoDAO itemAtivoDAO = new MemoryItemAtivoDAO();
+        inserirItemAtivo = new InserirItemAtivo(itemAtivoDAO);
+        removerItemAtivo = new RemoverItemAtivo(itemAtivoDAO);
+        consultarItemAtivo = new ConsultarItemAtivo(itemAtivoDAO);
 
         IndexadoresDAO indexadoresDAO = new MemoriaIndexadoresDAO();
         cadastrarIndexador = new CadastrarIndexador(indexadoresDAO);
@@ -145,11 +183,18 @@ public class Main {
         CarteiraDAO carteiraDAO = new MemoriaCarteiraDAO();
         criarCarteira = new CriarCarteira(carteiraDAO);
         apagarCarteira = new ApagarCarteira(carteiraDAO);
-        visualizarTotalInvestido = new VisualizarTotalInvestido(carteiraDAO,ativoDAO);
-        visualizarComposicaoCarteira = new VisualizarComposicaoCarteira(carteiraDAO,ativoDAO);
-        calcularRendimentoAtivo = new CalcularRendimentoAtivo(carteiraDAO,ativoDAO);
-        comprarAtivo = new ComprarAtivo(carteiraDAO, ativoDAO, transacaoDAO);
-        venderAtivo = new VenderAtivo(carteiraDAO, ativoDAO, transacaoDAO);
+        incluirAtivoCarteira = new IncluirAtivoCarteira(carteiraDAO,ativoDAO);
+        removerAtivoCarteira = new RemoverAtivoCarteira(carteiraDAO,ativoDAO);
         listarAtivosCarteira = new ListarAtivosCarteira(carteiraDAO);
+        comprarAtivo = new ComprarAtivo(carteiraDAO,ativoDAO,transacaoDAO,itemAtivoDAO);
+        resgatarAtivo = new ResgatarAtivo(carteiraDAO,ativoDAO,transacaoDAO);
+        consultarAtivoCarteira = new ConsultarAtivoCarteira(carteiraDAO, calcularTotalInvestidoPorAtivo);
+
+        calcularTotalInvestido = new CalcularTotalInvestido(carteiraDAO,ativoDAO);
+        calcularTotalInvestidoPorAtivo = new CalcularTotalInvestidoPorAtivo();
+        calcularRendimentoAtivo = new CalcularRendimentoAtivo(carteiraDAO,ativoDAO);
+        visualizarComposicaoCarteira = new VisualizarComposicaoCarteira(carteiraDAO,ativoDAO);
+
+
     }
 }

@@ -3,9 +3,8 @@ package br.edu.ifsp.rendafixa.domain.usescases.carteira;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
-import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
+import br.edu.ifsp.rendafixa.domain.entities.itemAtivo.ItemAtivo;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
-import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -22,77 +21,51 @@ public class CalcularRendimentoAtivo {
     }
 
     //Adaptação: cálculo do rendimento será a partir da data da compra até a data final informada
-    //Se o ativo tiver compras antes da data inicial informada, ela não será considerada para o cálculo do rendimento médio
-    public double calcularRendimentoAtivo(Integer idCarteira, Ativo ativo, LocalDate dataInicial, LocalDate dataFinal) {
+    public double calcularRendimentoAtivo(Ativo ativo, LocalDate dataFinal) {
         LocalDate dataVencimento = ativo.getDataVencimento();
+        double rendimentoTotal = 0.0;
         if (ativo.isLiquidezDiaria()){
             dataVencimento = LocalDate.now();
         }
-        if (dataInicial.isAfter(dataFinal) || dataFinal.isBefore(dataInicial) || ChronoUnit.MONTHS.between(dataInicial, dataFinal) > 12 ||
-                dataInicial.isAfter(dataVencimento)) {
-            System.out.println("Período inválido para o cálculo de rendimento!");
-            return 0.0;
-        }else{
-            Carteira carteira = carteiraDAO.findOne(idCarteira)
-                    .orElseThrow(() -> new EntityNotFoundException("Id não encontrado!"));
 
-            if (carteira == null) {
-                return 0.0; // Retorna 0.0 caso não encontre a carteira
-            }
-
-            List<Ativo> ativos = carteira.getAtivos();
-            double rendimentoTotal = 0.0;
-            int qtdeCompras = 0;
-
-            // Verificar se a data de vencimento do ativo é anterior à data final informada
-            if (dataVencimento != null && dataVencimento.isBefore(dataFinal)) {
-                dataFinal = dataVencimento; // Utilizar a data de vencimento como nova data final
-                System.out.println("Rendimento calculado até " + dataVencimento + "!");
-            }
-
-            for (Ativo a : ativos) {
-                if (a.equals(ativo)) {
-                    List<LocalDate> datas = a.getDataDaCompra();
-                    List<Double> valoresCompra = a.getValorTotalDaCompra();
-                    int qtdeCotas = datas.size(); // Cada compra está sendo considerada como uma cota
-
-                    for (int i = 0; i < qtdeCotas; i++) {
-                        LocalDate dataCompra = datas.get(i);
-                        double valorCompra = valoresCompra.get(i);
-
-                        if (dataCompra.isAfter(dataInicial) && dataCompra.isBefore(dataFinal)) {
-
-                            long numMeses = ChronoUnit.MONTHS.between(dataCompra, dataFinal);
-                            double rentabilidade = a.getRentabilidade();
-
-                            // Rendimento pré-fixado = Valor investido x renatabilidade x Período de investimento
-                            if (a.getCategoriaRentabilidade() == CategoriaRentabilidade.PRE_FIXADO) {
-                                double rendimentoCompra = valorCompra * rentabilidade * numMeses;
-                                rendimentoTotal += rendimentoCompra;
-                                qtdeCompras++;
-                            }
-
-                            // Rendimento pós-fixado = (Valor investido x Período de investimento x Rentabilidade) x (1 + Variação do Indexador)
-                            if (a.getCategoriaRentabilidade() == CategoriaRentabilidade.POS_FIXADO) {
-                                double valorIndexador = a.getIndexador().getValor();
-                                double taxaPosFixado = a.getPorcentagemSobreIndexador();
-                                double variacaoIndexador = (taxaPosFixado - valorIndexador)/100;
-                                double rendimentoCompra = (valorCompra * numMeses * rentabilidade) * (1 + variacaoIndexador);
-                                rendimentoTotal += rendimentoCompra;
-                                qtdeCompras++;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (qtdeCompras > 0) {
-                return rendimentoTotal;
-            }
-
-            return 0.0; // Retorna 0.0 caso não haja compras do ativo no intervalo de datas
+        if (dataVencimento != null && dataVencimento.isBefore(dataFinal)) {
+            dataFinal = dataVencimento; // Utiliza a data de vencimento como nova data final
+            System.out.println("Rendimento calculado até " + dataVencimento + "!");
         }
+
+        List<ItemAtivo> aplicacoes = ativo.getItensAtivo();
+
+        for(ItemAtivo aplicacao : aplicacoes){
+            if(aplicacao.getDataDaCompra().isAfter(dataFinal)){
+                System.out.println("Ativo comprado após a data final informada!");
+                return 0.0;
+            }
+
+            LocalDate dataCompra = aplicacao.getDataDaCompra();
+            long numMeses = ChronoUnit.MONTHS.between(dataCompra, dataFinal);
+            double taxaJurosMensal = ativo.getRentabilidade()/12;
+
+            // Cálculo de rendimento para ativo pré-fixado: M = C * (1 + i)^t
+            if (ativo.getCategoriaRentabilidade() == CategoriaRentabilidade.PRE_FIXADO) {
+                double montanteAplicacao = aplicacao.getValorDaCompra() * Math.pow(1 + taxaJurosMensal,numMeses);
+                rendimentoTotal += montanteAplicacao;
+            }
+
+            // Cálculo de rendimento para ativo pós-fixado: M = (C * (1 + i)^t)*(1* vI)
+            if (ativo.getCategoriaRentabilidade() == CategoriaRentabilidade.POS_FIXADO) {
+                double valorIndexador = ativo.getIndexador().getValor();
+                double taxaPosFixado = ativo.getPorcentagemSobreIndexador();
+                double variacaoIndexador = (taxaPosFixado - valorIndexador)/100;
+                double montanteAplicacao = (aplicacao.getValorDaCompra() * Math.pow(1 + taxaJurosMensal,numMeses)) * (1 + variacaoIndexador);
+                rendimentoTotal += montanteAplicacao;
+            }
+        }
+        return rendimentoTotal; //Retorna o montante: valor investido + rendimento até a data informada
     }
+
+
+
+
 
 
 }

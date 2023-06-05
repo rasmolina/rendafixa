@@ -13,51 +13,6 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     private Carteira carteira;
 
     @Override
-    public void IncluirAtivoCarteira(Integer idCarteira, Ativo ativo, double valorCompra) {
-
-    }
-
-    @Override
-    public void RemoverCompraAtivoCarteira(Integer idCarteira, Ativo ativo, LocalDate dataDaCompra) {
-
-    }
-
-    @Override
-    public double calcularTotalInvestido(Integer idCarteira) {
-        return 0;
-    }
-
-    @Override
-    public void visualizarComposicaoCarteira(Integer idCarteira) {
-
-    }
-
-    @Override
-    public double calcularTotalInvestidoPorAtivo(Ativo ativo) {
-        return 0;
-    }
-
-    @Override
-    public double calcularRendimentoAtivo(Integer idCarteira, Ativo ativo, LocalDate dataInicial, LocalDate dataFinal) {
-        return 0;
-    }
-
-    @Override
-    public void consultarAtivoNaCarteira(Integer idCarteira, Ativo ativo) {
-
-    }
-
-    @Override
-    public void listarAtivosNaCarteira(Integer idCarteira) {
-
-    }
-
-    @Override
-    public void removerAtivoCarteira(Integer idCarteira, Ativo ativo) {
-
-    }
-
-    @Override
     public Integer create(Carteira carteira) {
         idCounter++;
         carteira.setId(idCounter);
@@ -99,5 +54,35 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     @Override
     public boolean delete(Carteira carteira) {
         return deleteByKey(carteira.getId());
+    }
+
+    @Override
+    public void incluirAtivoCarteira(Carteira carteira, Ativo ativo) {
+
+    }
+
+    @Override
+    public void removerAtivoCarteira(Carteira carteira, Ativo ativo) {
+
+    }
+
+    @Override
+    public void comprarAtivo(Carteira carteira, Ativo ativo, double valorCompra, LocalDate dataCompra) {
+
+    }
+
+    @Override
+    public void resgatarAtivo(Carteira carteira, Ativo ativo) {
+
+    }
+
+    @Override
+    public void ResgatarAtivosVencidos(Carteira carteira) {
+
+    }
+
+    @Override
+    public void consultarAtivoNaCarteira(Integer idCarteira, Ativo ativo) {
+
     }
 }

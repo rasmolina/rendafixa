@@ -9,7 +9,7 @@ import java.util.List;
 public class ResgatarAtivosVencidos {
 
     private CarteiraDAO carteiraDAO;
-    private RemoverAtivoCarteira removerAtivoCarteira;
+    private ResgatarAtivo resgatarAtivo;
 
     public ResgatarAtivosVencidos(CarteiraDAO carteiraDAO) {
         this.carteiraDAO = carteiraDAO;
@@ -17,16 +17,19 @@ public class ResgatarAtivosVencidos {
 
     public ResgatarAtivosVencidos(Carteira carteira){
         LocalDate dataAtual = LocalDate.now();
-        Integer idCarteira = carteira.getId();
         if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
-
-            for (Ativo ativo : ativos) {
-                LocalDate dataVencimento = ativo.getDataVencimento();
-                if (dataVencimento != null && dataVencimento.isBefore(dataAtual)) {
-                    removerAtivoCarteira.removerAtivoCarteira(idCarteira, ativo);
+            if(!ativos.isEmpty()){
+                for (Ativo ativo : ativos) {
+                    LocalDate dataVencimento = ativo.getDataVencimento();
+                    if (dataVencimento != null && dataVencimento.isBefore(dataAtual)) {
+                        resgatarAtivo.resgatarAtivo(carteira,ativo);
+                    }
                 }
+            }else{
+                System.out.println("Carteira sem ativos!");
             }
+
         }
     }
 }

@@ -23,10 +23,8 @@ public class Transacao {
     }
 
     //Construtor para transação de venda
-    public Transacao(LocalDate dataTransacao, LocalDate dataVenda, LocalDate dataCompra, Ativo ativo, double valorTransacao, TipoTransacao tipo) {
+    public Transacao(LocalDate dataTransacao, Ativo ativo, double valorTransacao, TipoTransacao tipo) {
         this.dataTransacao = dataTransacao;
-        this.dataVenda = dataVenda;
-        this.dataCompra = dataCompra;
         this.ativo = ativo;
         this.valorTransacao = valorTransacao;
         this.tipo = tipo;

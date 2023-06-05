@@ -4,7 +4,6 @@ import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
-import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +13,7 @@ public class VisualizarComposicaoCarteira {
 
     private CarteiraDAO carteiraDAO;
     private AtivoDAO ativoDAO;
-    private VisualizarTotalInvestido visualizarTotalInvestido;
+    private CalcularTotalInvestido calcularTotalInvestido;
     private CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo;
 
     public VisualizarComposicaoCarteira(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO) {
@@ -22,13 +21,10 @@ public class VisualizarComposicaoCarteira {
         this.ativoDAO = ativoDAO;
     }
 
-    public void visualizarComposicaoCarteira(Integer idCarteira) {
-        Carteira carteira = carteiraDAO.findOne(idCarteira)
-                .orElseThrow(() -> new EntityNotFoundException("Id não encontrado!"));
-
-        if (carteira != null) {
+    public void visualizarComposicaoCarteira(Carteira carteira) {
+          if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
-            double totalInvestido = visualizarTotalInvestido.calcularTotalInvestido(idCarteira);
+            double totalInvestido = calcularTotalInvestido.calcularTotalInvestido(carteira);
 
             Map<CategoriaAtivo, Double> composicaoRelativa = new HashMap<>();
 
