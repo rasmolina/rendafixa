@@ -73,6 +73,7 @@ public class Main {
     private static CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo;
     private static VisualizarComposicaoCarteira visualizarComposicaoCarteira;
     private static CalcularRendimentoAtivo calcularRendimentoAtivo;
+    private static CalcularRendimentoMesAMes calcularRendimentoMesAMes;
     private static ListarAtivosCarteira listarAtivosCarteira;
     private static ResgatarAtivosVencidos resgatarAtivosVencidos;
 
@@ -120,30 +121,39 @@ public class Main {
 
         List<Ativo> ativos = new ArrayList<>();
         Carteira carteira1 = new Carteira(ativos);
-        //listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
         incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo1);
         incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo2);
         incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo3);
-        //listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
+        listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
         comprarAtivo.comprarAtivo(carteira1,ativo1,1000.00,data2);
         comprarAtivo.comprarAtivo(carteira1,ativo1,5000.00,data2);
         comprarAtivo.comprarAtivo(carteira1,ativo2,7000.00,data3);
         comprarAtivo.comprarAtivo(carteira1,ativo1,8000.00,data3);
 
-
-        //listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
-        //comprarAtivo.comprarAtivo(carteira1,ativo1,2000.00,data2);
         listarAtivosCarteira.listarAtivosNaCarteira(carteira1);
-        //consultarAtivoCarteira.consultarAtivoNaCarteira(carteira1,ativo1);
-        //calcularTotalInvestido.calcularTotalInvestido(carteira1);
-        //visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
+
         LocalDate dataFinal = LocalDate.parse("2023-09-05");
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo1);
+        removerAtivoCarteira.removerAtivoCarteira(carteira1,ativo3);
+        removerAtivoCarteira.removerAtivoCarteira(carteira1,ativo1);
+
         double rendimentoAtivo1 = calcularRendimentoAtivo.calcularRendimentoAtivo(ativo1,dataFinal);
         System.out.print("Rendimento ativo 1: R$ "+ rendimentoAtivo1);
-        incluirAtivoCarteira.incluirAtivoCarteira(carteira1,ativo1);
-        //removerAtivoCarteira.removerAtivoCarteira(carteira1,ativo3);
-        removerAtivoCarteira.removerAtivoCarteira(carteira1,ativo1);
-        resgatarAtivo.resgatarAtivo(carteira1,ativo1);
+
+        double totalInvestidoAtivo = calcularTotalInvestidoPorAtivo.calcularTotalInvestidoPorAtivo(ativo1);
+        System.out.println("Total investido ativo " + ativo1.getNome() + ": R$ " + totalInvestidoAtivo);
+
+        double totalCarteira = calcularTotalInvestido.calcularTotalInvestido(carteira1);
+        System.out.println("Total aplicado na carteira: R$ "+ totalCarteira);
+
+        //resgatarAtivo.resgatarAtivo(carteira1,ativo1);
+        double valorSaque = carteira1.getValorDisponivelSaque();
+        System.out.print("Valor disponível para Saque - R$ "+ valorSaque);
+
+        consultarAtivoCarteira.consultarAtivoNaCarteira(carteira1,ativo1);
+
+        visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
+
 
 
     }
@@ -188,13 +198,13 @@ public class Main {
         listarAtivosCarteira = new ListarAtivosCarteira(carteiraDAO);
         comprarAtivo = new ComprarAtivo(carteiraDAO,ativoDAO,transacaoDAO,itemAtivoDAO);
         resgatarAtivo = new ResgatarAtivo(carteiraDAO,ativoDAO,transacaoDAO);
-        consultarAtivoCarteira = new ConsultarAtivoCarteira(carteiraDAO, calcularTotalInvestidoPorAtivo);
+        consultarAtivoCarteira = new ConsultarAtivoCarteira(carteiraDAO, ativoDAO, calcularTotalInvestidoPorAtivo);
 
-        calcularTotalInvestido = new CalcularTotalInvestido(carteiraDAO,ativoDAO);
-        calcularTotalInvestidoPorAtivo = new CalcularTotalInvestidoPorAtivo();
+        calcularTotalInvestido = new CalcularTotalInvestido(carteiraDAO,ativoDAO, calcularTotalInvestidoPorAtivo);
+        calcularTotalInvestidoPorAtivo = new CalcularTotalInvestidoPorAtivo(carteiraDAO,ativoDAO);
         calcularRendimentoAtivo = new CalcularRendimentoAtivo(carteiraDAO,ativoDAO);
         visualizarComposicaoCarteira = new VisualizarComposicaoCarteira(carteiraDAO,ativoDAO);
-
+        calcularRendimentoMesAMes = new CalcularRendimentoMesAMes();
 
     }
 }

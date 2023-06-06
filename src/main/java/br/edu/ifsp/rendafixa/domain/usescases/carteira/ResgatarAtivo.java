@@ -35,10 +35,12 @@ public class ResgatarAtivo {
         boolean ativoPresenteNaCarteira = false;
         for (Ativo a : ativos) {
             if (a.equals(ativo)) {
-                double montanteRendimento = calcularRendimentoAtivo.calcularRendimentoAtivo(ativo,dataDeHoje);
+                CalcularRendimentoAtivo rendimento = new CalcularRendimentoAtivo(carteiraDAO,ativoDAO);
+                double montanteRendimento = rendimento.calcularRendimentoAtivo(ativo,dataDeHoje);
                 for(ItemAtivo aplicacao : aplicacoes){
-                    itemAtivoDAO.delete(aplicacao);
-                    aplicacoes.remove(aplicacao);
+                    ItemAtivo itemAtivo = new ItemAtivo(ativo,aplicacao.getDataDaCompra(),aplicacao.getValorDaCompra());
+                    itemAtivoDAO.delete(itemAtivo);
+                    aplicacoes.remove(itemAtivo);
                 }
                 ativo.setItensAtivo(aplicacoes);
                 ativoDAO.update(ativo);

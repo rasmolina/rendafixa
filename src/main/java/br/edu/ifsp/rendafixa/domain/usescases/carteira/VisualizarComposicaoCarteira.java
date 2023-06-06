@@ -24,13 +24,15 @@ public class VisualizarComposicaoCarteira {
     public void visualizarComposicaoCarteira(Carteira carteira) {
           if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
-            double totalInvestido = calcularTotalInvestido.calcularTotalInvestido(carteira);
+            CalcularTotalInvestido investido = new CalcularTotalInvestido(carteiraDAO,ativoDAO,calcularTotalInvestidoPorAtivo);
+            double totalInvestido = investido.calcularTotalInvestido(carteira);
 
             Map<CategoriaAtivo, Double> composicaoRelativa = new HashMap<>();
 
             for (Ativo ativo : ativos) {
                 CategoriaAtivo categoria = ativo.getCategoriaAtivo();
-                double valorInvestido = calcularTotalInvestidoPorAtivo.calcularTotalInvestidoPorAtivo(ativo);
+                CalcularTotalInvestidoPorAtivo investidoAtivo = new CalcularTotalInvestidoPorAtivo(carteiraDAO,ativoDAO);
+                double valorInvestido = investidoAtivo.calcularTotalInvestidoPorAtivo(ativo);
 
                 // Atualiza a composição relativa por categoria
                 double composicaoAtual = composicaoRelativa.getOrDefault(categoria, 0.0);

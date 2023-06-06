@@ -44,7 +44,7 @@ public class ComprarAtivo {
                     ativo.setItensAtivo(itemAtivos);
                     ativoDAO.update(ativo);
 
-                    Transacao compra = new Transacao(dataDeHoje,dataCompra,ativo,valorCompra,TipoTransacao.COMPRA);
+                    Transacao compra = new Transacao(dataDeHoje,dataCompra,a,valorCompra,TipoTransacao.COMPRA);
                     transacaoDAO.create(compra);
                     ativoPresenteNaCarteira = true;
                     break;
@@ -52,7 +52,7 @@ public class ComprarAtivo {
             }
         }
         if (!ativoPresenteNaCarteira) {
-            System.out.print("Ativo não consta na carteira, compra não registrada!");
+            System.out.print("Ativo não consta na carteira, aplicação não registrada!");
         }
     }
 

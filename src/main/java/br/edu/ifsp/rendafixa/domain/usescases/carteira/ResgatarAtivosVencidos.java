@@ -16,6 +16,7 @@ public class ResgatarAtivosVencidos {
     }
 
     public ResgatarAtivosVencidos(Carteira carteira){
+        boolean ativoVencidoEncontrado = false;
         LocalDate dataAtual = LocalDate.now();
         if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
@@ -23,9 +24,12 @@ public class ResgatarAtivosVencidos {
                 for (Ativo ativo : ativos) {
                     LocalDate dataVencimento = ativo.getDataVencimento();
                     if (dataVencimento != null && dataVencimento.isBefore(dataAtual)) {
+                        ativoVencidoEncontrado = true;
                         resgatarAtivo.resgatarAtivo(carteira,ativo);
                     }
                 }
+                if(!ativoVencidoEncontrado)
+                    System.out.println("Carteira não possui ativos vencidos!");
             }else{
                 System.out.println("Carteira sem ativos!");
             }

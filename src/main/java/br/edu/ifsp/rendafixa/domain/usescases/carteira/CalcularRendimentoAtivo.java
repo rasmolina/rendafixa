@@ -35,31 +35,34 @@ public class CalcularRendimentoAtivo {
 
         List<ItemAtivo> aplicacoes = ativo.getItensAtivo();
 
-        for(ItemAtivo aplicacao : aplicacoes){
-            if(aplicacao.getDataDaCompra().isAfter(dataFinal)){
-                System.out.println("Ativo comprado após a data final informada!");
-                return 0.0;
-            }
+        if(!aplicacoes.isEmpty()){
+            for(ItemAtivo aplicacao : aplicacoes){
+                if(aplicacao.getDataDaCompra().isAfter(dataFinal)){
+                    System.out.println("Ativo comprado após a data final informada!");
+                    return 0.0;
+                }
 
-            LocalDate dataCompra = aplicacao.getDataDaCompra();
-            long numMeses = ChronoUnit.MONTHS.between(dataCompra, dataFinal);
-            double taxaJurosMensal = ativo.getRentabilidade()/12;
+                LocalDate dataCompra = aplicacao.getDataDaCompra();
+                long numMeses = ChronoUnit.MONTHS.between(dataCompra, dataFinal);
+                double taxaJurosMensal = ativo.getRentabilidade()/12;
 
-            // Cálculo de rendimento para ativo pré-fixado: M = C * (1 + i)^t
-            if (ativo.getCategoriaRentabilidade() == CategoriaRentabilidade.PRE_FIXADO) {
-                double montanteAplicacao = aplicacao.getValorDaCompra() * Math.pow(1 + taxaJurosMensal,numMeses);
-                rendimentoTotal += montanteAplicacao;
-            }
+                // Cálculo de rendimento para ativo pré-fixado: M = C * (1 + i)^t
+                if (ativo.getCategoriaRentabilidade() == CategoriaRentabilidade.PRE_FIXADO) {
+                    double montanteAplicacao = aplicacao.getValorDaCompra() * Math.pow(1 + taxaJurosMensal,numMeses);
+                    rendimentoTotal += montanteAplicacao;
+                }
 
-            // Cálculo de rendimento para ativo pós-fixado: M = (C * (1 + i)^t)*(1* vI)
-            if (ativo.getCategoriaRentabilidade() == CategoriaRentabilidade.POS_FIXADO) {
-                double valorIndexador = ativo.getIndexador().getValor();
-                double taxaPosFixado = ativo.getPorcentagemSobreIndexador();
-                double variacaoIndexador = (taxaPosFixado - valorIndexador)/100;
-                double montanteAplicacao = (aplicacao.getValorDaCompra() * Math.pow(1 + taxaJurosMensal,numMeses)) * (1 + variacaoIndexador);
-                rendimentoTotal += montanteAplicacao;
+                // Cálculo de rendimento para ativo pós-fixado: M = (C * (1 + i)^t)*(1* vI)
+                if (ativo.getCategoriaRentabilidade() == CategoriaRentabilidade.POS_FIXADO) {
+                    double valorIndexador = ativo.getIndexador().getValor();
+                    double taxaPosFixado = ativo.getPorcentagemSobreIndexador();
+                    double variacaoIndexador = (taxaPosFixado - valorIndexador)/100;
+                    double montanteAplicacao = (aplicacao.getValorDaCompra() * Math.pow(1 + taxaJurosMensal,numMeses)) * (1 + variacaoIndexador);
+                    rendimentoTotal += montanteAplicacao;
+                }
             }
         }
+
         return rendimentoTotal; //Retorna o montante: valor investido + rendimento até a data informada
     }
 

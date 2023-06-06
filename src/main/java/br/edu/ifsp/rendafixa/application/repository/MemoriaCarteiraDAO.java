@@ -9,7 +9,7 @@ import java.util.*;
 
 public class MemoriaCarteiraDAO implements CarteiraDAO {
     private static final Map<Integer, Carteira> bd = new LinkedHashMap<>();
-    private static int idCounter;
+    private static int idCounter = 0;
     private Carteira carteira;
 
     @Override
@@ -85,4 +85,5 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     public void consultarAtivoNaCarteira(Integer idCarteira, Ativo ativo) {
 
     }
+
 }

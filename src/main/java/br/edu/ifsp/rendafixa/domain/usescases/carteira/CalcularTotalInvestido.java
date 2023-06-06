@@ -11,19 +11,26 @@ public class CalcularTotalInvestido {
     private AtivoDAO ativoDAO;
     private CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo;
 
-    public CalcularTotalInvestido(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO) {
+    public CalcularTotalInvestido(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO, CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo) {
         this.carteiraDAO = carteiraDAO;
         this.ativoDAO = ativoDAO;
+        this.calcularTotalInvestidoPorAtivo = calcularTotalInvestidoPorAtivo;
     }
+
 
     public double calcularTotalInvestido(Carteira carteira) {
         if (carteira != null) {
             List<Ativo> ativos = carteira.getAtivos();
+
             double totalInvestido = 0.0;
 
+            if(ativos.isEmpty())
+                return 0.0;
+
             for (Ativo ativo : ativos) {
-                double investimentoAtivo = calcularTotalInvestidoPorAtivo.calcularTotalInvestidoPorAtivo(ativo);
-                totalInvestido += investimentoAtivo;
+                CalcularTotalInvestidoPorAtivo investimentoAtivo = new CalcularTotalInvestidoPorAtivo(carteiraDAO,ativoDAO);
+                double calculado = investimentoAtivo.calcularTotalInvestidoPorAtivo(ativo);
+                totalInvestido += calculado;
             }
 
             return totalInvestido;
