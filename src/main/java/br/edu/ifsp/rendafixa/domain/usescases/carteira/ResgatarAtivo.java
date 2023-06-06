@@ -21,10 +21,11 @@ public class ResgatarAtivo {
     private CalcularTotalInvestidoPorAtivo calcularTotalInvestidoPorAtivo;
     private CalcularRendimentoAtivo calcularRendimentoAtivo;
 
-    public ResgatarAtivo(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO, TransacaoDAO transacaoDAO) {
+    public ResgatarAtivo(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO, TransacaoDAO transacaoDAO, ItemAtivoDAO itemAtivoDAO) {
         this.carteiraDAO = carteiraDAO;
         this.ativoDAO = ativoDAO;
         this.transacaoDAO = transacaoDAO;
+        this.itemAtivoDAO = itemAtivoDAO;
     }
 
     public void resgatarAtivo(Carteira carteira, Ativo ativo){
@@ -38,11 +39,13 @@ public class ResgatarAtivo {
                 CalcularRendimentoAtivo rendimento = new CalcularRendimentoAtivo(carteiraDAO,ativoDAO);
                 double montanteRendimento = rendimento.calcularRendimentoAtivo(ativo,dataDeHoje);
                 for(ItemAtivo aplicacao : aplicacoes){
-                    ItemAtivo itemAtivo = new ItemAtivo(ativo,aplicacao.getDataDaCompra(),aplicacao.getValorDaCompra());
+                    ItemAtivo itemAtivo = aplicacao;
                     itemAtivoDAO.delete(itemAtivo);
-                    aplicacoes.remove(itemAtivo);
                 }
-                ativo.setItensAtivo(aplicacoes);
+
+                for(int i=0;i<aplicacoes.size();i++){
+                    ativo.getItensAtivo().remove(i);
+                }
                 ativoDAO.update(ativo);
 
                 Transacao resgate = new Transacao(dataDeHoje,ativo,montanteRendimento,TipoTransacao.VENDA);
@@ -51,6 +54,7 @@ public class ResgatarAtivo {
                 carteira.setValorDisponivelSaque(valorDisponivelSaque + montanteRendimento);
                 carteiraDAO.update(carteira);
                 ativoPresenteNaCarteira = true;
+                System.out.println("Resgate efetuado com sucesso no valor de R$ " + montanteRendimento);
                 break;
             }
         }

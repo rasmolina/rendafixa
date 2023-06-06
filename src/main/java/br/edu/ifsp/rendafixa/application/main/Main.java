@@ -113,7 +113,7 @@ public class Main {
         Ativo ativo2 = new Ativo(2,"CDB AGRO SAO JOSE", vencimento1, CategoriaAtivo.CDB,emissoraXP,portadoraB3, cdi, CategoriaRentabilidade.POS_FIXADO,95.0,0.8);
         cadastrarAtivo.insert(ativo2);
         //Ativo com liquidez diária
-        Ativo ativo3 = new Ativo(3,"CDB LD",true,CategoriaAtivo.CDB,emissoraXP,portadoraB3,CategoriaRentabilidade.PRE_FIXADO,1.0);
+        Ativo ativo3 = new Ativo(3,"LCA LD INTER",true,CategoriaAtivo.LCA,emissoraXP,portadoraB3,CategoriaRentabilidade.PRE_FIXADO,1.0);
         cadastrarAtivo.insert(ativo3);
 
         LocalDate dataIni = LocalDate.parse("2023-05-29");
@@ -146,15 +146,26 @@ public class Main {
         double totalCarteira = calcularTotalInvestido.calcularTotalInvestido(carteira1);
         System.out.println("Total aplicado na carteira: R$ "+ totalCarteira);
 
-        //resgatarAtivo.resgatarAtivo(carteira1,ativo1);
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira1, ativo3);
+
+        comprarAtivo.comprarAtivo(carteira1,ativo3,500,data2);
+
+
+
+        //consultarAtivoCarteira.consultarAtivoNaCarteira(carteira1,ativo1);
+
+        resgatarAtivo.resgatarAtivo(carteira1,ativo3);
         double valorSaque = carteira1.getValorDisponivelSaque();
         System.out.print("Valor disponível para Saque - R$ "+ valorSaque);
 
-        consultarAtivoCarteira.consultarAtivoNaCarteira(carteira1,ativo1);
+        System.out.println("\n=======================");
+        totalCarteira = calcularTotalInvestido.calcularTotalInvestido(carteira1);
+        System.out.println("Total aplicado na carteira: R$ "+ totalCarteira);
+
+        totalInvestidoAtivo = calcularTotalInvestidoPorAtivo.calcularTotalInvestidoPorAtivo(ativo3);
+        System.out.println("Total investido ativo " + ativo3.getNome() + ": R$ " + totalInvestidoAtivo);
 
         visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
-
-
 
     }
 
@@ -197,7 +208,8 @@ public class Main {
         removerAtivoCarteira = new RemoverAtivoCarteira(carteiraDAO,ativoDAO);
         listarAtivosCarteira = new ListarAtivosCarteira(carteiraDAO);
         comprarAtivo = new ComprarAtivo(carteiraDAO,ativoDAO,transacaoDAO,itemAtivoDAO);
-        resgatarAtivo = new ResgatarAtivo(carteiraDAO,ativoDAO,transacaoDAO);
+        resgatarAtivo = new ResgatarAtivo(carteiraDAO,ativoDAO,transacaoDAO,itemAtivoDAO);
+        resgatarAtivosVencidos = new ResgatarAtivosVencidos(carteiraDAO);
         consultarAtivoCarteira = new ConsultarAtivoCarteira(carteiraDAO, ativoDAO, calcularTotalInvestidoPorAtivo);
 
         calcularTotalInvestido = new CalcularTotalInvestido(carteiraDAO,ativoDAO, calcularTotalInvestidoPorAtivo);
