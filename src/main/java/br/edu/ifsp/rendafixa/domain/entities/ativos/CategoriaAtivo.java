@@ -1,5 +1,7 @@
 package br.edu.ifsp.rendafixa.domain.entities.ativos;
 
+import java.util.Arrays;
+
 public enum CategoriaAtivo {
     TD("Tesouro Direto"),
     LCI("Letra de Crédito Imobiliário"),
@@ -19,6 +21,13 @@ public enum CategoriaAtivo {
     @Override
     public String toString() {
         return categoria;
+    }
+
+    public static CategoriaAtivo toEnum(String value){
+        return Arrays.stream(CategoriaAtivo.values())
+                .filter(c->value.equals(c.toString()))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
 

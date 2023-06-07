@@ -1,5 +1,9 @@
 package br.edu.ifsp.rendafixa.domain.entities.indexadores;
 
+import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
+
+import java.util.Arrays;
+
 public enum SiglaIndexador {
     IPCA("Índice Nacional de Preços ao Consumidor Amplo"),
     IGPM("Índice Global de Preços do Mercado"),
@@ -15,6 +19,13 @@ public enum SiglaIndexador {
     @Override
     public String toString() {
         return sigla;
+    }
+
+    public static SiglaIndexador toEnum(String value){
+        return Arrays.stream(SiglaIndexador.values())
+                .filter(c->value.equals(c.toString()))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
 
