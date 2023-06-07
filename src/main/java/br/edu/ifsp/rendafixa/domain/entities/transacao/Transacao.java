@@ -93,7 +93,7 @@ public class Transacao {
                 ", dataTransacao=" + dataTransacao +
                 ", dataVenda=" + dataVenda +
                 ", dataCompra=" + dataCompra +
-                ", ativo=" + ativo +
+                ", ativo=" + ativo.getNome() +
                 ", valorTransacao=" + valorTransacao +
                 ", tipo=" + tipo +
                 '}';

@@ -1,6 +1,6 @@
 package br.edu.ifsp.rendafixa.application.main;
 
-import br.edu.ifsp.rendafixa.application.repository.*;
+import br.edu.ifsp.rendafixa.application.repository.inmemory.*;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
@@ -28,7 +28,6 @@ import br.edu.ifsp.rendafixa.domain.usescases.transacao.ConsultarTransacao;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.RegistrarTransacao;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.TransacaoDAO;
 
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -150,10 +149,6 @@ public class Main {
 
         comprarAtivo.comprarAtivo(carteira1,ativo3,500,data2);
 
-
-
-        //consultarAtivoCarteira.consultarAtivoNaCarteira(carteira1,ativo1);
-
         resgatarAtivo.resgatarAtivo(carteira1,ativo3);
         double valorSaque = carteira1.getValorDisponivelSaque();
         System.out.print("Valor disponível para Saque - R$ "+ valorSaque);
@@ -166,6 +161,9 @@ public class Main {
         System.out.println("Total investido ativo " + ativo3.getNome() + ": R$ " + totalInvestidoAtivo);
 
         visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
+
+        System.out.println("\n=======================\n");
+        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
 
     }
 

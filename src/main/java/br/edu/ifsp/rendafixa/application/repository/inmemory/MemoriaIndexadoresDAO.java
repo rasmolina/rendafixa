@@ -1,4 +1,4 @@
-package br.edu.ifsp.rendafixa.application.repository;
+package br.edu.ifsp.rendafixa.application.repository.inmemory;
 
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.usescases.indexadores.IndexadoresDAO;
