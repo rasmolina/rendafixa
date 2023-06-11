@@ -48,7 +48,7 @@ public class ResgatarAtivo {
                 }
                 ativoDAO.update(ativo);
 
-                Transacao resgate = new Transacao(dataDeHoje,ativo,montanteRendimento,TipoTransacao.VENDA);
+                Transacao resgate = new Transacao(dataDeHoje,ativo,montanteRendimento, TipoTransacao.VENDA);
                 transacaoDAO.create(resgate);
 
                 carteira.setValorDisponivelSaque(valorDisponivelSaque + montanteRendimento);

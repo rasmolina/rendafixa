@@ -4,7 +4,6 @@ import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
 import br.edu.ifsp.rendafixa.domain.usescases.utils.Validator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

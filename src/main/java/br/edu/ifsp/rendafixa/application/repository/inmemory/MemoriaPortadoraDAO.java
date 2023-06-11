@@ -1,7 +1,7 @@
 package br.edu.ifsp.rendafixa.application.repository.inmemory;
 
-import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 import br.edu.ifsp.rendafixa.domain.usescases.portadora.PortadoraDAO;
+import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 
 import java.util.*;
 

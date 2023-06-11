@@ -1,7 +1,7 @@
 package br.edu.ifsp.rendafixa.application.repository.inmemory;
 
-import br.edu.ifsp.rendafixa.domain.entities.itemAtivo.ItemAtivo;
 import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.ItemAtivoDAO;
+import br.edu.ifsp.rendafixa.domain.entities.itemAtivo.ItemAtivo;
 
 import java.util.*;
 

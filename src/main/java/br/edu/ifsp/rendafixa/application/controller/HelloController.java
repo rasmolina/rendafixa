@@ -1,4 +1,4 @@
-package br.edu.ifsp.rendafixa;
+package br.edu.ifsp.rendafixa.application.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

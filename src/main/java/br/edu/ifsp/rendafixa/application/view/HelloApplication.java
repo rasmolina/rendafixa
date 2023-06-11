@@ -1,4 +1,4 @@
-package br.edu.ifsp.rendafixa;
+package br.edu.ifsp.rendafixa.application.view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

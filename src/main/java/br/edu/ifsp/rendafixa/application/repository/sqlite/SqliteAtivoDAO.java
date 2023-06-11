@@ -2,7 +2,6 @@ package br.edu.ifsp.rendafixa.application.repository.sqlite;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
-import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
 
 import java.sql.PreparedStatement;
