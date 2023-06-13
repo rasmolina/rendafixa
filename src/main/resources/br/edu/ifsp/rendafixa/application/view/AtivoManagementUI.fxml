@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -19,17 +18,15 @@
             <TableColumn fx:id="cPorcentagemIndexador" prefWidth="112.0" text="\% Sobre Indexador" />
             <TableColumn fx:id="cRentabilidade" prefWidth="108.0" text="Rentabilidade" />
             </columns>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
         </TableView>
         <Pane layoutX="17.0" layoutY="440.0" prefHeight="69.0" prefWidth="1086.0">
             <children>
-                <Button fx:id="btnNovo" layoutX="1030.0" layoutY="25.0" mnemonicParsing="false" onAction="#createAtivo" prefHeight="32.0" prefWidth="62.0" text="Novo" />
-                <Button fx:id="btnEditar" layoutX="954.0" layoutY="25.0" mnemonicParsing="false" onAction="#editAtivo" prefHeight="32.0" prefWidth="62.0" text="Editar" />
-                <Button fx:id="btnDeletar" layoutX="798.0" layoutY="25.0" mnemonicParsing="false" onAction="#deleteAtivo" prefHeight="32.0" prefWidth="62.0" text="Deletar" />
+                <Button fx:id="btnNovo" layoutX="1020.0" layoutY="25.0" mnemonicParsing="false" onAction="#createAtivo" prefHeight="32.0" prefWidth="62.0" text="Novo" />
+                <Button fx:id="btnEditar" layoutX="944.0" layoutY="25.0" mnemonicParsing="false" onAction="#editAtivo" prefHeight="32.0" prefWidth="62.0" text="Editar" />
+                <Button fx:id="btnDeletar" layoutX="788.0" layoutY="25.0" mnemonicParsing="false" onAction="#deleteAtivo" prefHeight="32.0" prefWidth="62.0" text="Deletar" />
                 <Button fx:id="btnVoltar" layoutY="25.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="32.0" prefWidth="62.0" text="Voltar" />
-                <Button fx:id="btnVisualizar" layoutX="873.0" layoutY="25.0" mnemonicParsing="false" onAction="#visualizeAtivo" prefHeight="32.0" prefWidth="68.0" text="Visualizar" />
+                <Button fx:id="btnVisualizar" layoutX="863.0" layoutY="25.0" mnemonicParsing="false" onAction="#visualizeAtivo" prefHeight="32.0" prefWidth="68.0" text="Visualizar" />
+            <Button layoutX="81.0" layoutY="25.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="144.0" text="Incluir Ativo na Carteira" />
             </children></Pane>
     </children>
 
