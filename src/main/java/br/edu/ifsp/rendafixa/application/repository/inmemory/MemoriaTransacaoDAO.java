@@ -1,8 +1,8 @@
 package br.edu.ifsp.rendafixa.application.repository.inmemory;
 
+import br.edu.ifsp.rendafixa.domain.usescases.transacao.TransacaoDAO;
 import br.edu.ifsp.rendafixa.domain.entities.transacao.TipoTransacao;
 import br.edu.ifsp.rendafixa.domain.entities.transacao.Transacao;
-import br.edu.ifsp.rendafixa.domain.usescases.transacao.TransacaoDAO;
 
 import java.util.*;
 

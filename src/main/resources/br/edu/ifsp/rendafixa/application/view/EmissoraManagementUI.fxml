@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.EmissoraManagementUIController">
+    <children>
+        <TableView fx:id="tableView" layoutX="24.0" layoutY="23.0" prefHeight="414.0" prefWidth="553.0">
+            <columns>
+                <TableColumn fx:id="cNome" prefWidth="169.0" text="Nome" />
+                <TableColumn fx:id="cDescricao" prefWidth="281.0" text="Descrição" />
+                <TableColumn fx:id="cSigla" minWidth="0.0" prefWidth="102.0" text="Sigla" />
+            </columns>
+        </TableView>
+        <Pane layoutX="25.0" layoutY="440.0" prefHeight="69.0" prefWidth="553.0">
+            <children>
+                <Button fx:id="btnNovo" layoutX="491.0" layoutY="25.0" mnemonicParsing="false" onAction="#createEmissora" prefHeight="32.0" prefWidth="62.0" text="Novo" />
+                <Button fx:id="btnEditar" layoutX="416.0" layoutY="25.0" mnemonicParsing="false" onAction="#editEmissora" prefHeight="32.0" prefWidth="62.0" text="Editar" />
+                <Button fx:id="btnDeletar" layoutX="260.0" layoutY="25.0" mnemonicParsing="false" onAction="#deleteEmissora" prefHeight="32.0" prefWidth="62.0" text="Deletar" />
+                <Button fx:id="btnVoltar" layoutY="25.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="32.0" prefWidth="62.0" text="Voltar" />
+                <Button fx:id="btnVisualizar" layoutX="335.0" layoutY="25.0" mnemonicParsing="false" onAction="#visualizeEmissora" prefHeight="32.0" prefWidth="68.0" text="Visualizar" />
+            </children></Pane>
+    </children>
+
+</AnchorPane>

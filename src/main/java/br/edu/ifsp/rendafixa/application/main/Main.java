@@ -31,6 +31,14 @@ import br.edu.ifsp.rendafixa.domain.usescases.portadora.RemoverEntidadePortadora
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.ConsultarTransacao;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.RegistrarTransacao;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.TransacaoDAO;
+import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
+import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
+import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
+import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
+import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
+import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
+import br.edu.ifsp.rendafixa.domain.entities.indexadores.SiglaIndexador;
+import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

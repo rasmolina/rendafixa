@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.AtivoUIController">
+    <children>
+        <Text layoutX="266.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ATIVO">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Text>
+        <Label layoutX="21.0" layoutY="88.0" text="Nome: " />
+        <TextField fx:id="txtNome" layoutX="87.0" layoutY="84.0" prefHeight="25.0" prefWidth="465.0" />
+        <Label layoutX="20.0" layoutY="129.0" text="Categoria:" />
+      <ComboBox fx:id="cbCategoriaAtivo" layoutX="86.0" layoutY="125.0" prefHeight="25.0" prefWidth="182.0" />
+        <Label layoutX="281.0" layoutY="129.0" text="Emissora: " />
+        <ComboBox fx:id="cbEmissora" layoutX="348.0" layoutY="125.0" prefHeight="25.0" prefWidth="204.0" />
+      <Label layoutX="21.0" layoutY="245.0" text="Indexador: " />
+      <ComboBox fx:id="cbIndexador" disable="true" layoutX="93.0" layoutY="241.0" prefHeight="25.0" prefWidth="175.0" />
+      <Label layoutX="20.0" layoutY="169.0" text="Portadora: " />
+      <ComboBox fx:id="cbPortadora" layoutX="86.0" layoutY="165.0" prefHeight="25.0" prefWidth="182.0" />
+      <CheckBox fx:id="ckLiquidez" layoutX="21.0" layoutY="210.0" mnemonicParsing="false" onAction="#configureAtivoDate" text="Liquidez Diária" />
+      <Label layoutX="223.0" layoutY="210.0" text="Data de Vencimento: " />
+      <DatePicker fx:id="dpVencimento" layoutX="348.0" layoutY="206.0" prefHeight="25.0" prefWidth="204.0" />
+      <Label layoutX="280.0" layoutY="169.0" text="Categoria Rentabilidade: " />
+      <ComboBox fx:id="cbCategoriaRentabilidade" layoutX="428.0" layoutY="165.0" prefHeight="25.0" prefWidth="124.0" />
+      <Label layoutX="299.0" layoutY="245.0" text="\% sobre Indexador" />
+      <TextField fx:id="txtPorcentagemSobreIndexador" disable="true" layoutX="413.0" layoutY="241.0" prefHeight="25.0" prefWidth="140.0" />
+      <Label layoutX="21.0" layoutY="286.0" text="Rentabilidade: " />
+      <TextField fx:id="txtRentabilidade" layoutX="105.0" layoutY="282.0" prefHeight="25.0" prefWidth="164.0" />
+        <Separator layoutY="317.0" prefHeight="8.0" prefWidth="607.0" />
+        <Pane layoutX="14.0" layoutY="321.0" prefHeight="64.0" prefWidth="545.0">
+            <children>
+                <Button fx:id="btnSalvar" layoutX="455.0" layoutY="15.0" mnemonicParsing="false" onAction="#saveOrUpdate" prefHeight="36.0" prefWidth="90.0" text="Salvar" />
+                <Button fx:id="btnCancelar" layoutX="350.0" layoutY="15.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="36.0" prefWidth="90.0" text="Cancelar" />
+            </children></Pane>
+    </children>
+</AnchorPane>
