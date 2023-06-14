@@ -6,6 +6,7 @@ import br.edu.ifsp.rendafixa.domain.entities.itemAtivo.ItemAtivo;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RemoverAtivoCarteira {
     private CarteiraDAO carteiraDAO;

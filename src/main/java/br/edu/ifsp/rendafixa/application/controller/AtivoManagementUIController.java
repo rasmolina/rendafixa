@@ -2,15 +2,20 @@ package br.edu.ifsp.rendafixa.application.controller;
 
 import br.edu.ifsp.rendafixa.application.view.WindowLoader;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
+import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
 import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
+import br.edu.ifsp.rendafixa.domain.usescases.carteira.CarteiraDAO;
+import br.edu.ifsp.rendafixa.domain.usescases.carteira.IncluirAtivoCarteira;
+import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.InserirItemAtivo;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,9 +25,12 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
-import static br.edu.ifsp.rendafixa.application.main.Main.consultarAtivo;
-import static br.edu.ifsp.rendafixa.application.main.Main.removerAtivo;
+import static br.edu.ifsp.rendafixa.application.main.Main.*;
+import static br.edu.ifsp.rendafixa.application.main.Main.atualizarEntidadeEmissora;
+import static br.edu.ifsp.rendafixa.application.main.Main.incluirAtivoCarteira;
+
 
 
 public class AtivoManagementUIController {
@@ -118,6 +126,20 @@ public class AtivoManagementUIController {
         }
     }
 
+    public void incluirativo(ActionEvent actionEvent) throws IOException {
+        Ativo selectedItem = tableView.getSelectionModel().getSelectedItem();
+        List<Carteira> carteira = consultarCarteira.findAll();
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira.get(0), selectedItem);
+        showAlert("Sucesso!", "Ativo incluido na carteira com sucesso!", Alert.AlertType.CONFIRMATION);
+        WindowLoader.setRoot("MainUI");
+    }
 
+    private void showAlert(String title, String msg, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
 
 }

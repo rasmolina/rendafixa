@@ -5,6 +5,7 @@ import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.SiglaIndexador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -44,6 +45,7 @@ public class IndexadorUIController {
         else
             atualizarIndexador.update(indexador);
         WindowLoader.setRoot("IndexadorManagementUI");
+        showAlert("Sucesso!", "Indexador incluido com sucesso!", Alert.AlertType.CONFIRMATION);
     }
 
     public void backToPreviousScene(ActionEvent actionEvent) throws IOException {
@@ -87,5 +89,13 @@ public class IndexadorUIController {
         txtValor.setDisable(true);
         cbSiglas.setDisable(true);
 
+    }
+
+    private void showAlert(String title, String msg, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 }

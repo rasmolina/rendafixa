@@ -13,15 +13,6 @@ public enum CategoriaRentabilidade {
         this.categoria = categoria;
     }
 
-    /*
-    @Override
-    public String toString() {
-        return "CategoriaRentabilidade{" +
-                "categoria='" + categoria + '\'' +
-                '}';
-    }
-    */
-
     @Override
     public String toString() {
         return categoria;

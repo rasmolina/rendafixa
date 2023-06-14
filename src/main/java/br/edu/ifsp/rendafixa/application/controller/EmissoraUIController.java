@@ -5,6 +5,7 @@ import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -36,6 +37,7 @@ public class EmissoraUIController {
         else
             atualizarEntidadeEmissora.update(emissora);
         WindowLoader.setRoot("EmissoraManagementUI");
+        showAlert("Sucesso!", "Emissora salva com sucesso!", Alert.AlertType.CONFIRMATION);
     }
 
     public void backToPreviousScene(ActionEvent actionEvent) throws IOException {
@@ -79,5 +81,13 @@ public class EmissoraUIController {
         txtDescricao.setDisable(true);
         txtSigla.setDisable(true);
 
+    }
+
+    private void showAlert(String title, String msg, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 }

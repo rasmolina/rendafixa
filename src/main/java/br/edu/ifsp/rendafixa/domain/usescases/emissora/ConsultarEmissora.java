@@ -1,5 +1,4 @@
 package br.edu.ifsp.rendafixa.domain.usescases.emissora;
-
 import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 import br.edu.ifsp.rendafixa.domain.usescases.utils.Validator;
 import java.util.List;

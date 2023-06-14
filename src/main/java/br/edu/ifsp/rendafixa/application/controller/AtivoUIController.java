@@ -8,15 +8,18 @@ import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.SiglaIndexador;
 import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import static br.edu.ifsp.rendafixa.application.main.Main.atualizarAtivo;
-import static br.edu.ifsp.rendafixa.application.main.Main.cadastrarAtivo;
+import static br.edu.ifsp.rendafixa.application.main.Main.*;
 
 
 public class AtivoUIController {
@@ -25,18 +28,24 @@ public class AtivoUIController {
     private TextField txtNome;
     @FXML
     private ComboBox<CategoriaAtivo> cbCategoriaAtivo;
+    private ObservableList<CategoriaAtivo> obsCategoriaAtivo;
     @FXML
     private ComboBox<Emissora> cbEmissora;
+    private ObservableList<Emissora> obsEmissoras;
     @FXML
     private ComboBox<Portadora> cbPortadora;
+    private ObservableList<Portadora> obsPortadora;
     @FXML
     private ComboBox<CategoriaRentabilidade> cbCategoriaRentabilidade;
+    private ObservableList<CategoriaRentabilidade> obsCategoriaRentabilidade;
+
     @FXML
     private CheckBox ckLiquidez;
     @FXML
     private DatePicker dpVencimento;
     @FXML
     private ComboBox<Indexador> cbIndexador;
+    private ObservableList<Indexador> obsIndexador;
     @FXML
     private TextField txtPorcentagemSobreIndexador;
     @FXML
@@ -48,6 +57,29 @@ public class AtivoUIController {
 
     private Ativo ativo;
 
+    @FXML
+    private void initialize(){
+        carregarEntidades();
+    }
+
+    public void carregarEntidades() {
+        List<Emissora> emissoras = consultarEmissora.findAll();
+        List<Portadora> portadoras = consultarPortadora.findAll();
+        List<Indexador> indexadores = consultarIndexador.findAll();
+        List<CategoriaAtivo> categorias = List.of(CategoriaAtivo.values());
+        List<CategoriaRentabilidade> categoriasrent = List.of(CategoriaRentabilidade.values());
+
+        obsEmissoras = FXCollections.observableArrayList(emissoras);
+        obsPortadora = FXCollections.observableArrayList(portadoras);
+        obsIndexador = FXCollections.observableArrayList(indexadores);
+        obsCategoriaAtivo = FXCollections.observableArrayList(categorias);
+        obsCategoriaRentabilidade = FXCollections.observableArrayList(categoriasrent);
+        cbEmissora.setItems(obsEmissoras);
+        cbPortadora.setItems(obsPortadora);
+        cbIndexador.setItems(obsIndexador);
+        cbCategoriaAtivo.setItems(obsCategoriaAtivo);
+        cbCategoriaRentabilidade.setItems(obsCategoriaRentabilidade);
+    }
 
     public void saveOrUpdate(ActionEvent actionEvent) throws IOException {
         getEntityToView();
@@ -63,10 +95,10 @@ public class AtivoUIController {
             ativo = new Ativo();
         }
         ativo.setNome(txtNome.getText());
-        ativo.setCategoriaAtivo(cbCategoriaAtivo.getValue());
-        ativo.setEmissora(cbEmissora.getValue());
-        ativo.setPortadora(cbPortadora.getValue());
-        ativo.setCategoriaRentabilidade(cbCategoriaRentabilidade.getValue());
+        ativo.setCategoriaAtivo(cbCategoriaAtivo.getSelectionModel().getSelectedItem());
+        ativo.setEmissora(cbEmissora.getSelectionModel().getSelectedItem());
+        ativo.setPortadora(cbPortadora.getSelectionModel().getSelectedItem());
+        ativo.setCategoriaRentabilidade(cbCategoriaRentabilidade.getSelectionModel().getSelectedItem());
         ativo.setLiquidezDiaria(ckLiquidez.isSelected());
         ativo.setDataVencimento(dpVencimento.getValue());
         ativo.setPorcentagemSobreIndexador(Double.valueOf(txtPorcentagemSobreIndexador.getText()));

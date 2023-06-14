@@ -4,7 +4,9 @@ import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
 
+
 import java.util.List;
+import java.util.Optional;
 
 public class IncluirAtivoCarteira {
     private CarteiraDAO carteiraDAO;

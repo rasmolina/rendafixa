@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -55,7 +56,6 @@ public class IndexadorManagementUIController {
         List<Indexador> indexadores = consultarIndexador.findAll();
         tableData.clear();
         tableData.addAll(indexadores);
-
     }
 
     public void createIndexador(ActionEvent actionEvent) throws IOException {
@@ -90,4 +90,13 @@ public class IndexadorManagementUIController {
             controller.setIndexador(selectedItem, mode);
         }
     }
+
+    private void showAlert(String title, String msg, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
+
 }

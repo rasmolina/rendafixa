@@ -4,6 +4,7 @@ import br.edu.ifsp.rendafixa.application.view.WindowLoader;
 import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -34,6 +35,7 @@ public class PortadoraUIController {
         else
             atualizarEntidadePortadora.update(portadora);
         WindowLoader.setRoot("PortadoraManagementUI");
+        showAlert("Sucesso!", "Portadora incluida com sucesso!", Alert.AlertType.CONFIRMATION);
     }
 
     private void getEntityToView(){
@@ -81,5 +83,13 @@ public class PortadoraUIController {
         txtDescricao.setDisable(true);
         txtSigla.setDisable(true);
         
+    }
+
+    private void showAlert(String title, String msg, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(msg);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 }
