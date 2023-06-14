@@ -104,6 +104,8 @@ public class Main {
         Indexador di = new Indexador(3,SiglaIndexador.DI,"DI",90.0);
         cadastrarIndexador.insert(di);
 
+        removerEntidadeEmissora.remove(1);
+        /*
         //Ativo pré-fixado
         LocalDate vencimento1 = LocalDate.parse("2025-03-31");
         Ativo ativo1 = new Ativo(1,"CRI INTER URBA", vencimento1, CategoriaAtivo.CDI,emissoraInter,portadoraInter, CategoriaRentabilidade.PRE_FIXADO,0.5);
@@ -163,7 +165,7 @@ public class Main {
         visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
 
         System.out.println("\n=======================\n");
-        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
+        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
 
     }
 
