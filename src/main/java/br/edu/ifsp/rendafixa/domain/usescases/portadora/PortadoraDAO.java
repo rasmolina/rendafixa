@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface PortadoraDAO extends DAO<Portadora, Integer> {
     Optional<Portadora> buscaPorNomePortadora(String nomePortadora);
-
+    Portadora buscar(int id);
 }

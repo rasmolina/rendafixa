@@ -40,6 +40,11 @@ public class MemoriaAtivoDAO implements AtivoDAO {
     }
 
     @Override
+    public Ativo buscar(int id) {
+        return null;
+    }
+
+    @Override
     public Optional<Ativo> findOne(Integer key) {
         if(bd.containsKey(key))
             return Optional.of(bd.get(key));

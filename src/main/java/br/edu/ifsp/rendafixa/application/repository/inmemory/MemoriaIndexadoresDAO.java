@@ -1,7 +1,7 @@
 package br.edu.ifsp.rendafixa.application.repository.inmemory;
 
-import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.usescases.indexadores.IndexadoresDAO;
+import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 
 import java.util.*;
 
@@ -26,6 +26,11 @@ public class MemoriaIndexadoresDAO implements IndexadoresDAO {
         return bd.values().stream()
                 .filter(indexador -> indexador.getNome().equals(nome))
                 .findAny();
+    }
+
+    @Override
+    public Indexador buscar(int id) {
+        return null;
     }
 
     @Override

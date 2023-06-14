@@ -20,8 +20,9 @@ public class AtualizarAtivo {
             throw new IllegalArgumentException(notification.errorMessage());
 
         Integer id = ativo.getId();
-        if(ativoDAO.findOne(id).isEmpty())
+        if(ativoDAO.findOne(id).isEmpty()) {
             throw new EntityNotFoundException("Ativo não encontrado!");
+        }
 
         return ativoDAO.update(ativo);
     }

@@ -1,7 +1,7 @@
 package br.edu.ifsp.rendafixa.application.repository.inmemory;
 
-import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 import br.edu.ifsp.rendafixa.domain.usescases.portadora.PortadoraDAO;
+import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 
 import java.util.*;
 
@@ -20,6 +20,11 @@ public class MemoriaPortadoraDAO implements PortadoraDAO {
         return bd.values().stream()
                 .filter(portadora -> portadora.getNome().equals(nomePortadora))
                 .findAny();
+    }
+
+    @Override
+    public Portadora buscar(int id) {
+        return null;
     }
 
     @Override

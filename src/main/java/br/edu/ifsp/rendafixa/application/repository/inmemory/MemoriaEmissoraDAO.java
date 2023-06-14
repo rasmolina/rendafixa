@@ -1,7 +1,7 @@
 package br.edu.ifsp.rendafixa.application.repository.inmemory;
 
-import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 import br.edu.ifsp.rendafixa.domain.usescases.emissora.EmissoraDAO;
+import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 
 import java.util.*;
 
@@ -20,6 +20,11 @@ public class MemoriaEmissoraDAO implements EmissoraDAO {
         return bd.values().stream()
                 .filter(emissora -> emissora.getNome().equals(nomeEmissora))
                 .findAny();
+    }
+
+    @Override
+    public Emissora buscar(int id) {
+        return null;
     }
 
     @Override

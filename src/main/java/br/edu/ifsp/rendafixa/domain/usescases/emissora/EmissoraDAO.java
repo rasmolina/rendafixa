@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface EmissoraDAO extends DAO<Emissora, Integer> {
     Optional<Emissora> buscaPorNomeEmissora(String nomeEmissora);
-
+    Emissora buscar(int id);
 }

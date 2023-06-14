@@ -30,5 +30,4 @@ public enum CategoriaAtivo {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-
 }

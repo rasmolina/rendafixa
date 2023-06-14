@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.PortadoraUIController">
+   <children>
+      <Text layoutX="229.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PORTADORA">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Label layoutX="23.0" layoutY="88.0" text="Nome: " />
+      <TextField fx:id="txtNome" layoutX="87.0" layoutY="84.0" prefHeight="25.0" prefWidth="465.0" />
+      <Label layoutX="23.0" layoutY="143.0" text="Descrição: " />
+      <TextField fx:id="txtDescricao" layoutX="87.0" layoutY="139.0" prefHeight="25.0" prefWidth="465.0" />
+      <TextField fx:id="txtSigla" layoutX="403.0" layoutY="202.0" />
+      <Label layoutX="361.0" layoutY="206.0" text="Sigla: " />
+      <Separator layoutX="-5.0" layoutY="244.0" prefHeight="8.0" prefWidth="607.0" />
+      <Pane layoutX="14.0" layoutY="321.0" prefHeight="64.0" prefWidth="545.0">
+         <children>
+            <Button fx:id="btnSalvar" layoutX="455.0" layoutY="15.0" mnemonicParsing="false" onAction="#saveOrUpdate" prefHeight="36.0" prefWidth="90.0" text="Salvar" />
+            <Button fx:id="btnCancelar" layoutX="350.0" layoutY="15.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="36.0" prefWidth="90.0" text="Cancelar" />
+         </children></Pane>
+   </children>
+</AnchorPane>

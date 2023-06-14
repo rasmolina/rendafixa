@@ -1,7 +1,5 @@
 package br.edu.ifsp.rendafixa.domain.entities.indexadores;
 
-import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
-
 import java.util.Arrays;
 
 public enum SiglaIndexador {

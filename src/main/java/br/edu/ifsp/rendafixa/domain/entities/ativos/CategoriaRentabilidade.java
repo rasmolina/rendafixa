@@ -13,13 +13,19 @@ public enum CategoriaRentabilidade {
         this.categoria = categoria;
     }
 
+    /*
     @Override
     public String toString() {
         return "CategoriaRentabilidade{" +
                 "categoria='" + categoria + '\'' +
                 '}';
     }
+    */
 
+    @Override
+    public String toString() {
+        return categoria;
+    }
     public static CategoriaRentabilidade toEnum(String value){
         return Arrays.stream(CategoriaRentabilidade.values())
                 .filter(c->value.equals(c.toString()))

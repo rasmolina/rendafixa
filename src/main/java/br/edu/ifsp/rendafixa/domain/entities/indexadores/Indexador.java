@@ -7,6 +7,10 @@ public class Indexador {
     private String nome;
     private Double valor;
 
+
+    public Indexador() {
+    }
+
     public Indexador(Integer id, SiglaIndexador sigla, String nome, Double valor) {
         this.id = id;
         this.sigla = sigla;

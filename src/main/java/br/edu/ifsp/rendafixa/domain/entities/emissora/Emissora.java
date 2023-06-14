@@ -7,6 +7,9 @@ public class Emissora {
     private String descricao;
     private String sigla;
 
+    public Emissora() {
+    }
+
     public Emissora(Integer id, String nome, String descricao, String sigla) {
         this.id = id;
         this.nome = nome;

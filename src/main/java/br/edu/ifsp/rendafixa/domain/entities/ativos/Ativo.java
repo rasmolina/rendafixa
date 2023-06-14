@@ -21,9 +21,14 @@ public class Ativo {
     private CategoriaRentabilidade categoriaRentabilidade;
     private double porcentagemSobreIndexador;
     private double rentabilidade; //ao ano
-    private List<ItemAtivo> itensAtivo;
+    private List<ItemAtivo> itensAtivo = new ArrayList<>();
 
+<<<<<<< HEAD
     public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade, List<ItemAtivo> itensAtivo) {
+=======
+
+    public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
+>>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
         this.id = id;
         this.nome = nome;
         this.liquidezDiaria = liquidezDiaria;
@@ -35,7 +40,10 @@ public class Ativo {
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
+<<<<<<< HEAD
         this.itensAtivo = new ArrayList<>();
+=======
+>>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
     }
 
     public Integer getId() {

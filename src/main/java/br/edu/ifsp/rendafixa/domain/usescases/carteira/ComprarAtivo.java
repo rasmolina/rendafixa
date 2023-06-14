@@ -44,7 +44,7 @@ public class ComprarAtivo {
                     ativo.setItensAtivo(itemAtivos);
                     ativoDAO.update(ativo);
 
-                    Transacao compra = new Transacao(dataDeHoje,dataCompra,a,valorCompra,TipoTransacao.COMPRA);
+                    Transacao compra = new Transacao(dataDeHoje,dataCompra,a,valorCompra, TipoTransacao.COMPRA);
                     transacaoDAO.create(compra);
                     ativoPresenteNaCarteira = true;
                     break;

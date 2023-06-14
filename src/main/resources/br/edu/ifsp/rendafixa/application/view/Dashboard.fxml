@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="528.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.DashboardUIController">
+   <children>
+      <Text layoutX="279.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DashBoard - Ativos">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <ComboBox layoutX="103.0" layoutY="99.0" prefHeight="25.0" prefWidth="264.0" />
+      <DatePicker layoutX="456.0" layoutY="99.0" prefHeight="25.0" prefWidth="281.0" />
+      <Separator layoutX="-32.0" layoutY="58.0" prefHeight="1.0" prefWidth="838.0" />
+      <Label layoutX="190.0" layoutY="71.0" text="Seleção de Ativo">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="520.0" layoutY="71.0" text="Seleção de Data Final ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <BarChart layoutX="32.0" layoutY="157.0" prefHeight="214.0" prefWidth="350.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Text layoutX="551.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Investido: ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Separator layoutY="458.0" prefHeight="3.0" prefWidth="806.0" />
+      <BarChart layoutX="403.0" layoutY="157.0" prefHeight="214.0" prefWidth="370.0">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" />
+         </yAxis>
+      </BarChart>
+      <Label layoutX="154.0" layoutY="378.0" text="Rendimento Por Ativo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="555.0" layoutY="378.0" text="Total Por Ativo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="32.0" layoutY="472.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="103.0" text="Voltar" />
+      <Button layoutX="159.0" layoutY="472.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="152.0" text="Dashboard - Composição" />
+      <TextArea layoutX="677.0" layoutY="472.0" prefHeight="35.0" prefWidth="103.0" />
+   </children>
+</AnchorPane>
