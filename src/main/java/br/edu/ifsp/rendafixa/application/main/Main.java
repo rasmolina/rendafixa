@@ -147,7 +147,7 @@ public class Main {
 
         double total = carteiraDAO.CalcularTotalInvestidoPorAtivo(ativo);
         System.out.println("O total investido é:" + total);
-       
+
 
         //carteiraDAO.comprarAtivo(carteira,ativo,2000.00,dataCompra);
         //carteiraDAO.comprarAtivo(carteira,ativo,5000.00,dataCompra);
