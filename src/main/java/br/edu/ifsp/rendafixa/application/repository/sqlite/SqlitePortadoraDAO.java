@@ -14,6 +14,7 @@ import java.util.Optional;
 
 public class SqlitePortadoraDAO implements PortadoraDAO {
     @Override
+
     public Optional<Portadora> buscaPorNomePortadora(String nomePortadora) {
 
         String sql = "SELECT * FROM portadora WHERE nome LIKE ?";
@@ -32,6 +33,7 @@ public class SqlitePortadoraDAO implements PortadoraDAO {
         }
         return Optional.ofNullable(portadora);
     }
+
 
     @Override
     public Portadora buscar(int id) {

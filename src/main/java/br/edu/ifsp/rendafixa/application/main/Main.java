@@ -101,30 +101,23 @@ public class Main {
         LocalDate data2 = LocalDate.now().minusDays(1);
         LocalDate data3 = LocalDate.now().minusDays(2);
 
-
-
         EmissoraDAO emissoraDAO = new SqliteEmissoraDAO();
         Emissora emissora = new Emissora(3,"Emissora 1231231","Descricao emissora","EM");
-        cadastrarEntidadeEmissora = new CadastrarEntidadeEmissora(emissoraDAO);
         //cadastrarEntidadeEmissora.insert(emissora);
         //emissoraDAO.create(emissora);
         PortadoraDAO portadoraDAO = new SqlitePortadoraDAO();
         Portadora portadora = new Portadora(2,"Portadora6321511","Portadora descricao","P1");
-        cadastrarEntidadePortadora = new CadastrarEntidadePortadora(portadoraDAO);
-        //cadastrarEntidadePortadora.insert(portadora);
         //portadoraDAO.create(portadora);
+
         IndexadoresDAO indexadoresDAO = new SqliteIndexadorDAO();
-        Indexador indexador = new Indexador(1,SiglaIndexador.IPCA,"Indexador1gf",200.00);
-        cadastrarIndexador = new CadastrarIndexador(indexadoresDAO);
-        //cadastrarIndexador.insert(indexador);
+        Indexador indexador = new Indexador(4,SiglaIndexador.DI,"Indexador novo",230.00);
+        indexadoresDAO.create(indexador);
 
         String data = "13-11-2024";
 
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-uuuu");
         LocalDate date = LocalDate.parse(data, parser);
 
-
-        AtivoDAO ativoDAO = new SqliteAtivoDAO();
         Ativo ativo = new Ativo(1,"Ativo 1",false,date,CategoriaAtivo.DEB,emissora,portadora,indexador,CategoriaRentabilidade.POS_FIXADO,0.10,0.8);
         //ativoDAO.buscaPorNome("Ativo 1");
         //removerAtivo.remove(3);
@@ -135,10 +128,9 @@ public class Main {
         LocalDate dataTransacao = LocalDate.now();
         LocalDate dataCompra = LocalDate.now();
 
-        TransacaoDAO transacaoDAO = new SqliteTransacaoDAO();
+
         Transacao transacao = new Transacao(dataTransacao,dataTransacao,ativo,2000.00, TipoTransacao.COMPRA);
-        registrarTransacao = new RegistrarTransacao(transacaoDAO);
-        //registrarTransacao.insert(transacao);
+        registrarTransacao.insert(transacao);
 
         ItemAtivoDAO itemAtivoDAO = new SqliteItemAtivoDAO();
         ItemAtivo itemAtivo = new ItemAtivo(ativo,date,2000.00);
@@ -149,27 +141,49 @@ public class Main {
         Carteira carteira = new Carteira(1);
         criarCarteira = new CriarCarteira(carteiraDAO);
 
-        //carteiraDAO.incluirAtivoCarteira(carteira,ativo);
 
-        double total = carteiraDAO.CalcularTotalInvestidoPorAtivo(ativo);
-        System.out.println("O total investido é:" + total);
+        String nomePortadora = "Portadora";
+        Optional<Portadora> portadoraOptional = portadoraDAO.buscaPorNomePortadora(nomePortadora);
 
-
-        //carteiraDAO.comprarAtivo(carteira,ativo,2000.00,dataCompra);
-        //carteiraDAO.comprarAtivo(carteira,ativo,5000.00,dataCompra);
-        //carteiraDAO.incluirAtivoCarteira(carteira,ativo);
-        //carteiraDAO.comprarAtivo(carteira,ativo,2000.00,dataCompra);
-        //criarCarteira.insert(carteira);
-
-        //carteiraDAO.incluirAtivoCarteira(carteira,ativo);
-        //visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira);
-        //incluirAtivoCarteira.incluirAtivoCarteira(carteira,ativo);
-
-        //carteiraDAO.incluirAtivoCarteira(carteira,ativo);
-        //carteiraDAO.incluirAtivoCarteira();
+        if (portadoraOptional.isPresent()) {
+            Portadora portadora1 = portadoraOptional.get();
+            System.out.println("Portadora encontrada: " + portadora1.getNome());
+        } else {
+            System.out.println("Nenhuma portadora encontrada com o nome: " + nomePortadora);
+        }
 
 
-        IncluirAtivoCarteira incluirAtivoCarteira = new IncluirAtivoCarteira(carteiraDAO, ativoDAO);
+
+        List<Portadora> portadoras = portadoraDAO.findAll();
+
+        if (!portadoras.isEmpty()) {
+            System.out.println("Portadoras encontradas:");
+            for (Portadora p : portadoras) {
+                System.out.println("ID: " + p.getId() + ", Nome: " + p.getNome());
+            }
+        } else {
+            System.out.println("Nenhuma portadora encontrada.");
+        }
+
+
+        List<Emissora> emissoras = emissoraDAO.findAll();
+
+        if (!emissoras.isEmpty()) {
+            System.out.println("Emissoras encontradas:");
+            for (Emissora e : emissoras) {
+                System.out.println("ID: " + e.getId() + ", Nome: " + e.getNome());
+            }
+        } else {
+            System.out.println("Nenhuma portadora encontrada.");
+        }
+
+
+        portadoraDAO.create(portadora);
+
+
+
+
+
 
 
         //incluirAtivoCarteira.incluirAtivoCarteira(carteira, ativo);
@@ -185,7 +199,7 @@ public class Main {
 
         Ativo ativo2 = new Ativo(3,"Ativo 2",false,date,CategoriaAtivo.DEB,emissora,portadora,indexador,CategoriaRentabilidade.POS_FIXADO,0.10,0.8);
         //carteiraDAO.comprarAtivo(carteira,ativo2,2000.00,data_compra);
-
+        //ativoDAO.create(ativo2);
 
 
         //atualizarAtivo.update(ativo);

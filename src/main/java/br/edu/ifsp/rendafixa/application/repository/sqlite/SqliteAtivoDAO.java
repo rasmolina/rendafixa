@@ -24,21 +24,18 @@ public class SqliteAtivoDAO implements AtivoDAO {
     public Optional<Ativo> buscaPorCategoria(CategoriaAtivo categoriaAtivo) {
         String sql = "SELECT * FROM ativo WHERE categoria_ativo = ?";
         Ativo ativo = null;
-        try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)){
-            stmt.setString(1,categoriaAtivo.toString());
+        try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)) {
+            stmt.setString(1, categoriaAtivo.name());
             ResultSet resultSet = stmt.executeQuery();
-            if(resultSet.next())
-            {
+            if (resultSet.next()) {
                 ativo = resultSetToEntity(resultSet);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return Optional.ofNullable(ativo);
-
     }
+
 
     @Override
     public Optional<Ativo> buscaPorNome(String nome) {
@@ -50,7 +47,7 @@ public class SqliteAtivoDAO implements AtivoDAO {
             ResultSet resultSet = stmt.executeQuery();
             if(resultSet.next())
             {
-                ativo = resultSetToEntity(resultSet);
+                ativo = new SqliteAtivoDAO().resultSetToEntity(resultSet);
             }
         }
         catch (SQLException e)
@@ -78,24 +75,25 @@ public class SqliteAtivoDAO implements AtivoDAO {
         return Optional.ofNullable(ativo);
     }
 
+
     @Override
     public Ativo buscar(int id) {
-
         String sql = "SELECT * FROM ativo WHERE id=?";
         Ativo ativo = null;
-        try(PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql))
-        {
-            stmt.setInt(1,id);
+        try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)) {
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            while (rs.next())
-            {
+            while (rs.next()) {
                 Emissora emissora = new SqliteEmissoraDAO().buscar(rs.getInt("emissora"));
                 Portadora portadora = new SqlitePortadoraDAO().buscar(rs.getInt("portadora"));
                 Indexador indexador = new SqliteIndexadorDAO().buscar(rs.getInt("indexador"));
+
+                LocalDate dataVencimento = LocalDate.parse(rs.getString("data_vencimento"));
+
                 ativo = new Ativo(rs.getInt("id"),
                         rs.getString("nome"),
-                        rs.getBoolean("liquidezDiaria"),
-                        rs.getDate("data_vencimento").toLocalDate(),
+                        rs.getBoolean("liquidez_diaria"),
+                        dataVencimento,
                         CategoriaAtivo.toEnum(rs.getString("categoria_ativo")),
                         emissora,
                         portadora,
@@ -104,13 +102,12 @@ public class SqliteAtivoDAO implements AtivoDAO {
                         rs.getDouble("porcentagem_indexador"),
                         rs.getDouble("rentabilidade"));
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return ativo;
     }
+
 
     @Override
     public Integer create(Ativo ativo) {
@@ -159,16 +156,18 @@ public class SqliteAtivoDAO implements AtivoDAO {
     }
 
 
-    private Ativo resultSetToEntity(ResultSet resultSet) throws SQLException
-    {
+    private Ativo resultSetToEntity(ResultSet resultSet) throws SQLException {
         Emissora emissora = new SqliteEmissoraDAO().buscar(resultSet.getInt("emissora"));
         Portadora portadora = new SqlitePortadoraDAO().buscar(resultSet.getInt("portadora"));
         Indexador indexador = new SqliteIndexadorDAO().buscar(resultSet.getInt("indexador"));
 
+        String dataVencimentoStr = resultSet.getString("data_vencimento");
+        LocalDate dataVencimento = LocalDate.parse(dataVencimentoStr);
+
         return new Ativo(resultSet.getInt("id"),
                 resultSet.getString("nome"),
-                resultSet.getBoolean("liquidezDiaria"),
-                resultSet.getDate("data_vencimento").toLocalDate(),
+                resultSet.getBoolean("liquidez_diaria"),
+                dataVencimento,
                 CategoriaAtivo.toEnum(resultSet.getString("categoria_ativo")),
                 emissora,
                 portadora,
@@ -177,6 +176,7 @@ public class SqliteAtivoDAO implements AtivoDAO {
                 resultSet.getDouble("porcentagem_indexador"),
                 resultSet.getDouble("rentabilidade"));
     }
+
 
 
 

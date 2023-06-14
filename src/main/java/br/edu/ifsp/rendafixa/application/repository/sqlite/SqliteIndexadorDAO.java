@@ -60,13 +60,13 @@ public class SqliteIndexadorDAO implements IndexadoresDAO {
 
     @Override
     public Integer create(Indexador indexador) {
-        String sql = "INSERT INTO indexador(sigla,nome,valor) VALUES (?,?,?)";
+        String sql = "INSERT INTO indexador(id,sigla,nome,valor) VALUES (?,?,?,?)";
         try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)){
             stmt.setInt(1,indexador.getId());
-            stmt.setString(2,indexador.getNome());
-            stmt.setDouble(3,indexador.getValor());
+            stmt.setString(2,indexador.getSigla().toString());
+            stmt.setString(3,indexador.getNome());
+            stmt.setDouble(4,indexador.getValor());
             stmt.execute();
-
             ResultSet resultSet = stmt.getGeneratedKeys();
             int id_gerada = resultSet.getInt(1);
             return id_gerada;
@@ -125,8 +125,8 @@ public class SqliteIndexadorDAO implements IndexadoresDAO {
             stmt.setString(1,indexador.getSigla().toString());
             stmt.setString(2,indexador.getNome());
             stmt.setDouble(3,indexador.getValor());
+            stmt.setInt(4,indexador.getId());
             stmt.execute();
-
             return true;
 
         } catch (SQLException e) {
