@@ -12,7 +12,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <ComboBox layoutX="103.0" layoutY="99.0" prefHeight="25.0" prefWidth="264.0" />
+      <ComboBox fx:id="cdAtivos" layoutX="103.0" layoutY="99.0" prefHeight="25.0" prefWidth="264.0" />
       <DatePicker layoutX="456.0" layoutY="99.0" prefHeight="25.0" prefWidth="281.0" />
       <Separator layoutX="-32.0" layoutY="58.0" prefHeight="1.0" prefWidth="838.0" />
       <Label layoutX="190.0" layoutY="71.0" text="Seleção de Ativo">
@@ -57,7 +57,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="32.0" layoutY="472.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="103.0" text="Voltar" />
+      <Button layoutX="32.0" layoutY="472.0" mnemonicParsing="false" prefHeight="38.0" onAction="#voltarCarteira" prefWidth="103.0" text="Voltar" />
       <Button layoutX="159.0" layoutY="472.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="152.0" text="Dashboard - Composição" />
       <TextArea layoutX="677.0" layoutY="472.0" prefHeight="35.0" prefWidth="103.0" />
    </children>
