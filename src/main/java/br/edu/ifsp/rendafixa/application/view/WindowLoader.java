@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class App extends Application {
+public class WindowLoader extends Application {
 
     private static Scene scene;
     private static Object controller;
@@ -28,11 +28,10 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-        /*Parent parent = fxmlLoader.load(WindowLoader.class.getResource(fxml + ".fxml").openStream());
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent parent = fxmlLoader.load(WindowLoader.class.getResource(fxml + ".fxml").openStream());
         controller = fxmlLoader.getController();
-        return parent;*/
+        return parent;
     }
 
     public static void main(String[] args) {
