@@ -43,10 +43,10 @@ import java.util.Optional;
 
 public class Main {
     //Ativo
-    private static AtualizarAtivo atualizarAtivo;
-    private static CadastrarAtivo cadastrarAtivo;
-    private static ConsultarAtivo consultarAtivo;
-    private static RemoverAtivo removerAtivo;
+    public static AtualizarAtivo atualizarAtivo;
+    public static CadastrarAtivo cadastrarAtivo;
+    public static ConsultarAtivo consultarAtivo;
+    public static RemoverAtivo removerAtivo;
 
     //Item Ativo
     private static InserirItemAtivo inserirItemAtivo;
@@ -213,7 +213,7 @@ public class Main {
 
 
         //atualizarAtivo.update(ativo);
-/*
+
         Emissora emissoraInter = new Emissora(1,"Inter", "Banco Inter SA", "INTER");
         cadastrarEntidadeEmissora.insert(emissoraInter);
         Emissora emissoraXP = new Emissora(2,"XP", "XP Co.", "XP");
@@ -230,13 +230,13 @@ public class Main {
         cadastrarIndexador.insert(cdi);
         Indexador di = new Indexador(3,SiglaIndexador.DI,"DI",90.0);
         cadastrarIndexador.insert(di);
-<<<<<<< HEAD
+
 
         removerEntidadeEmissora.remove(1);
-        /*
-=======
-*/
->>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
+
+
+
+
         //Ativo pré-fixado
         /*
         Carteira carteira = new Carteira();
@@ -301,13 +301,10 @@ public class Main {
         visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
 
         System.out.println("\n=======================\n");
-<<<<<<< HEAD
-        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
-=======
-        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
-*/
 
->>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
+        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
+
+
 
     }
 

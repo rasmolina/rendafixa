@@ -51,11 +51,13 @@ public class Emissora {
 
     @Override
     public String toString() {
-        return "Emissora{" +
+        return nome;
+        /*return "Emissora{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", sigla='" + sigla + '\'' +
                 '}';
+    }*/
     }
 }

@@ -25,7 +25,7 @@
       <Label layoutX="223.0" layoutY="210.0" text="Data de Vencimento: " />
       <DatePicker fx:id="dpVencimento" layoutX="348.0" layoutY="206.0" prefHeight="25.0" prefWidth="204.0" />
       <Label layoutX="280.0" layoutY="169.0" text="Categoria Rentabilidade: " />
-      <ComboBox fx:id="cbCategoriaRentabilidade" layoutX="428.0" layoutY="165.0" prefHeight="25.0" prefWidth="124.0" />
+      <ComboBox fx:id="cbCategoriaRentabilidade" layoutX="428.0" layoutY="165.0" onAction="#configureIndexador" prefHeight="25.0" prefWidth="124.0" />
       <Label layoutX="299.0" layoutY="245.0" text="\% sobre Indexador" />
       <TextField fx:id="txtPorcentagemSobreIndexador" disable="true" layoutX="413.0" layoutY="241.0" prefHeight="25.0" prefWidth="140.0" />
       <Label layoutX="21.0" layoutY="286.0" text="Rentabilidade: " />
