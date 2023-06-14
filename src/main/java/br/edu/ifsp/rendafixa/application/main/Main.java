@@ -2,6 +2,7 @@ package br.edu.ifsp.rendafixa.application.main;
 
 import br.edu.ifsp.rendafixa.application.repository.inmemory.*;
 import br.edu.ifsp.rendafixa.application.repository.sqlite.*;
+import br.edu.ifsp.rendafixa.application.view.WindowLoader;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
@@ -97,6 +98,15 @@ public class Main {
 
         configureInjection();
         setupDataBase();
+        WindowLoader.main(args);
+
+
+
+        PortadoraDAO portadoraDAO = new MemoriaPortadoraDAO();//new SqlitePortadoraDAO();
+        Portadora portadora = new Portadora(2,"Portadora6321511","Portadora descricao","P1");
+        portadoraDAO.create(portadora);
+
+        /*
         LocalDate data1 = LocalDate.now();
         LocalDate data2 = LocalDate.now().minusDays(1);
         LocalDate data3 = LocalDate.now().minusDays(2);
@@ -297,38 +307,40 @@ public class Main {
     }
 
     private static void configureInjection(){
-        AtivoDAO ativoDAO = new SqliteAtivoDAO();
+        AtivoDAO ativoDAO = new MemoriaAtivoDAO();//new SqliteAtivoDAO();
         cadastrarAtivo = new CadastrarAtivo(ativoDAO);
         atualizarAtivo = new AtualizarAtivo(ativoDAO);
         removerAtivo = new RemoverAtivo(ativoDAO);
         consultarAtivo = new ConsultarAtivo(ativoDAO);
 
-        ItemAtivoDAO itemAtivoDAO = new SqliteItemAtivoDAO();
+        ItemAtivoDAO itemAtivoDAO = new MemoryItemAtivoDAO();//new SqliteItemAtivoDAO();
         inserirItemAtivo = new InserirItemAtivo(itemAtivoDAO);
         removerItemAtivo = new RemoverItemAtivo(itemAtivoDAO);
         consultarItemAtivo = new ConsultarItemAtivo(itemAtivoDAO);
 
-        IndexadoresDAO indexadoresDAO = new SqliteIndexadorDAO();
+        IndexadoresDAO indexadoresDAO = new MemoriaIndexadoresDAO();//new SqliteIndexadorDAO();
         cadastrarIndexador = new CadastrarIndexador(indexadoresDAO);
         consultarIndexador = new ConsultarIndexador(indexadoresDAO);
         atualizarIndexador = new AtualizarIndexador(indexadoresDAO);
         removerIndexador = new RemoverIndexador(indexadoresDAO);
 
-        EmissoraDAO emissoraDAO = new SqliteEmissoraDAO();
+        EmissoraDAO emissoraDAO = new MemoriaEmissoraDAO();//new SqliteEmissoraDAO();
         cadastrarEntidadeEmissora = new CadastrarEntidadeEmissora(emissoraDAO);
         atualizarEntidadeEmissora = new AtualizarEntidadeEmissora(emissoraDAO);
         removerEntidadeEmissora = new RemoverEntidadeEmissora(emissoraDAO);
+        consultarEmissora = new ConsultarEmissora(emissoraDAO);
 
-        PortadoraDAO portadoraDAO = new SqlitePortadoraDAO();
+        PortadoraDAO portadoraDAO = new MemoriaPortadoraDAO();//new SqlitePortadoraDAO();
         cadastrarEntidadePortadora = new CadastrarEntidadePortadora(portadoraDAO);
         atualizarEntidadePortadora = new AtualizarEntidadePortadora(portadoraDAO);
         removerEntidadePortadora = new RemoverEntidadePortadora(portadoraDAO);
+        consultarPortadora = new ConsultarPortadora(portadoraDAO);
 
-        TransacaoDAO transacaoDAO = new SqliteTransacaoDAO();
+        TransacaoDAO transacaoDAO = new MemoriaTransacaoDAO();//new SqliteTransacaoDAO();
         registrarTransacao = new RegistrarTransacao(transacaoDAO);
         consultarTransacao = new ConsultarTransacao(transacaoDAO);
 
-        CarteiraDAO carteiraDAO = new SqliteCarteiraDAO();
+        CarteiraDAO carteiraDAO = new MemoriaCarteiraDAO();//new SqliteCarteiraDAO();
         criarCarteira = new CriarCarteira(carteiraDAO);
         apagarCarteira = new ApagarCarteira(carteiraDAO);
         incluirAtivoCarteira = new IncluirAtivoCarteira(carteiraDAO,ativoDAO);
