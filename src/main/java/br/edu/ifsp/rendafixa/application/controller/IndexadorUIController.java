@@ -1,7 +1,6 @@
 package br.edu.ifsp.rendafixa.application.controller;
 
 import br.edu.ifsp.rendafixa.application.view.WindowLoader;
-import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.SiglaIndexador;
 import javafx.event.ActionEvent;
@@ -23,14 +22,17 @@ public class IndexadorUIController {
     @FXML
     private TextField txtValor;
     @FXML
-    private ComboBox<SiglaIndexador> cbSigla;
+    private ComboBox<SiglaIndexador> cbSiglas;
     @FXML
     private Button btnCancelar;
     @FXML
     private Button btnSalvar;
 
-    @FXML private void initialize(){
-        cbSigla.getItems().setAll(SiglaIndexador.values());
+
+
+    @FXML
+    private void initialize(){
+        cbSiglas.getItems().setAll(SiglaIndexador.values());
     }
 
     private Indexador indexador;
@@ -65,13 +67,13 @@ public class IndexadorUIController {
         }
         indexador.setNome(txtNome.getText());
         indexador.setValor(Double.valueOf(txtValor.getText()));
-        indexador.setSigla(cbSigla.getValue());
+        indexador.setSigla(cbSiglas.getValue());
     }
 
     private void setEntityIntoView(){
         txtNome.setText(indexador.getNome());
         txtValor.setText(String.valueOf(indexador.getValor()));
-        cbSigla.setValue(indexador.getSigla());
+        cbSiglas.setValue(indexador.getSigla());
     }
 
     private void configureViewMode() {
@@ -83,7 +85,7 @@ public class IndexadorUIController {
 
         txtNome.setDisable(true);
         txtValor.setDisable(true);
-        cbSigla.setDisable(true);
+        cbSiglas.setDisable(true);
 
     }
 }
