@@ -31,7 +31,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <Button layoutX="26.0" layoutY="465.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" text="Voltar" />
+      <Button layoutX="26.0" layoutY="465.0" onAction="#VoltarDash" mnemonicParsing="false" prefHeight="35.0" prefWidth="135.0" text="Voltar" />
       <Label layoutX="149.0" layoutY="71.0" text="Absoluta">
          <font>
             <Font size="18.0" />

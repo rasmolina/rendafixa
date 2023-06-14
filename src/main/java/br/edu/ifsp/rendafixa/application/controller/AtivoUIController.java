@@ -142,8 +142,10 @@ public class AtivoUIController {
         cbCategoriaRentabilidade.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals(CategoriaRentabilidade.PRE_FIXADO)) {
                 cbIndexador.setDisable(true);
+                txtPorcentagemSobreIndexador.setDisable(true);
             } else {
                 cbIndexador.setDisable(false);
+                txtPorcentagemSobreIndexador.setDisable(false);
             }
         });
     }

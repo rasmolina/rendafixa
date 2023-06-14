@@ -99,9 +99,10 @@ public class Main {
     public static void main(String[] args) {
         configureInjection();
         setupDataBase();
-        BDTests();
-        prepareBaseMock();
 
+        BDTests();
+
+        prepareBaseMock();
         WindowLoader.main(args);
     }
 
@@ -136,9 +137,47 @@ public class Main {
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-uuuu");
         LocalDate date = LocalDate.parse(data, parser);
 
+        LocalDate dataHoje = LocalDate.now();
+
         Ativo ativo = new Ativo(1,"Ativo 1",false,date,CategoriaAtivo.DEB,emissora1,portadora,indexador,CategoriaRentabilidade.POS_FIXADO,0.10,0.8);
         cadastrarAtivo.insert(ativo);
         incluirAtivoCarteira.incluirAtivoCarteira(carteira1, ativo);
+
+        LocalDate dataMaio = LocalDate.parse("2023-05-14");
+        comprarAtivo.comprarAtivo(carteira1,ativo,500,dataMaio);
+        comprarAtivo.comprarAtivo(carteira1,ativo,7000,dataMaio);
+
+
+
+        Ativo ativo2 = new Ativo(2,"CDB AGRO SAO JOSE",false, date, CategoriaAtivo.CDB,emissora1,portadora, indexador, CategoriaRentabilidade.POS_FIXADO,95.0,0.8);
+        cadastrarAtivo.insert(ativo2);
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira1, ativo2);
+        //Ativo com liquidez diária
+        Ativo ativo3 = new Ativo(3,"LCA LD INTER",true,dataHoje,CategoriaAtivo.LCA,emissora2,portadora,indexador2,CategoriaRentabilidade.PRE_FIXADO,0.0,0.4);
+        cadastrarAtivo.insert(ativo3);
+        incluirAtivoCarteira.incluirAtivoCarteira(carteira1, ativo3);
+        comprarAtivo.comprarAtivo(carteira1,ativo2,5000,dataHoje);
+
+        visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
+
+        double investidoAtivo = calcularTotalInvestidoPorAtivo.calcularTotalInvestidoPorAtivo(ativo);
+        System.out.println("Total investido no ativo " + ativo.getNome()+": R$ "+investidoAtivo);
+
+        double investidoAtivo2 = calcularTotalInvestidoPorAtivo.calcularTotalInvestidoPorAtivo(ativo2);
+        System.out.println("Total investido no ativo " + ativo2.getNome()+": R$ "+investidoAtivo2);
+
+
+        double totalInvestido = calcularTotalInvestido.calcularTotalInvestido(carteira1);
+        System.out.println("Total investido na carteira: R$ " + totalInvestido);
+
+        LocalDate dataFin = LocalDate.parse("2023-09-14");
+        double rendimentoAtivo = calcularRendimentoAtivo.calcularRendimentoAtivo(ativo2,dataFin);
+        System.out.println("Rendimento calculado do ativo "+ativo.getNome()+" até "+dataFin+": R$ "+rendimentoAtivo);
+
+        consultarAtivoCarteira.consultarAtivoNaCarteira(carteira1,ativo2);
+
+        resgatarAtivo.resgatarAtivo(carteira1,ativo2);
+
     }
 
     private static void setupDataBase() {
@@ -297,13 +336,9 @@ public class Main {
         Indexador di = new Indexador(3,SiglaIndexador.DI,"DI",90.0);
         cadastrarIndexador.insert(di);
         removerEntidadeEmissora.remove(1);
-<<<<<<< HEAD
-<<<<<<< HEAD
         /*
 */
 
-=======
->>>>>>> a0cc4e22be29c059ef999222844eb5d3f959bd9f
         //Ativo pré-fixado
         /*
         Carteira carteira = new Carteira();
@@ -356,24 +391,10 @@ public class Main {
         consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
 
         consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
-<<<<<<< HEAD
-        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
-
-
-
-
-    }
-
-    private static void setupDataBase() {
-        DatabaseBuilder databaseBuilder = new DatabaseBuilder();
-        databaseBuilder.builderDataBaseIfMissing();
-=======
-        //consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
->>>>>>> a0cc4e22be29c059ef999222844eb5d3f959bd9f
     }
 
     private static void configureInjection(){
-        AtivoDAO ativoDAO = new SqliteAtivoDAO();//MemoriaAtivoDAO();
+        AtivoDAO ativoDAO = new MemoriaAtivoDAO();//MemoriaAtivoDAO();
         cadastrarAtivo = new CadastrarAtivo(ativoDAO);
         atualizarAtivo = new AtualizarAtivo(ativoDAO);
         removerAtivo = new RemoverAtivo(ativoDAO);

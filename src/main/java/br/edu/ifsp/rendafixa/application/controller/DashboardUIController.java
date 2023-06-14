@@ -45,4 +45,8 @@ public class DashboardUIController {
     public void voltarCarteira(ActionEvent actionEvent) throws IOException {
         WindowLoader.setRoot("CarteiraManagementUI");
     }
+
+    public void dashComp(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("DashboardComp");
+    }
 }
