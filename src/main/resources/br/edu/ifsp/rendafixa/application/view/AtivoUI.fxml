@@ -21,7 +21,7 @@
       <ComboBox fx:id="cbIndexador" disable="true" layoutX="93.0" layoutY="241.0" prefHeight="25.0" prefWidth="175.0" />
       <Label layoutX="20.0" layoutY="169.0" text="Portadora: " />
       <ComboBox fx:id="cbPortadora" layoutX="86.0" layoutY="165.0" prefHeight="25.0" prefWidth="182.0" />
-      <CheckBox fx:id="ckLiquidez" layoutX="21.0" layoutY="210.0" mnemonicParsing="false" text="Liquidez Diária" />
+      <CheckBox fx:id="ckLiquidez" layoutX="21.0" layoutY="210.0" mnemonicParsing="false" onAction="#configureAtivoDate" text="Liquidez Diária" />
       <Label layoutX="223.0" layoutY="210.0" text="Data de Vencimento: " />
       <DatePicker fx:id="dpVencimento" layoutX="348.0" layoutY="206.0" prefHeight="25.0" prefWidth="204.0" />
       <Label layoutX="280.0" layoutY="169.0" text="Categoria Rentabilidade: " />
