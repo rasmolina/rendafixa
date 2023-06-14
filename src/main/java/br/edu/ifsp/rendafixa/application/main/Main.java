@@ -60,8 +60,8 @@ public class Main {
     public static ConsultarEmissora consultarEmissora;
 
     //Portadora
-    private static CadastrarEntidadePortadora cadastrarEntidadePortadora;
-    private static AtualizarEntidadePortadora atualizarEntidadePortadora;
+    public static CadastrarEntidadePortadora cadastrarEntidadePortadora;
+    public static AtualizarEntidadePortadora atualizarEntidadePortadora;
     public static RemoverEntidadePortadora removerEntidadePortadora;
 
     public static ConsultarPortadora consultarPortadora;
