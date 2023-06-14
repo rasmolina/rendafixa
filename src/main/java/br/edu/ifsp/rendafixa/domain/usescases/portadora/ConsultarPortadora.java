@@ -11,6 +11,9 @@ import java.util.Optional;
 public class ConsultarPortadora {
     private PortadoraDAO portadoraDAO;
 
+    public ConsultarPortadora() {
+    }
+
     public ConsultarPortadora(PortadoraDAO portadoraDAO) {
         this.portadoraDAO = portadoraDAO;
     }

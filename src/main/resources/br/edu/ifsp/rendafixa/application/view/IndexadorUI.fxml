@@ -16,12 +16,12 @@
         <Label layoutX="23.0" layoutY="143.0" text="Valor: " />
         <TextField fx:id="txtValor" layoutX="87.0" layoutY="139.0" prefHeight="25.0" prefWidth="178.0" />
         <Label layoutX="317.0" layoutY="143.0" text="Sigla: " />
+      <ComboBox fx:id="cbSiglas" layoutX="374.0" layoutY="139.0" prefHeight="25.0" prefWidth="178.0" />
         <Separator layoutX="-5.0" layoutY="244.0" prefHeight="8.0" prefWidth="607.0" />
         <Pane layoutX="14.0" layoutY="321.0" prefHeight="64.0" prefWidth="545.0">
             <children>
                 <Button fx:id="btnSalvar" layoutX="455.0" layoutY="15.0" mnemonicParsing="false" onAction="#saveOrUpdate" prefHeight="36.0" prefWidth="90.0" text="Salvar" />
                 <Button fx:id="btnCancelar" layoutX="350.0" layoutY="15.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="36.0" prefWidth="90.0" text="Cancelar" />
             </children></Pane>
-      <ComboBox fx:id="cbSiglas" layoutX="374.0" layoutY="139.0" prefHeight="25.0" prefWidth="178.0" />
     </children>
 </AnchorPane>

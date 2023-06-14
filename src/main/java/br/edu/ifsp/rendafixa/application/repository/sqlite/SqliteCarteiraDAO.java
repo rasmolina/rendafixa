@@ -165,9 +165,9 @@ public class SqliteCarteiraDAO implements CarteiraDAO {
 
     @Override
     public boolean consultarAtivoNaCarteira(Integer idCarteira, Ativo ativo) {
-        String sql = "SELECT item.id FROM item_ativo item INNER JOIN ativos_carteira ativo ON item.id_ativo = a.id  WHERE ativo.id_carteira = ? and ativo.id_ativo = ?";
+        String sql = "SELECT item.id FROM item_ativo item INNER JOIN ativos_carteira ativo ON item.id_ativo = ativo.id_ativo WHERE ativo.id_carteira = ? and ativo.id_ativo = ?";
 
-        try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)){
+        try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)) {
             stmt.setInt(1, idCarteira);
             stmt.setInt(2, ativo.getId());
             ResultSet resultSet = stmt.executeQuery();
@@ -181,6 +181,7 @@ public class SqliteCarteiraDAO implements CarteiraDAO {
         }
         return false;
     }
+
 
 
     @Override

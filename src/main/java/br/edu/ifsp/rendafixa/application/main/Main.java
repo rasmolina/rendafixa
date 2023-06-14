@@ -2,6 +2,7 @@ package br.edu.ifsp.rendafixa.application.main;
 
 import br.edu.ifsp.rendafixa.application.repository.inmemory.*;
 import br.edu.ifsp.rendafixa.application.repository.sqlite.*;
+import br.edu.ifsp.rendafixa.application.view.WindowLoader;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
@@ -42,10 +43,10 @@ import java.util.Optional;
 
 public class Main {
     //Ativo
-    private static AtualizarAtivo atualizarAtivo;
-    private static CadastrarAtivo cadastrarAtivo;
-    private static ConsultarAtivo consultarAtivo;
-    private static RemoverAtivo removerAtivo;
+    public static AtualizarAtivo atualizarAtivo;
+    public static CadastrarAtivo cadastrarAtivo;
+    public static ConsultarAtivo consultarAtivo;
+    public static RemoverAtivo removerAtivo;
 
     //Item Ativo
     private static InserirItemAtivo inserirItemAtivo;
@@ -53,23 +54,23 @@ public class Main {
     private static ConsultarItemAtivo consultarItemAtivo;
 
     //Emissora
-    private static CadastrarEntidadeEmissora cadastrarEntidadeEmissora;
-    private static AtualizarEntidadeEmissora atualizarEntidadeEmissora;
+    public static CadastrarEntidadeEmissora cadastrarEntidadeEmissora;
+    public static AtualizarEntidadeEmissora atualizarEntidadeEmissora;
     public static RemoverEntidadeEmissora removerEntidadeEmissora;
 
     public static ConsultarEmissora consultarEmissora;
 
     //Portadora
-    private static CadastrarEntidadePortadora cadastrarEntidadePortadora;
-    private static AtualizarEntidadePortadora atualizarEntidadePortadora;
+    public static CadastrarEntidadePortadora cadastrarEntidadePortadora;
+    public static AtualizarEntidadePortadora atualizarEntidadePortadora;
     public static RemoverEntidadePortadora removerEntidadePortadora;
 
     public static ConsultarPortadora consultarPortadora;
 
     //Indexadores
     public static ConsultarIndexador consultarIndexador;
-    private static AtualizarIndexador atualizarIndexador;
-    private static CadastrarIndexador cadastrarIndexador;
+    public static AtualizarIndexador atualizarIndexador;
+    public static CadastrarIndexador cadastrarIndexador;
     public static RemoverIndexador removerIndexador;
 
     //Carteira
@@ -97,34 +98,36 @@ public class Main {
 
         configureInjection();
         setupDataBase();
+        WindowLoader.main(args);
+
+
+
+        PortadoraDAO portadoraDAO = new MemoriaPortadoraDAO();//new SqlitePortadoraDAO();
+        Portadora portadora = new Portadora(2,"Portadora6321511","Portadora descricao","P1");
+        portadoraDAO.create(portadora);
+
+        /*
         LocalDate data1 = LocalDate.now();
         LocalDate data2 = LocalDate.now().minusDays(1);
         LocalDate data3 = LocalDate.now().minusDays(2);
 
-
-
         EmissoraDAO emissoraDAO = new SqliteEmissoraDAO();
         Emissora emissora = new Emissora(3,"Emissora 1231231","Descricao emissora","EM");
-        cadastrarEntidadeEmissora = new CadastrarEntidadeEmissora(emissoraDAO);
         //cadastrarEntidadeEmissora.insert(emissora);
         //emissoraDAO.create(emissora);
         PortadoraDAO portadoraDAO = new SqlitePortadoraDAO();
         Portadora portadora = new Portadora(2,"Portadora6321511","Portadora descricao","P1");
-        cadastrarEntidadePortadora = new CadastrarEntidadePortadora(portadoraDAO);
-        //cadastrarEntidadePortadora.insert(portadora);
         //portadoraDAO.create(portadora);
+
         IndexadoresDAO indexadoresDAO = new SqliteIndexadorDAO();
-        Indexador indexador = new Indexador(1,SiglaIndexador.IPCA,"Indexador1gf",200.00);
-        cadastrarIndexador = new CadastrarIndexador(indexadoresDAO);
-        //cadastrarIndexador.insert(indexador);
+        Indexador indexador = new Indexador(4,SiglaIndexador.DI,"Indexador novo",230.00);
+        indexadoresDAO.create(indexador);
 
         String data = "13-11-2024";
 
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-uuuu");
         LocalDate date = LocalDate.parse(data, parser);
 
-
-        AtivoDAO ativoDAO = new SqliteAtivoDAO();
         Ativo ativo = new Ativo(1,"Ativo 1",false,date,CategoriaAtivo.DEB,emissora,portadora,indexador,CategoriaRentabilidade.POS_FIXADO,0.10,0.8);
         //ativoDAO.buscaPorNome("Ativo 1");
         //removerAtivo.remove(3);
@@ -135,10 +138,9 @@ public class Main {
         LocalDate dataTransacao = LocalDate.now();
         LocalDate dataCompra = LocalDate.now();
 
-        TransacaoDAO transacaoDAO = new SqliteTransacaoDAO();
+
         Transacao transacao = new Transacao(dataTransacao,dataTransacao,ativo,2000.00, TipoTransacao.COMPRA);
-        registrarTransacao = new RegistrarTransacao(transacaoDAO);
-        //registrarTransacao.insert(transacao);
+        registrarTransacao.insert(transacao);
 
         ItemAtivoDAO itemAtivoDAO = new SqliteItemAtivoDAO();
         ItemAtivo itemAtivo = new ItemAtivo(ativo,date,2000.00);
@@ -149,27 +151,49 @@ public class Main {
         Carteira carteira = new Carteira(1);
         criarCarteira = new CriarCarteira(carteiraDAO);
 
-        //carteiraDAO.incluirAtivoCarteira(carteira,ativo);
 
-        double total = carteiraDAO.CalcularTotalInvestidoPorAtivo(ativo);
-        System.out.println("O total investido é:" + total);
+        String nomePortadora = "Portadora";
+        Optional<Portadora> portadoraOptional = portadoraDAO.buscaPorNomePortadora(nomePortadora);
 
-
-        //carteiraDAO.comprarAtivo(carteira,ativo,2000.00,dataCompra);
-        //carteiraDAO.comprarAtivo(carteira,ativo,5000.00,dataCompra);
-        //carteiraDAO.incluirAtivoCarteira(carteira,ativo);
-        //carteiraDAO.comprarAtivo(carteira,ativo,2000.00,dataCompra);
-        //criarCarteira.insert(carteira);
-
-        //carteiraDAO.incluirAtivoCarteira(carteira,ativo);
-        //visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira);
-        //incluirAtivoCarteira.incluirAtivoCarteira(carteira,ativo);
-
-        //carteiraDAO.incluirAtivoCarteira(carteira,ativo);
-        //carteiraDAO.incluirAtivoCarteira();
+        if (portadoraOptional.isPresent()) {
+            Portadora portadora1 = portadoraOptional.get();
+            System.out.println("Portadora encontrada: " + portadora1.getNome());
+        } else {
+            System.out.println("Nenhuma portadora encontrada com o nome: " + nomePortadora);
+        }
 
 
-        IncluirAtivoCarteira incluirAtivoCarteira = new IncluirAtivoCarteira(carteiraDAO, ativoDAO);
+
+        List<Portadora> portadoras = portadoraDAO.findAll();
+
+        if (!portadoras.isEmpty()) {
+            System.out.println("Portadoras encontradas:");
+            for (Portadora p : portadoras) {
+                System.out.println("ID: " + p.getId() + ", Nome: " + p.getNome());
+            }
+        } else {
+            System.out.println("Nenhuma portadora encontrada.");
+        }
+
+
+        List<Emissora> emissoras = emissoraDAO.findAll();
+
+        if (!emissoras.isEmpty()) {
+            System.out.println("Emissoras encontradas:");
+            for (Emissora e : emissoras) {
+                System.out.println("ID: " + e.getId() + ", Nome: " + e.getNome());
+            }
+        } else {
+            System.out.println("Nenhuma portadora encontrada.");
+        }
+
+
+        portadoraDAO.create(portadora);
+
+
+
+
+
 
 
         //incluirAtivoCarteira.incluirAtivoCarteira(carteira, ativo);
@@ -185,11 +209,11 @@ public class Main {
 
         Ativo ativo2 = new Ativo(3,"Ativo 2",false,date,CategoriaAtivo.DEB,emissora,portadora,indexador,CategoriaRentabilidade.POS_FIXADO,0.10,0.8);
         //carteiraDAO.comprarAtivo(carteira,ativo2,2000.00,data_compra);
-
+        //ativoDAO.create(ativo2);
 
 
         //atualizarAtivo.update(ativo);
-/*
+
         Emissora emissoraInter = new Emissora(1,"Inter", "Banco Inter SA", "INTER");
         cadastrarEntidadeEmissora.insert(emissoraInter);
         Emissora emissoraXP = new Emissora(2,"XP", "XP Co.", "XP");
@@ -206,7 +230,13 @@ public class Main {
         cadastrarIndexador.insert(cdi);
         Indexador di = new Indexador(3,SiglaIndexador.DI,"DI",90.0);
         cadastrarIndexador.insert(di);
-*/
+
+
+        removerEntidadeEmissora.remove(1);
+
+
+
+
         //Ativo pré-fixado
         /*
         Carteira carteira = new Carteira();
@@ -271,8 +301,9 @@ public class Main {
         visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
 
         System.out.println("\n=======================\n");
-        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
-*/
+
+        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
+
 
 
     }
@@ -283,38 +314,40 @@ public class Main {
     }
 
     private static void configureInjection(){
-        AtivoDAO ativoDAO = new SqliteAtivoDAO();
+        AtivoDAO ativoDAO = new MemoriaAtivoDAO();//new SqliteAtivoDAO();
         cadastrarAtivo = new CadastrarAtivo(ativoDAO);
         atualizarAtivo = new AtualizarAtivo(ativoDAO);
         removerAtivo = new RemoverAtivo(ativoDAO);
         consultarAtivo = new ConsultarAtivo(ativoDAO);
 
-        ItemAtivoDAO itemAtivoDAO = new SqliteItemAtivoDAO();
+        ItemAtivoDAO itemAtivoDAO = new MemoryItemAtivoDAO();//new SqliteItemAtivoDAO();
         inserirItemAtivo = new InserirItemAtivo(itemAtivoDAO);
         removerItemAtivo = new RemoverItemAtivo(itemAtivoDAO);
         consultarItemAtivo = new ConsultarItemAtivo(itemAtivoDAO);
 
-        IndexadoresDAO indexadoresDAO = new SqliteIndexadorDAO();
+        IndexadoresDAO indexadoresDAO = new MemoriaIndexadoresDAO();//new SqliteIndexadorDAO();
         cadastrarIndexador = new CadastrarIndexador(indexadoresDAO);
         consultarIndexador = new ConsultarIndexador(indexadoresDAO);
         atualizarIndexador = new AtualizarIndexador(indexadoresDAO);
         removerIndexador = new RemoverIndexador(indexadoresDAO);
 
-        EmissoraDAO emissoraDAO = new SqliteEmissoraDAO();
+        EmissoraDAO emissoraDAO = new MemoriaEmissoraDAO();//new SqliteEmissoraDAO();
         cadastrarEntidadeEmissora = new CadastrarEntidadeEmissora(emissoraDAO);
         atualizarEntidadeEmissora = new AtualizarEntidadeEmissora(emissoraDAO);
         removerEntidadeEmissora = new RemoverEntidadeEmissora(emissoraDAO);
+        consultarEmissora = new ConsultarEmissora(emissoraDAO);
 
-        PortadoraDAO portadoraDAO = new SqlitePortadoraDAO();
+        PortadoraDAO portadoraDAO = new MemoriaPortadoraDAO();//new SqlitePortadoraDAO();
         cadastrarEntidadePortadora = new CadastrarEntidadePortadora(portadoraDAO);
         atualizarEntidadePortadora = new AtualizarEntidadePortadora(portadoraDAO);
         removerEntidadePortadora = new RemoverEntidadePortadora(portadoraDAO);
+        consultarPortadora = new ConsultarPortadora(portadoraDAO);
 
-        TransacaoDAO transacaoDAO = new SqliteTransacaoDAO();
+        TransacaoDAO transacaoDAO = new MemoriaTransacaoDAO();//new SqliteTransacaoDAO();
         registrarTransacao = new RegistrarTransacao(transacaoDAO);
         consultarTransacao = new ConsultarTransacao(transacaoDAO);
 
-        CarteiraDAO carteiraDAO = new SqliteCarteiraDAO();
+        CarteiraDAO carteiraDAO = new MemoriaCarteiraDAO();//new SqliteCarteiraDAO();
         criarCarteira = new CriarCarteira(carteiraDAO);
         apagarCarteira = new ApagarCarteira(carteiraDAO);
         incluirAtivoCarteira = new IncluirAtivoCarteira(carteiraDAO,ativoDAO);

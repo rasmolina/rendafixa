@@ -6,6 +6,9 @@ public class Portadora {
     private String descricao;
     private String sigla;
 
+    public Portadora() {
+    }
+
     public Portadora(Integer id, String nome, String descricao, String sigla) {
         this.id = id;
         this.nome = nome;
@@ -47,11 +50,11 @@ public class Portadora {
 
     @Override
     public String toString() {
-        return "Portadora{" +
+        return nome;/*"Portadora{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", sigla='" + sigla + '\'' +
-                '}';
+                '}';*/
     }
 }

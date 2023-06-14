@@ -7,6 +7,10 @@ public class Indexador {
     private String nome;
     private Double valor;
 
+
+    public Indexador() {
+    }
+
     public Indexador(Integer id, SiglaIndexador sigla, String nome, Double valor) {
         this.id = id;
         this.sigla = sigla;
@@ -47,11 +51,11 @@ public class Indexador {
 
     @Override
     public String toString() {
-        return "Indexador{" +
+        return nome;/*"Indexador{" +
                 "id=" + id +
                 ", sigla=" + sigla +
                 ", nome='" + nome + '\'' +
                 ", valor=" + valor +
-                '}';
+                '}';*/
     }
 }
