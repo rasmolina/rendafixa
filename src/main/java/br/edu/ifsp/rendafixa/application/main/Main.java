@@ -94,13 +94,16 @@ public class Main {
     private static ConsultarTransacao consultarTransacao;
 
     public static void main(String[] args) {
-
         configureInjection();
         setupDataBase();
         LocalDate data1 = LocalDate.now();
         LocalDate data2 = LocalDate.now().minusDays(1);
         LocalDate data3 = LocalDate.now().minusDays(2);
 
+        
+
+
+        /*
         EmissoraDAO emissoraDAO = new SqliteEmissoraDAO();
         Emissora emissora = new Emissora(3,"Emissora 1231231","Descricao emissora","EM");
         //cadastrarEntidadeEmissora.insert(emissora);
@@ -181,11 +184,6 @@ public class Main {
         portadoraDAO.create(portadora);
 
 
-
-
-
-
-
         //incluirAtivoCarteira.incluirAtivoCarteira(carteira, ativo);
 
         //removerAtivo.remove(ativo);
@@ -197,7 +195,7 @@ public class Main {
 
         LocalDate data_compra = LocalDate.now();
 
-        Ativo ativo2 = new Ativo(3,"Ativo 2",false,date,CategoriaAtivo.DEB,emissora,portadora,indexador,CategoriaRentabilidade.POS_FIXADO,0.10,0.8);
+        //Ativo ativo2 = new Ativo(3,"Ativo 2",false,date,CategoriaAtivo.DEB,emissora,portadora,indexador,CategoriaRentabilidade.POS_FIXADO,0.10,0.8);
         //carteiraDAO.comprarAtivo(carteira,ativo2,2000.00,data_compra);
         //ativoDAO.create(ativo2);
 
@@ -220,13 +218,12 @@ public class Main {
         cadastrarIndexador.insert(cdi);
         Indexador di = new Indexador(3,SiglaIndexador.DI,"DI",90.0);
         cadastrarIndexador.insert(di);
-<<<<<<< HEAD
+
 
         removerEntidadeEmissora.remove(1);
         /*
-=======
 */
->>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
+
         //Ativo pré-fixado
         /*
         Carteira carteira = new Carteira();
@@ -291,13 +288,10 @@ public class Main {
         visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
 
         System.out.println("\n=======================\n");
-<<<<<<< HEAD
-        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
-=======
-        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
-*/
 
->>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
+        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
+
+        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
 
     }
 

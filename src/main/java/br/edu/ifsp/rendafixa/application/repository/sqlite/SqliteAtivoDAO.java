@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-=======
 package br.edu.ifsp.rendafixa.application.repository.sqlite;
 
+import br.edu.ifsp.rendafixa.application.repository.sqlite.ConnectionFactory;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaAtivo;
 import br.edu.ifsp.rendafixa.domain.entities.ativos.CategoriaRentabilidade;
@@ -252,4 +251,3 @@ public class SqliteAtivoDAO implements AtivoDAO {
             return deleteByKey(ativo.getId());
     }
 }
->>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd

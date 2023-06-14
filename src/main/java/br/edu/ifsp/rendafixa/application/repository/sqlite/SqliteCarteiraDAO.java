@@ -206,6 +206,11 @@ public class SqliteCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
+    public void VisualizarComposicaoCarteira(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO) {
+
+    }
+
+    @Override
     public Integer create(Carteira carteira) {
         String sql = "INSERT INTO carteira(valor_disponivel) VALUES(?)";
         try (PreparedStatement stmt = ConnectionFactory.createPreparedStatement(sql)){
