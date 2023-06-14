@@ -15,19 +15,13 @@ import br.edu.ifsp.rendafixa.domain.entities.transacao.TipoTransacao;
 import br.edu.ifsp.rendafixa.domain.entities.transacao.Transacao;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.*;
 import br.edu.ifsp.rendafixa.domain.usescases.carteira.*;
-import br.edu.ifsp.rendafixa.domain.usescases.emissora.AtualizarEntidadeEmissora;
-import br.edu.ifsp.rendafixa.domain.usescases.emissora.CadastrarEntidadeEmissora;
-import br.edu.ifsp.rendafixa.domain.usescases.emissora.EmissoraDAO;
-import br.edu.ifsp.rendafixa.domain.usescases.emissora.RemoverEntidadeEmissora;
+import br.edu.ifsp.rendafixa.domain.usescases.emissora.*;
 import br.edu.ifsp.rendafixa.domain.usescases.indexadores.*;
 import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.ConsultarItemAtivo;
 import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.InserirItemAtivo;
 import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.ItemAtivoDAO;
 import br.edu.ifsp.rendafixa.domain.usescases.itemAtivo.RemoverItemAtivo;
-import br.edu.ifsp.rendafixa.domain.usescases.portadora.AtualizarEntidadePortadora;
-import br.edu.ifsp.rendafixa.domain.usescases.portadora.CadastrarEntidadePortadora;
-import br.edu.ifsp.rendafixa.domain.usescases.portadora.PortadoraDAO;
-import br.edu.ifsp.rendafixa.domain.usescases.portadora.RemoverEntidadePortadora;
+import br.edu.ifsp.rendafixa.domain.usescases.portadora.*;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.ConsultarTransacao;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.RegistrarTransacao;
 import br.edu.ifsp.rendafixa.domain.usescases.transacao.TransacaoDAO;
@@ -61,18 +55,22 @@ public class Main {
     //Emissora
     private static CadastrarEntidadeEmissora cadastrarEntidadeEmissora;
     private static AtualizarEntidadeEmissora atualizarEntidadeEmissora;
-    private static RemoverEntidadeEmissora removerEntidadeEmissora;
+    public static RemoverEntidadeEmissora removerEntidadeEmissora;
+
+    public static ConsultarEmissora consultarEmissora;
 
     //Portadora
     private static CadastrarEntidadePortadora cadastrarEntidadePortadora;
     private static AtualizarEntidadePortadora atualizarEntidadePortadora;
-    private static RemoverEntidadePortadora removerEntidadePortadora;
+    public static RemoverEntidadePortadora removerEntidadePortadora;
+
+    public static ConsultarPortadora consultarPortadora;
 
     //Indexadores
-    private static ConsultarIndexador consultarIndexador;
+    public static ConsultarIndexador consultarIndexador;
     private static AtualizarIndexador atualizarIndexador;
     private static CadastrarIndexador cadastrarIndexador;
-    private static RemoverIndexador removerIndexador;
+    public static RemoverIndexador removerIndexador;
 
     //Carteira
     private static CriarCarteira criarCarteira;
