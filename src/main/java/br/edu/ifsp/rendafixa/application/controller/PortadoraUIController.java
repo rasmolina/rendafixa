@@ -27,9 +27,6 @@ public class PortadoraUIController {
 
     private Portadora portadora;
 
-    @FXML private void initialize(){
-    }
-
     public void saveOrUpdate(ActionEvent actionEvent) throws IOException {
         getEntityToView();
         if (portadora.getId()== null)

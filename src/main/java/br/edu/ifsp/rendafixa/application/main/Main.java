@@ -53,8 +53,8 @@ public class Main {
     private static ConsultarItemAtivo consultarItemAtivo;
 
     //Emissora
-    private static CadastrarEntidadeEmissora cadastrarEntidadeEmissora;
-    private static AtualizarEntidadeEmissora atualizarEntidadeEmissora;
+    public static CadastrarEntidadeEmissora cadastrarEntidadeEmissora;
+    public static AtualizarEntidadeEmissora atualizarEntidadeEmissora;
     public static RemoverEntidadeEmissora removerEntidadeEmissora;
 
     public static ConsultarEmissora consultarEmissora;
@@ -68,8 +68,8 @@ public class Main {
 
     //Indexadores
     public static ConsultarIndexador consultarIndexador;
-    private static AtualizarIndexador atualizarIndexador;
-    private static CadastrarIndexador cadastrarIndexador;
+    public static AtualizarIndexador atualizarIndexador;
+    public static CadastrarIndexador cadastrarIndexador;
     public static RemoverIndexador removerIndexador;
 
     //Carteira
