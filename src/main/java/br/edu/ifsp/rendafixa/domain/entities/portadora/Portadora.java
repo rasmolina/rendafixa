@@ -6,6 +6,9 @@ public class Portadora {
     private String descricao;
     private String sigla;
 
+    public Portadora() {
+    }
+
     public Portadora(Integer id, String nome, String descricao, String sigla) {
         this.id = id;
         this.nome = nome;

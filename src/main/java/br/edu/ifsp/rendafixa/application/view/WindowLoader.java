@@ -7,18 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-/**
- * JavaFX App
- */
-public class App extends Application {
+public class WindowLoader extends Application {
 
     private static Scene scene;
     private static Object controller;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("MainUI"));
+        scene = new Scene(loadFXML("Main"));
         stage.setScene(scene);
         stage.show();
     }
@@ -28,11 +24,10 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-        /*Parent parent = fxmlLoader.load(WindowLoader.class.getResource(fxml + ".fxml").openStream());
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root  = fxmlLoader.load(WindowLoader.class.getResource(fxml + ".fxml").openStream());
         controller = fxmlLoader.getController();
-        return parent;*/
+        return root;
     }
 
     public static void main(String[] args) {

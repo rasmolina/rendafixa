@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.IndexadorManagementUIController">
+<AnchorPane prefHeight="525.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.IndexadorManagementUIController">
     <children>
-        <TableView fx:id="tableView" layoutX="29.0" layoutY="23.0" prefHeight="414.0" prefWidth="540.0">
+        <TableView fx:id="tableView" layoutX="29.0" layoutY="23.0" prefHeight="414.0" prefWidth="540.0" AnchorPane.topAnchor="23.0">
             <columns>
                 <TableColumn fx:id="cNome" prefWidth="214.0" text="Nome" />
                 <TableColumn fx:id="cValor" prefWidth="171.0" text="Valor" />
