@@ -230,7 +230,13 @@ public class Main {
         cadastrarIndexador.insert(cdi);
         Indexador di = new Indexador(3,SiglaIndexador.DI,"DI",90.0);
         cadastrarIndexador.insert(di);
+<<<<<<< HEAD
+
+        removerEntidadeEmissora.remove(1);
+        /*
+=======
 */
+>>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
         //Ativo pré-fixado
         /*
         Carteira carteira = new Carteira();
@@ -295,9 +301,13 @@ public class Main {
         visualizarComposicaoCarteira.visualizarComposicaoCarteira(carteira1);
 
         System.out.println("\n=======================\n");
+<<<<<<< HEAD
+        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
+=======
         consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
 */
 
+>>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
 
     }
 
