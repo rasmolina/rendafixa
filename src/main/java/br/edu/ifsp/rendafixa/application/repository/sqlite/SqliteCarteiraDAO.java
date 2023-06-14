@@ -39,6 +39,7 @@ public class SqliteCarteiraDAO implements CarteiraDAO {
                 stmtInserir.setInt(1, ativo.getId());
                 stmtInserir.setInt(2, carteira.getId());
                 stmtInserir.execute();
+                System.out.println("O ativo inserido com sucesso na tabela ativos_carteira!");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,26 +49,35 @@ public class SqliteCarteiraDAO implements CarteiraDAO {
 
     @Override
     public boolean removerAtivoCarteira(Carteira carteira, Ativo ativo) {
-        String verificar = "SELECT * FROM compras_ativo WHERE id_ativo = ?";
+        String verificarCompra = "SELECT * FROM item_ativo WHERE id_ativo = ?";
+        String verificarAtivoCarteira = "SELECT * FROM ativos_carteira WHERE id_ativo = ?";
         String sql = "DELETE FROM ativos_carteira WHERE id_carteira = ? AND id_ativo = ?";
 
-        try (PreparedStatement stmtVerificar = ConnectionFactory.createPreparedStatement(verificar);
+        try (PreparedStatement stmtVerificar = ConnectionFactory.createPreparedStatement(verificarCompra);
+             PreparedStatement stmtVerificarAtivo = ConnectionFactory.createPreparedStatement(verificarAtivoCarteira);
              PreparedStatement stmtRemover = ConnectionFactory.createPreparedStatement(sql)) {
             stmtVerificar.setInt(1, ativo.getId());
+            stmtVerificarAtivo.setInt(1, ativo.getId());
             ResultSet resultado = stmtVerificar.executeQuery();
+            ResultSet resultadoAtivo = stmtVerificarAtivo.executeQuery();
+            if (resultadoAtivo.next()){ //Verifica se ativo está na carteira
+                if (resultado.next()) { //Verifica se existem compras pro ativo
+                    System.out.println("Não é possível remover o ativo, existem aplicações para ele!");
+                    return false;
+                } else {
+                    // Se não houver aplicação remove da carteira
+                    stmtRemover.setInt(1, carteira.getId());
+                    stmtRemover.setInt(2, ativo.getId());
+                    stmtRemover.execute();
+                    System.out.println("Ativo removido com sucesso da carteira!");
+                    return true;
+                }
 
-            if (resultado.next()) {
-                // O ativo está presente na tabela compras_ativo, não é possível remover
-                System.out.println("Não é possível remover o ativo, existem aplicações para ele!");
-                return false;
-            } else {
-                // O ativo não está presente na tabela compras_ativo, realizar a remoção
-                stmtRemover.setInt(1, carteira.getId());
-                stmtRemover.setInt(2, ativo.getId());
-                stmtRemover.execute();
-                System.out.println("Ativo removido com sucesso da carteira!");
-                return true;
+            }else{
+                System.out.println("Ativo não está presente na carteira!");
             }
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

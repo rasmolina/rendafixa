@@ -10,6 +10,7 @@ import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
 import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
 import br.edu.ifsp.rendafixa.domain.usescases.emissora.ConsultarEmissora;
 import br.edu.ifsp.rendafixa.domain.usescases.indexadores.ConsultarIndexador;
+import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -157,10 +158,13 @@ public class SqliteAtivoDAO implements AtivoDAO {
     }
 
 
-    private Ativo resultSetToEntity(ResultSet resultSet) throws SQLException {
-        Emissora emissora = new SqliteEmissoraDAO().buscar(resultSet.getInt("emissora"));
-        Portadora portadora = new SqlitePortadoraDAO().buscar(resultSet.getInt("portadora"));
-        Indexador indexador = new SqliteIndexadorDAO().buscar(resultSet.getInt("indexador"));
+    public Ativo resultSetToEntity(ResultSet resultSet) throws SQLException {
+        Emissora emissora = new SqliteEmissoraDAO().findOne(resultSet.getInt("emissora"))
+                .orElseThrow(() -> new EntityNotFoundException("Id não encontrado"));
+        Portadora portadora = new SqlitePortadoraDAO().findOne(resultSet.getInt("portadora"))
+                .orElseThrow(() -> new EntityNotFoundException("Id não encontrado"));
+        Indexador indexador = new SqliteIndexadorDAO().findOne(resultSet.getInt("indexador"))
+                .orElseThrow(() -> new EntityNotFoundException("Id não encontrado"));
 
         String dataVencimentoStr = resultSet.getString("data_vencimento");
         LocalDate dataVencimento = LocalDate.parse(dataVencimentoStr);

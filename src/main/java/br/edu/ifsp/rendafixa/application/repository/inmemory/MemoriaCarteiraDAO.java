@@ -2,6 +2,7 @@ package br.edu.ifsp.rendafixa.application.repository.inmemory;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
 import br.edu.ifsp.rendafixa.domain.entities.carteira.Carteira;
+import br.edu.ifsp.rendafixa.domain.usescases.ativos.AtivoDAO;
 import br.edu.ifsp.rendafixa.domain.usescases.carteira.CarteiraDAO;
 
 import java.time.LocalDate;
@@ -94,6 +95,11 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     @Override
     public Carteira buscar(int id) {
         return null;
+    }
+
+    @Override
+    public void VisualizarComposicaoCarteira(CarteiraDAO carteiraDAO, AtivoDAO ativoDAO) {
+
     }
 
 }

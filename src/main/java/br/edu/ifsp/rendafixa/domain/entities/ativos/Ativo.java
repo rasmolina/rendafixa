@@ -23,6 +23,12 @@ public class Ativo {
     private double rentabilidade; //ao ano
     private List<ItemAtivo> itensAtivo = new ArrayList<>();
 
+    public Ativo(Integer id){
+        this.id = id;
+    }
+
+    public Ativo(){}
+
     public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
         this.id = id;
         this.nome = nome;

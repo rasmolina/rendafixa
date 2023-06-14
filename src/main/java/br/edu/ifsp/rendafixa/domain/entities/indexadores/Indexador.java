@@ -11,6 +11,10 @@ public class Indexador {
     public Indexador() {
     }
 
+    public Indexador(Integer id){
+        this.id = id;
+    }
+
     public Indexador(Integer id, SiglaIndexador sigla, String nome, Double valor) {
         this.id = id;
         this.sigla = sigla;

@@ -34,6 +34,7 @@ import br.edu.ifsp.rendafixa.domain.entities.emissora.Emissora;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.Indexador;
 import br.edu.ifsp.rendafixa.domain.entities.indexadores.SiglaIndexador;
 import br.edu.ifsp.rendafixa.domain.entities.portadora.Portadora;
+import br.edu.ifsp.rendafixa.domain.usescases.utils.EntityNotFoundException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -97,15 +98,63 @@ public class Main {
     public static void main(String[] args) {
         configureInjection();
         setupDataBase();
-        WindowLoader.main(args);
+        //WindowLoader.main(args);
+
+        // ******** IMPLEMENTAÇÃO DOS TESTES COM O BANCO DE DADOS ********
+        LocalDate dataVencimento = LocalDate.parse("2025-05-10");
+        LocalDate dataHoje = LocalDate.now();
+
+        //Resgata a carteira do BD
+        CarteiraDAO carteiraDAO = new SqliteCarteiraDAO();
+        Carteira carteira1 = new Carteira(1);
+
+        //Resgata do BD uma emissora, uma portadora e um indexador
+        Emissora emissora1 = new Emissora(1);
+        Portadora portadora1 = new Portadora(1);
+        Indexador indexador1 = new Indexador(1);
+
+        //Resgata do BD os ativos 1, 2, 3 que já foram inseridos na carteira
+        AtivoDAO ativoDAO = new SqliteAtivoDAO();
+        //Ativo ativo1 = ativoDAO.findOne(1)
+          //      .orElseThrow(() -> new EntityNotFoundException("Ativo não encontrado"));
+
+        Ativo ativo2 = new Ativo(2);
+        Ativo ativo3 = new Ativo(3);
+
+        //Resgata o ativo 4 cadastrado no BD mas que ainda não foi inserido na carteira
+        Ativo ativo4 = new Ativo(4);
+
+        //Ativo que não terá aplicações
+        Ativo ativo5 = new Ativo(5,"LCI XP",false,dataVencimento,CategoriaAtivo.LCI,emissora1,portadora1,indexador1,CategoriaRentabilidade.PRE_FIXADO,0.0,0.4);
+        Integer id5 = ativoDAO.create(ativo5); //Cadastra ativo 5 no BD
+        if(id5 != null)
+            System.out.println("Ativo "+ ativo5.getNome() + " cadastrado com sucesso no BD!");
+
+        //Inclui um ativo já existente na carteira
+        carteiraDAO.incluirAtivoCarteira(carteira1,ativo2);
+
+        //Tenta remover um ativo contendo aplicações
+        carteiraDAO.removerAtivoCarteira(carteira1,ativo2);
+        //Tenta remover um ativo que ainda não foi inserido na carteira
+        carteiraDAO.removerAtivoCarteira(carteira1,ativo4);
+
+        //Insere e remove na carteira o ativo 5 que não contém aplicações
+        carteiraDAO.incluirAtivoCarteira(carteira1,ativo5);
+        carteiraDAO.removerAtivoCarteira(carteira1,ativo5);
+        //Remove o ativo 5 do BD
+        ativoDAO.delete(ativo5);
+
+        double investidoAtivo1 = carteiraDAO.CalcularTotalInvestidoPorAtivo(ativo2);
+        System.out.println("Total investido no ativo " + ativo2.getNome() + ": R$ " + investidoAtivo1);
 
 
 
+        /*
         PortadoraDAO portadoraDAO = new MemoriaPortadoraDAO();//new SqlitePortadoraDAO();
         Portadora portadora = new Portadora(2,"Portadora6321511","Portadora descricao","P1");
         portadoraDAO.create(portadora);
 
-        /*
+
         LocalDate data1 = LocalDate.now();
         LocalDate data2 = LocalDate.now().minusDays(1);
         LocalDate data3 = LocalDate.now().minusDays(2);

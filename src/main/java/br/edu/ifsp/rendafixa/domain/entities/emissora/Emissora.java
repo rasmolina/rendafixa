@@ -10,6 +10,10 @@ public class Emissora {
     public Emissora() {
     }
 
+    public Emissora(Integer id){
+        this.id = id;
+    }
+
     public Emissora(Integer id, String nome, String descricao, String sigla) {
         this.id = id;
         this.nome = nome;

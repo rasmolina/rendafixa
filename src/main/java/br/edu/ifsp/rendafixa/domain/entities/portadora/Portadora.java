@@ -9,6 +9,11 @@ public class Portadora {
     public Portadora() {
     }
 
+    public Portadora(Integer id){
+        this.id = id;
+    }
+
+
     public Portadora(Integer id, String nome, String descricao, String sigla) {
         this.id = id;
         this.nome = nome;
