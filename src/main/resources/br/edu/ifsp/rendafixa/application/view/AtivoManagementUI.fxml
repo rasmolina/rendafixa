@@ -3,20 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="509.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.AtivoManagementUIController">
+<AnchorPane prefHeight="509.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.AtivoManagementUIController">
     <children>
-        <TableView fx:id="tableView" layoutX="24.0" layoutY="23.0" prefHeight="414.0" prefWidth="704.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
+        <TableView fx:id="tableView" layoutX="24.0" layoutY="23.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
             <columns>
                 <TableColumn fx:id="cNome" prefWidth="111.0" text="Nome" />
                 <TableColumn fx:id="cCategoria" prefWidth="112.0" text="Categoria" />
                 <TableColumn fx:id="cEmissora" minWidth="0.0" prefWidth="111.0" text="Emissora" />
-            <TableColumn fx:id="cPortadora" prefWidth="99.0" text="Portadora" />
-            <TableColumn fx:id="cCategoriaRentabilidade" prefWidth="135.0" text="Categ. Rentabilidade" />
-            <TableColumn fx:id="cLiquidezDiaria" minWidth="0.0" prefWidth="94.0" text="Liquidez Diária" />
-            <TableColumn fx:id="cDataVencimento" prefWidth="121.0" text="Data Vencimento" />
-            <TableColumn fx:id="cIndexador" prefWidth="92.0" text="Indexador" />
-            <TableColumn fx:id="cPorcentagemIndexador" prefWidth="112.0" text="\% Sobre Indexador" />
-            <TableColumn fx:id="cRentabilidade" prefWidth="108.0" text="Rentabilidade" />
+                <TableColumn fx:id="cPortadora" prefWidth="99.0" text="Portadora" />
+                <TableColumn fx:id="cCategoriaRentabilidade" prefWidth="135.0" text="Categ. Rentabilidade" />
+                <TableColumn fx:id="cLiquidezDiaria" minWidth="0.0" prefWidth="94.0" text="Liquidez Diária" />
+                <TableColumn fx:id="cDataVencimento" prefWidth="121.0" text="Data Vencimento" />
+                <TableColumn fx:id="cIndexador" prefWidth="92.0" text="Indexador" />
+                <TableColumn fx:id="cPorcentagemIndexador" prefWidth="112.0" text="\% Sobre Indexador" />
+                <TableColumn fx:id="cRentabilidade" prefWidth="108.0" text="Rentabilidade" />
             </columns>
         </TableView>
         <Pane layoutX="17.0" layoutY="440.0" prefHeight="69.0" prefWidth="1086.0">
@@ -26,7 +26,7 @@
                 <Button fx:id="btnDeletar" layoutX="788.0" layoutY="25.0" mnemonicParsing="false" onAction="#deleteAtivo" prefHeight="32.0" prefWidth="62.0" text="Deletar" />
                 <Button fx:id="btnVoltar" layoutY="25.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="32.0" prefWidth="62.0" text="Voltar" />
                 <Button fx:id="btnVisualizar" layoutX="863.0" layoutY="25.0" mnemonicParsing="false" onAction="#visualizeAtivo" prefHeight="32.0" prefWidth="68.0" text="Visualizar" />
-            <Button layoutX="81.0" layoutY="25.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="144.0" text="Incluir Ativo na Carteira" />
+                <Button fx:id="btnIncluir" layoutX="81.0" layoutY="25.0" mnemonicParsing="false" onAction="#incluirativo" prefHeight="32.0" prefWidth="144.0" text="Incluir Ativo na Carteira" />
             </children></Pane>
     </children>
 
