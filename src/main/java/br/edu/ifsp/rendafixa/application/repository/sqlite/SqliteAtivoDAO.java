@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 package br.edu.ifsp.rendafixa.application.repository.sqlite;
 
 import br.edu.ifsp.rendafixa.domain.entities.ativos.Ativo;
@@ -252,4 +251,4 @@ public class SqliteAtivoDAO implements AtivoDAO {
             return deleteByKey(ativo.getId());
     }
 }
->>>>>>> 0a5912a9e966de0fac50bddbbf288596195baedd
+
