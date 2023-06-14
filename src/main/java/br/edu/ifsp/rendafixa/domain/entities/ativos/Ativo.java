@@ -21,25 +21,10 @@ public class Ativo {
     private CategoriaRentabilidade categoriaRentabilidade;
     private double porcentagemSobreIndexador;
     private double rentabilidade; //ao ano
-    private List<ItemAtivo> itensAtivo;
+    private List<ItemAtivo> itensAtivo = new ArrayList<>();
 
-    //Construtor para ativo pós-fixado sem liquidez diária
-    public Ativo(Integer id, String nome, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
-        this.id = id;
-        this.nome = nome;
-        this.dataVencimento = dataVencimento;
-        this.categoriaAtivo = categoriaAtivo;
-        this.emissora = emissora;
-        this.portadora = portadora;
-        this.indexador = indexador;
-        this.categoriaRentabilidade = categoriaRentabilidade;
-        this.porcentagemSobreIndexador = porcentagemSobreIndexador;
-        this.rentabilidade = rentabilidade;
-        this.itensAtivo = new ArrayList<>();
-    }
 
-    //Construtor para ativo pré-fixado sem liquidez diária
-    public Ativo(Integer id, String nome, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, CategoriaRentabilidade categoriaRentabilidade, double rentabilidade) {
+    public Ativo(Integer id, String nome, boolean liquidezDiaria, LocalDate dataVencimento, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
         this.id = id;
         this.nome = nome;
         this.liquidezDiaria = liquidezDiaria;
@@ -47,39 +32,10 @@ public class Ativo {
         this.categoriaAtivo = categoriaAtivo;
         this.emissora = emissora;
         this.portadora = portadora;
-        this.categoriaRentabilidade = categoriaRentabilidade;
-        this.rentabilidade = rentabilidade;
-        this.itensAtivo = new ArrayList<>();
-    }
-
-    //Construtor para ativo pré-fixado com liquidez diária
-    public Ativo(Integer id, String nome, boolean liquidezDiaria, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, CategoriaRentabilidade categoriaRentabilidade, double rentabilidade) {
-        this.id = id;
-        this.nome = nome;
-        this.liquidezDiaria = true;
-        this.categoriaAtivo = categoriaAtivo;
-        this.emissora = emissora;
-        this.portadora = portadora;
-        this.categoriaRentabilidade = categoriaRentabilidade;
-        this.rentabilidade = rentabilidade;
-        this.itensAtivo = new ArrayList<>();
-        this.dataVencimento = LocalDate.now();
-    }
-
-    //Construtor para ativo pós-fixado com liquidez diária
-    public Ativo(Integer id, String nome, boolean liquidezDiaria, CategoriaAtivo categoriaAtivo, Emissora emissora, Portadora portadora, Indexador indexador, CategoriaRentabilidade categoriaRentabilidade, double porcentagemSobreIndexador, double rentabilidade) {
-        this.id = id;
-        this.nome = nome;
-        this.liquidezDiaria = true;
-        this.categoriaAtivo = categoriaAtivo;
-        this.emissora = emissora;
-        this.portadora = portadora;
         this.indexador = indexador;
         this.categoriaRentabilidade = categoriaRentabilidade;
         this.porcentagemSobreIndexador = porcentagemSobreIndexador;
         this.rentabilidade = rentabilidade;
-        this.itensAtivo = new ArrayList<>();
-        this.dataVencimento = LocalDate.now();
     }
 
     public Integer getId() {

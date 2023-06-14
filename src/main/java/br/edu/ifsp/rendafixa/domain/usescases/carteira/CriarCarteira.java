@@ -13,6 +13,5 @@ public class CriarCarteira {
 
     public Integer insert(Carteira carteira){
         return carteiraDAO.create(carteira);
-
     }
 }

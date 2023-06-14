@@ -29,6 +29,11 @@ public class MemoriaIndexadoresDAO implements IndexadoresDAO {
     }
 
     @Override
+    public Indexador buscar(int id) {
+        return null;
+    }
+
+    @Override
     public boolean update(Indexador indexador) {
         Integer id = indexador.getId();
         if (bd.containsKey(id)) {

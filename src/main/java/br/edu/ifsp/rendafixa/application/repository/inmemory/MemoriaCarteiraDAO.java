@@ -62,8 +62,8 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
-    public void removerAtivoCarteira(Carteira carteira, Ativo ativo) {
-
+    public boolean removerAtivoCarteira(Carteira carteira, Ativo ativo) {
+            return true;
     }
 
     @Override
@@ -82,8 +82,18 @@ public class MemoriaCarteiraDAO implements CarteiraDAO {
     }
 
     @Override
-    public void consultarAtivoNaCarteira(Integer idCarteira, Ativo ativo) {
+    public boolean consultarAtivoNaCarteira(Integer idCarteira, Ativo ativo) {
+            return true;
+    }
 
+    @Override
+    public double CalcularTotalInvestidoPorAtivo(Ativo ativo) {
+        return 0;
+    }
+
+    @Override
+    public Carteira buscar(int id) {
+        return null;
     }
 
 }

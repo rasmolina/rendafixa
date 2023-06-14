@@ -23,6 +23,11 @@ public class MemoriaEmissoraDAO implements EmissoraDAO {
     }
 
     @Override
+    public Emissora buscar(int id) {
+        return null;
+    }
+
+    @Override
     public Optional<Emissora> findOne(Integer key) {
         if(bd.containsKey(key))
             return Optional.of(bd.get(key));

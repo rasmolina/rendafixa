@@ -23,6 +23,11 @@ public class MemoriaPortadoraDAO implements PortadoraDAO {
     }
 
     @Override
+    public Portadora buscar(int id) {
+        return null;
+    }
+
+    @Override
     public Optional<Portadora> findOne(Integer key) {
         if(bd.containsKey(key))
             return Optional.of(bd.get(key));

@@ -12,4 +12,5 @@ public interface AtivoDAO extends DAO<Ativo, Integer> {
     Optional<Ativo> buscaPorCategoria(CategoriaAtivo categoriaAtivo);
     Optional<Ativo> buscaPorNome(String nome);
     Optional<Ativo> buscaPorVencimento(LocalDate vencimento);
+    Ativo buscar(int id);
 }

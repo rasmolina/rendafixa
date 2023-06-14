@@ -11,10 +11,10 @@ public class Carteira {
     private List<Ativo> ativos;
     private Double valorDisponivelSaque;
 
-    public Carteira(List<Ativo> ativos) {
+    public Carteira(Integer id) {
         this.id = id;
-        this.ativos = new ArrayList<>();
         this.valorDisponivelSaque = 0.0;
+        this.ativos = new ArrayList<>();
     }
 
     public Integer getId() {
