@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="422.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.MainUIController">
+<AnchorPane prefHeight="422.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.rendafixa.application.controller.MainUIController">
     <children>
         <Text layoutX="161.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONITOR DE RENDA FIXA">
             <font>
@@ -20,5 +20,4 @@
         <Button fx:id="btnMoveToTransacoes" layoutX="232.0" layoutY="349.0" mnemonicParsing="false" onAction="#moveToTransacoes" prefHeight="36.0" prefWidth="140.0" text="Transações" />
         <Separator layoutX="2.0" layoutY="399.0" prefHeight="8.0" prefWidth="607.0" />
     </children>
-
 </AnchorPane>
