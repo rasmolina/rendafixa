@@ -283,11 +283,6 @@ public class Main {
 <<<<<<< HEAD
         /*
 */
-=======
-
-
-
->>>>>>> edbaf8f8a9b982f3d6983825bfdf70bd161ae4c6
 
         //Ativo pré-fixado
         /*
@@ -358,11 +353,10 @@ public class Main {
         consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
 
         consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
-=======
         consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
 
 
->>>>>>> edbaf8f8a9b982f3d6983825bfdf70bd161ae4c6
+
 
     }
 
@@ -372,7 +366,7 @@ public class Main {
     }
 
     private static void configureInjection(){
-        AtivoDAO ativoDAO = new MemoriaAtivoDAO();//new SqliteAtivoDAO();
+        AtivoDAO ativoDAO = new SqliteAtivoDAO();//MemoriaAtivoDAO();
         cadastrarAtivo = new CadastrarAtivo(ativoDAO);
         atualizarAtivo = new AtualizarAtivo(ativoDAO);
         removerAtivo = new RemoverAtivo(ativoDAO);
