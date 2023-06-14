@@ -8,4 +8,7 @@ public class AtivoUIController {
 
     public void backToPreviousScene(ActionEvent actionEvent) {
     }
+
+    public void configureAtivoDate(ActionEvent actionEvent) {
+    }
 }
