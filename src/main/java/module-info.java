@@ -9,4 +9,12 @@ module br.edu.ifsp.rendafixa {
     exports br.edu.ifsp.rendafixa.application.view;
     exports br.edu.ifsp.rendafixa.application.controller;
     opens br.edu.ifsp.rendafixa.application.controller to javafx.fxml;
+    opens br.edu.ifsp.rendafixa.domain.entities.ativos to javafx.base;
+    opens br.edu.ifsp.rendafixa.domain.entities.carteira to javafx.base;
+    opens br.edu.ifsp.rendafixa.domain.entities.emissora to javafx.base;
+    opens br.edu.ifsp.rendafixa.domain.entities.portadora to javafx.base;
+    opens br.edu.ifsp.rendafixa.domain.entities.itemAtivo to javafx.base;
+    opens br.edu.ifsp.rendafixa.domain.entities.indexadores to javafx.base;
+    opens br.edu.ifsp.rendafixa.domain.entities.transacao to javafx.base;
+
 }
