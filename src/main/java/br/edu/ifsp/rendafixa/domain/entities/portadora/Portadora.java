@@ -55,11 +55,11 @@ public class Portadora {
 
     @Override
     public String toString() {
-        return "Portadora{" +
+        return nome;/*"Portadora{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", sigla='" + sigla + '\'' +
-                '}';
+                '}';*/
     }
 }

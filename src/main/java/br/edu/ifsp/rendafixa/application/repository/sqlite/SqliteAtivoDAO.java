@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> edbaf8f8a9b982f3d6983825bfdf70bd161ae4c6
 package br.edu.ifsp.rendafixa.application.repository.sqlite;
 
 import br.edu.ifsp.rendafixa.application.repository.sqlite.ConnectionFactory;
@@ -255,3 +259,7 @@ public class SqliteAtivoDAO implements AtivoDAO {
             return deleteByKey(ativo.getId());
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> edbaf8f8a9b982f3d6983825bfdf70bd161ae4c6

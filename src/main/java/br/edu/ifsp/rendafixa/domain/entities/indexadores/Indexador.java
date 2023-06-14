@@ -55,11 +55,11 @@ public class Indexador {
 
     @Override
     public String toString() {
-        return "Indexador{" +
+        return nome;/*"Indexador{" +
                 "id=" + id +
                 ", sigla=" + sigla +
                 ", nome='" + nome + '\'' +
                 ", valor=" + valor +
-                '}';
+                '}';*/
     }
 }

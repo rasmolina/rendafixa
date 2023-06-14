@@ -44,10 +44,10 @@ import java.util.Optional;
 
 public class Main {
     //Ativo
-    private static AtualizarAtivo atualizarAtivo;
-    private static CadastrarAtivo cadastrarAtivo;
-    private static ConsultarAtivo consultarAtivo;
-    private static RemoverAtivo removerAtivo;
+    public static AtualizarAtivo atualizarAtivo;
+    public static CadastrarAtivo cadastrarAtivo;
+    public static ConsultarAtivo consultarAtivo;
+    public static RemoverAtivo removerAtivo;
 
     //Item Ativo
     private static InserirItemAtivo inserirItemAtivo;
@@ -260,7 +260,7 @@ public class Main {
 
 
         //atualizarAtivo.update(ativo);
-/*
+
         Emissora emissoraInter = new Emissora(1,"Inter", "Banco Inter SA", "INTER");
         cadastrarEntidadeEmissora.insert(emissoraInter);
         Emissora emissoraXP = new Emissora(2,"XP", "XP Co.", "XP");
@@ -280,8 +280,14 @@ public class Main {
 
 
         removerEntidadeEmissora.remove(1);
+<<<<<<< HEAD
         /*
 */
+=======
+
+
+
+>>>>>>> edbaf8f8a9b982f3d6983825bfdf70bd161ae4c6
 
         //Ativo pré-fixado
         /*
@@ -348,9 +354,15 @@ public class Main {
 
         System.out.println("\n=======================\n");
 
+<<<<<<< HEAD
         consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao));
 
         consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
+=======
+        consultarTransacao.findAll().stream().forEach(transacao -> System.out.println(transacao)); */
+
+
+>>>>>>> edbaf8f8a9b982f3d6983825bfdf70bd161ae4c6
 
     }
 
